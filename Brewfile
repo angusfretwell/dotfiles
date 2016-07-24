@@ -3,10 +3,9 @@ cask_args appdir: "/Applications"
 tap "caskroom/cask"
 tap "thoughtbot/formulae"
 tap "homebrew/services"
-tap "getantibody/homebrew-antibody"
 
 # Unix
-brew "antibody"
+brew "antigen"
 brew "bash"
 brew "coreutils"
 brew "findutils"
