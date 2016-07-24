@@ -1,0 +1,24 @@
+"*":
+  core:
+    themes: [
+      "one-dark-ui"
+      "base16-tomorrow-dark-theme"
+    ]
+  editor:
+    fontFamily: "Hack"
+    fontSize: 10
+    lineHeight: 2
+  linter: {}
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+  "linter-phpcs":
+    executablePath: "/Users/angusfretwell/.composer/vendor/bin/phpcs"
+  "markdown-preview":
+    useGitHubStyle: true
+  minimap:
+    plugins:
+      "highlight-selected": true
+  welcome:
+    showOnStartup: false
