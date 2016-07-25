@@ -12,6 +12,7 @@ brew "findutils"
 brew "git-extras"
 brew "git"
 brew "gnu-sed", with_default_names: true
+brew "homebrew/dupes/nano"
 brew "imagemagick"
 brew "mackup"
 brew "moreutils"
