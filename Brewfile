@@ -24,7 +24,6 @@ brew "zsh"
 
 # Languages
 brew "nvm"
-brew "pyenv"
 brew "rbenv"
 brew "ruby-build"
 
