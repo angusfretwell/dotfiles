@@ -1,25 +1,36 @@
 #!/usr/bin/env bash
 
 # shellcheck disable=SC1090
-source ~/.antigen.zsh
+source "$(brew --prefix)/share/antigen.zsh"
+# shellcheck disable=SC1090
+source "$(brew --prefix)/etc/profile.d/z.sh"
 
-antigen bundle robbyrussell/oh-my-zsh lib/
+# Load the oh-my-zsh library
+antigen use oh-my-zsh
 
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
+# Load common bundles
+antigen bundles <<EOBUNDLES
+brew
+brew-cask
+bundler
+capistrano
+command-not-found
+docker
+docker
+gem
+git
+node
+npm
+osx
+ssh-agent
+mafredri/zsh-async
+sindresorhus/pure
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-syntax-highlighting
+EOBUNDLES
 
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-autosuggestions
-antigen bundle zsh-history-substring-search
-antigen bundle git
-antigen bundle ssh-agent
-
-antigen bundle node
-antigen bundle npm
-
-antigen bundle brew
-antigen bundle brew-cask
-antigen bundle gem
-antigen bundle osx
+antigen apply
 
 export editor='ATOM'
