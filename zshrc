@@ -34,3 +34,10 @@ EOBUNDLES
 antigen apply
 
 export editor='ATOM'
+export PATH="/usr/local/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+# shellcheck disable=SC1090
+source "$(brew --prefix nvm)/nvm.sh"
+
+eval "$(rbenv init - --no-rehash)"
