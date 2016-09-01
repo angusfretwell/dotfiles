@@ -61,6 +61,9 @@ fancy_echo "Updating Homebrew formulae ..."
 brew update
 brew bundle
 
+fancy_echo "Installing dotfiles ..."
+RCRC="$HOME/dotfiles/rcrc" rcup
+
 fancy_echo "Configuring Node ..."
 nvm install stable
 nvm alias default stable
