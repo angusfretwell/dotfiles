@@ -33,6 +33,9 @@ brew "ruby-build"
 # Heroku
 brew "heroku-toolbelt"
 
+# AWS
+brew "awscli"
+
 # GitHub
 brew "hub"
 
