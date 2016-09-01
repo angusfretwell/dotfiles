@@ -8,6 +8,7 @@ tap "homebrew/services"
 # Unix
 brew "antigen"
 brew "bash"
+brew "ccat"
 brew "coreutils"
 brew "findutils"
 brew "git-extras"
