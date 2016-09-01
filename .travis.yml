@@ -5,5 +5,6 @@ before_script:
   - sudo dpkg -i "shellcheck_0.3.7-5_amd64.deb"
 
 script:
-  - shellcheck *.sh
-  - setup.sh
+  - shellcheck bootstrap
+  - bootstrap
+  - macos
