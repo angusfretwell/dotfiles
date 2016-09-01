@@ -8,5 +8,5 @@ before_script:
 
 script:
   - shellcheck bootstrap
-  - bootstrap
-  - macos
+  - ./bootstrap
+  - ./macos
