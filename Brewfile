@@ -1,5 +1,6 @@
 cask_args appdir: "/Applications"
 
+tap "homebrew/dupes"
 tap "caskroom/cask"
 tap "thoughtbot/formulae"
 tap "homebrew/services"
