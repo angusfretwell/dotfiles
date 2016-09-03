@@ -9,6 +9,5 @@ before_script:
   - brew install shellcheck
 
 script:
-  - shellcheck bootstrap
-  - shellcheck macos
+  - shellcheck bootstrap -x macos
   - sudo ./bootstrap
