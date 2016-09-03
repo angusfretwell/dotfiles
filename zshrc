@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # shellcheck disable=SC1090
-source "$(brew --prefix)/share/antigen.zsh"
+source "$(brew --prefix)/share/antigen/antigen.zsh"
 # shellcheck disable=SC1090
 source "$(brew --prefix)/etc/profile.d/z.sh"
 
