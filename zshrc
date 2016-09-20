@@ -33,7 +33,7 @@ EOBUNDLES
 
 antigen apply
 
-export editor='ATOM'
+export EDITOR='nano'
 export PATH="/usr/local/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
