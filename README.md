@@ -14,14 +14,6 @@
   $ ./bootstrap
   ```
 
-3. Authenticate and sync Dropbox.
-
-4. Restore files with Mackup:
-
-  ```
-  $ mackup restore
-  ```
-
 ## License
 
 The MIT License (MIT)
