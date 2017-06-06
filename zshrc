@@ -10,19 +10,7 @@ antigen use oh-my-zsh
 
 # Load common bundles
 antigen bundles <<EOBUNDLES
-brew
-brew-cask
-bundler
-capistrano
-command-not-found
-docker
-docker
-gem
-git
-node
-npm
 osx
-ssh-agent
 mafredri/zsh-async
 sindresorhus/pure
 zsh-users/zsh-completions
@@ -34,7 +22,7 @@ EOBUNDLES
 antigen apply
 
 export EDITOR='nano'
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:$HOME/.bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 # shellcheck disable=SC1090
