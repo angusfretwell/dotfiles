@@ -11,3 +11,6 @@
   template = ~/.gitmessage
 [fetch]
   prune = true
+[user]
+  email = angusfretwell@me.com
+  name = Angus Fretwell
