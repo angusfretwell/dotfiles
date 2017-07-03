@@ -4,6 +4,7 @@ tap "caskroom/cask"
 tap "caskroom/fonts"
 tap "homebrew/services"
 tap "thoughtbot/formulae"
+tap awsm/homebrew-tap
 
 # Unix
 brew "antigen"
@@ -13,10 +14,12 @@ brew "cdiff"
 brew "coreutils"
 brew "findutils"
 brew "gnu-sed", with_default_names: true
+brew "gpg"
 brew "nano"
 brew "imagemagick"
 brew "moreutils"
 brew "openssl"
+brew "pow"
 brew "rcm"
 brew "the_silver_searcher"
 brew "z"
@@ -36,6 +39,7 @@ brew "heroku-toolbelt"
 
 # AWS
 brew "awscli"
+brew "awsm"
 
 # Git
 brew "git-extras"
@@ -44,7 +48,6 @@ brew "git"
 brew "hub"
 
 # Applications
-brew "twitter"
 cask "1password"
 cask "alfred"
 cask "atom"
@@ -58,7 +61,7 @@ cask "firefox"
 cask "flux"
 cask "font-hack"
 cask "google-chrome"
-cask "google-chrome-canary"
+cask "telegram"
 cask "licecap"
 cask "ngrok"
 cask "nylas-mail"
@@ -71,6 +74,7 @@ cask "slack"
 cask "spectacle"
 cask "spotify"
 cask "transmission"
+cask "tunnelblick"
 cask "vagrant"
 cask "virtualbox"
 cask "vlc"
