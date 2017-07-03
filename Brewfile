@@ -4,7 +4,7 @@ tap "caskroom/cask"
 tap "caskroom/fonts"
 tap "homebrew/services"
 tap "thoughtbot/formulae"
-tap awsm/homebrew-tap
+tap "awsm/homebrew-tap"
 
 # Unix
 brew "antigen"
