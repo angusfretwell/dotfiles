@@ -1,5 +1,6 @@
 "*":
   core:
+    telemetryConsent: "no"
     themes: [
       "one-dark-ui"
       "base16-tomorrow-dark-theme"
@@ -8,6 +9,8 @@
     fontFamily: "Hack"
     fontSize: 12
     lineHeight: 2
+  "exception-reporting":
+    userId: "d6cc59fd-d3e0-48ad-998b-33af591b7072"
   linter: {}
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
