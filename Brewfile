@@ -29,6 +29,7 @@ brew "zsh"
 
 # Languages
 brew "ruby-build"
+brew "yarn"
 
 # Databases
 brew "mysql"
