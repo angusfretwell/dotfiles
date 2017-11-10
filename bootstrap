@@ -35,15 +35,6 @@ case "$SHELL" in
     ;;
 esac
 
-gem_install_or_update() {
-  if gem list "$1" --installed > /dev/null; then
-    gem update "$@"
-  else
-    gem install "$@"
-    rbenv rehash
-  fi
-}
-
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
   curl -fsS \
@@ -67,30 +58,12 @@ open "Tomorrow Night.terminal"
 fancy_echo "Installing dotfiles ..."
 RCRC="$HOME/dotfiles/rcrc" rcup
 
-fancy_echo "Configuring Node ..."
-# shellcheck disable=SC1090
-source "$(brew --prefix nvm)/nvm.sh"
-nvm install stable
-nvm alias default stable
-
-fancy_echo "Configuring Ruby ..."
-find_latest_ruby() {
-  rbenv install -l | grep -v - | tail -1 | sed -e 's/^ *//'
-}
-
-ruby_version="$(find_latest_ruby)"
-eval "$(rbenv init -)"
-
-if ! rbenv versions | grep -Fq "$ruby_version"; then
-  RUBY_CONFIGURE_OPTS=--with-openssl-dir=/usr/local/opt/openssl rbenv install -s "$ruby_version"
-fi
-
-rbenv global "$ruby_version"
-rbenv shell "$ruby_version"
-gem update --system
-gem_install_or_update 'bundler'
-number_of_cores=$(sysctl -n hw.ncpu)
-bundle config --global jobs $((number_of_cores - 1))
+fancy_echo "Setting up asdf..."
+asdf plugin-add ruby
+asdf plugin-add python
+asdf plugin-add nodejs
+bash "$(brew --prefix asdf)/plugins/nodejs/bin/import-release-team-keyring"
+asdf install
 
 fancy_echo "Setting macOS defaults ..."
 source macos
