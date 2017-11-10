@@ -12,12 +12,12 @@
   "exception-reporting":
     userId: "d6cc59fd-d3e0-48ad-998b-33af591b7072"
   linter:
-  "linter-eslint":
-    disableWhenNoEslintrcFileInPath: true
-  "linter-jshint":
-    disableWhenNoJshintrcFileInPath: true
-  "markdown-preview":
-    useGitHubStyle: true
+    "linter-eslint":
+      disableWhenNoEslintrcFileInPath: true
+    "linter-jshint":
+      disableWhenNoJshintrcFileInPath: true
+    "markdown-preview":
+      useGitHubStyle: true
   minimap:
     plugins:
       "highlight-selected": true
