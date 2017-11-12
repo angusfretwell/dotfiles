@@ -5,10 +5,9 @@ tap "caskroom/fonts"
 tap "homebrew/services"
 tap "thoughtbot/formulae"
 tap "awsm/homebrew-tap"
-tap "brew install getantibody/tap/antibody"
 
 # Unix
-brew "antibody"
+brew "antigen"
 brew "asdf"
 brew "bash"
 brew "ccat"
