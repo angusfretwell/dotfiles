@@ -1,5 +1,24 @@
 "*":
+  "atom-package-deps":
+    ignored: [
+      "linter-xo"
+    ]
   core:
+    customFileTypes:
+      "source.ini": [
+        ".hgrc"
+        ".buckconfig"
+        ".flowconfig"
+      ]
+      "source.json": [
+        "BUCK.autodeps"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
+    disabledPackages: [
+      "tree-view"
+    ]
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
@@ -11,6 +30,8 @@
     lineHeight: 2
   "exception-reporting":
     userId: "d6cc59fd-d3e0-48ad-998b-33af591b7072"
+  "file-icons": {}
+  "language-babel": {}
   linter:
     "linter-eslint":
       disableWhenNoEslintrcFileInPath: true
@@ -18,10 +39,35 @@
       disableWhenNoJshintrcFileInPath: true
     "markdown-preview":
       useGitHubStyle: true
+  "linter-ui-default":
+    panelHeight: 129
+  "markdown-preview":
+    useGitHubStyle: true
   minimap:
     plugins:
       "highlight-selected": true
       "highlight-selectedDecorationsZIndex": 0
-  "tree-view": {}
+  nuclide:
+    hyperclick:
+      darwinTriggerKeys: "ctrlKey"
+    "nuclide-flow":
+      canUseFlowBin: true
+    "nuclide-home":
+      showHome: false
+    "nuclide-working-sets": {}
+    use: {}
+  "prettier-atom":
+    formatOnSaveOptions:
+      enabled: true
+      isDisabledIfNoConfigFile: true
+    prettierOptions:
+      singleQuote: true
+    useEslint: true
+  "scroll-through-time":
+    direction: "right"
+  "tree-view":
+    autoReveal: true
+    hideIgnoredNames: true
+    squashDirectoryNames: true
   welcome:
     showOnStartup: false
