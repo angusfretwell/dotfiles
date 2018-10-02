@@ -16,14 +16,8 @@
       "source.python": [
         "BUCK"
       ]
-    disabledPackages: [
-      "tree-view"
-    ]
+    packagesWithKeymapsDisabled: []
     telemetryConsent: "no"
-    themes: [
-      "one-dark-ui"
-      "base16-tomorrow-dark-theme"
-    ]
   editor:
     fontFamily: "Hack"
     fontSize: 12
@@ -31,6 +25,8 @@
   "exception-reporting":
     userId: "d6cc59fd-d3e0-48ad-998b-33af591b7072"
   "file-icons": {}
+  "ide-flowtype":
+    tryFlowBin: true
   "language-babel": {}
   linter:
     "linter-eslint":
@@ -59,15 +55,18 @@
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
-      isDisabledIfNoConfigFile: true
+      isDisabledIfNotInPackageJson: true
     prettierOptions:
       singleQuote: true
     useEslint: true
   "scroll-through-time":
     direction: "right"
+  "status-bar":
+    isVisible: false
   "tree-view":
     autoReveal: true
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   welcome:
     showOnStartup: false
