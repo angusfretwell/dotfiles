@@ -1,3 +1,4 @@
-nodejs 9.1.0
-python 2.7.14
-ruby 2.4.2
+nodejs 12.18.3
+python 3.8.3
+ruby 2.7.1
+terraform 0.14.3

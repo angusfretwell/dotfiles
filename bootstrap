@@ -30,40 +30,44 @@ fi
 case "$SHELL" in
   */zsh) : ;;
   *)
-    fancy_echo "Changing your shell to zsh ..."
+    fancy_echo "Changing your shell to zsh..."
       chsh -s "$(which zsh)"
     ;;
 esac
 
 if ! command -v brew >/dev/null; then
-  fancy_echo "Installing Homebrew ..."
+  fancy_echo "Installing Homebrew..."
   curl -fsS \
     'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
 
   export PATH="/usr/local/bin:$PATH"
 fi
 
-if brew list | grep -Fq brew-cask; then
-  fancy_echo "Uninstalling old Homebrew-Cask ..."
-  brew uninstall --force brew-cask
-fi
-
-fancy_echo "Updating Homebrew formulae ..."
+fancy_echo "Updating Homebrew formulae..."
 brew update
 brew bundle
 
-fancy_echo "Installing Terminal theme ..."
-open "Tomorrow Night.terminal"
-
-fancy_echo "Installing dotfiles ..."
+fancy_echo "Installing dotfiles..."
 RCRC="$HOME/dotfiles/rcrc" rcup
 
-fancy_echo "Setting up asdf..."
-asdf plugin-add ruby
-asdf plugin-add python
-asdf plugin-add nodejs
-bash "$(brew --prefix asdf)/plugins/nodejs/bin/import-release-team-keyring"
+if ! asdf plugin-list | grep -q 'nodejs'; then
+  fancy_echo "Installing nodejs..."
+  asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  ~/.asdf/plugins/nodejs/bin/import-release-team-keyring 
+fi
+
+if ! asdf plugin-list | grep -q 'ruby'; then
+  fancy_echo "Installing ruby..."
+  asdf plugin-add ruby
+fi
+
+if ! asdf plugin-list | grep -q 'python'; then
+  fancy_echo "Installing python..."
+  asdf plugin-add python
+fi
+
+fancy_echo "Installing default language versions..."
 asdf install
 
-fancy_echo "Setting macOS defaults ..."
+fancy_echo "Setting macOS defaults..."
 source macos
