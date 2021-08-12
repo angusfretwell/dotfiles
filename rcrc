@@ -1,2 +1,2 @@
-EXCLUDES="README.md LICENSE Brewfile bootstrap macos Tomorrow\ Night.terminal wallpaper.jpg"
-DOTFILES_DIRS="$HOME/dotfiles"
+EXCLUDES="README.md LICENSE Brewfile Brewfile.lock.json bootstrap macos spectacle.json"
+DOTFILES_DIRS="$HOME/.dotfiles"

@@ -16,9 +16,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General                                                                     #
 ###############################################################################
 
-# Set desktop picture
-osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"${HOME}/.dotfiles/wallpaper.jpg\""
-
 # Increase window resize speed for Cocoa applications
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.1
 
@@ -42,24 +39,12 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# TODO:
-# - Dark mode
-# - Screen res
-
 ###############################################################################
 # Trackpad, mouse and keyboard                                                #
 ###############################################################################
 
 # Mouse: increase tracking speed
 defaults write -g com.apple.mouse.scaling 2.0
-
-# Right click
-
-# Trackpad: map bottom right corner to right-click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
@@ -107,7 +92,6 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desk
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
@@ -116,9 +100,6 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
-
-# Display full POSIX path as Finder window title
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
 # Keep folders on top when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
@@ -217,37 +198,15 @@ defaults write com.apple.dock showhidden -bool true
 # Don’t show recent applications in Dock
 defaults write com.apple.dock show-recents -bool false
 
-# Set Dock items
-dockutil --no-restart --remove all
-dockutil --no-restart --add "/Applications/Launchpad.app"
-dockutil --no-restart --add "/Applications/Mail.app"
-dockutil --no-restart --add "/Applications/Safari.app"
-dockutil --no-restart --add "/Applications/Calendar.app"
-dockutil --no-restart --add "/Applications/Notion.app"
-dockutil --no-restart --add "/Applications/Messages.app"
-dockutil --no-restart --add "/Applications/Caprine.app"
-dockutil --no-restart --add "/Applications/Slack.app"
-dockutil --no-restart --add "/Applications/Spotify.app"
-dockutil --no-restart --add "/Applications/Visual Studio Code.app"
-dockutil --no-restart --add "/Applications/Sketch.app"
-dockutil --no-restart --add "/Applications/Utilities/Terminal.app"
-
 defaults write com.apple.dock ResetLaunchPad -bool true
 
 ###############################################################################
 # Safari & WebKit                                                             #
 ###############################################################################
 
-# Privacy: don’t send search queries to Apple
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
-
 # Press Tab to highlight each item on a web page
 defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
-
-# Show the full URL in the address bar (note: this still hides the scheme)
-defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
 # Enable Safari’s debug menu
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
@@ -302,27 +261,6 @@ defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
-
-# Icon only taskbar
-
-###############################################################################
-# Terminal                                                                    #
-###############################################################################
-
-# Only use UTF-8 in Terminal.app
-defaults write com.apple.Terminal StringEncodings -array 4
-
-# Enable Secure Keyboard Entry in Terminal.app
-# See: https://security.stackexchange.com/a/47786/8918
-defaults write com.apple.Terminal SecureKeyboardEntry -bool true
-
-# Disable the annoying line marks
-defaults write com.apple.Terminal ShowLineMarks -int 0
-
-# Install the Tomorrow Night theme for Terminal.app
-open "${HOME}/.dotfiles/Tomorrow Night.terminal"
-defaults write com.apple.Terminal "Default Window Settings" -string "Tomorrow Night"
-defaults write com.apple.Terminal "Startup Window Settings" -string "Tomorrow Night"
 
 ###############################################################################
 # Time Machine                                                                #
@@ -402,30 +340,11 @@ defaults write org.m0k.transmission RandomPort -bool true
 # Disable default Spotlight hotkey
 /usr/libexec/PlistBuddy -c "Set AppleSymbolicHotKeys:64:enabled false" ~/Library/Preferences/com.apple.symbolichotkeys.plist 
 
-# TODO: sync preferences
-
 ###############################################################################
-# Bartender                                                                   #
+# Spectacle                                                                   #
 ###############################################################################
 
-# TODO: sync preferences
-
-###############################################################################
-# Visual Studio Code                                                          #
-###############################################################################
-
-# TODO: sync preferences
-
-###############################################################################
-# Login items                                                                 #
-###############################################################################
-
-# Set login items
-osascript -e 'tell application "System Events" to get the name of every login item'
-osascript -e 'tell application "System Events" to make login item at end with properties { path: "/Applications/Alfred 4.app", hidden: false }' 
-osascript -e 'tell application "System Events" to make login item at end with properties { path: "/Applications/Spectacle.app", hidden: false }' 
-osascript -e 'tell application "System Events" to make login item at end with properties { path: "/Applications/Bartender 3.app", hidden: false }' 
-osascript -e 'tell application "System Events" to make login item at end with properties { path: "/Applications/Caffeine.app", hidden: false }' 
+cp -r spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2> /dev/null
 
 ###############################################################################
 # Kill affected applications                                                  #
@@ -438,7 +357,6 @@ for app in "cfprefsd" \
 	"Photos" \
 	"Safari" \
 	"SystemUIServer" \
-	"Terminal" \
 	"Transmission"; do
 	killall "${app}" &> /dev/null
 done

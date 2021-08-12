@@ -1,27 +1,26 @@
-#!/usr/bin/env bash
+#!/bin/zsh
 
-export EDITOR='nano'
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/.dotfiles/bin:$PATH"
-export PATH="$HOME/Sites/hooroo/extranet-scripts$PATH"
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
 
-
-# shellcheck disable=SC1090
 source "$(brew --prefix)/share/antigen/antigen.zsh"
-# shellcheck disable=SC1090
 source "$(brew --prefix asdf)/asdf.sh"
-# shellcheck disable=SC1090
 source "$(brew --prefix)/etc/profile.d/z.sh"
 
 antigen use oh-my-zsh
 
-antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 
 antigen apply
+
+export EDITOR='code'
+export GPG_TTY=$(tty) 
+
+alias cat=bat
+alias ls=exa

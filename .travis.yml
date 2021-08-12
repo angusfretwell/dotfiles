@@ -1,8 +1,0 @@
-os:
-  - osx
-osx_image: xcode8
-language: sh
-before_script:
-  - brew install shellcheck
-script:
-  - shellcheck bootstrap -x macos

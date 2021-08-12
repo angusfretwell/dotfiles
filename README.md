@@ -18,4 +18,4 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Angus Fretwell
+Copyright (c) 2021 Angus Fretwell

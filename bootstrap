@@ -5,12 +5,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 fancy_echo() {
   local fmt="$1"; shift
-
-  # shellcheck disable=SC2059
   printf "\n$fmt\n" "$@"
 }
 
-# shellcheck disable=SC2154
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
 set -e
@@ -40,15 +37,21 @@ if ! command -v brew >/dev/null; then
   curl -fsS \
     'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
 
-  export PATH="/usr/local/bin:$PATH"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 fancy_echo "Updating Homebrew formulae..."
 brew update
 brew bundle
 
+if [ ! -d "$HOME/.zsh/pure" ]; then
+  fancy_echo "Installing pure..."
+  mkdir -p "$HOME/.zsh"
+  git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+fi
+
 fancy_echo "Installing dotfiles..."
-RCRC="$HOME/dotfiles/rcrc" rcup
+RCRC="$(pwd)/rcrc" rcup
 
 if ! asdf plugin-list | grep -q 'nodejs'; then
   fancy_echo "Installing nodejs..."
@@ -66,8 +69,13 @@ if ! asdf plugin-list | grep -q 'python'; then
   asdf plugin-add python
 fi
 
+if ! asdf plugin-list | grep -q 'postgres'; then
+  fancy_echo "Installing postgres..."
+  asdf plugin-add postgres
+fi
+
 fancy_echo "Installing default language versions..."
 asdf install
 
 fancy_echo "Setting macOS defaults..."
-source macos
+./macos
