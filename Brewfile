@@ -16,6 +16,7 @@ brew "dockutil"
 brew "exa"
 brew "git"
 brew "gnupg"
+brew "mas"
 brew "nano"
 brew "rcm"
 brew "the_silver_searcher"
@@ -54,3 +55,5 @@ cask "spotify"
 cask "transmission"
 cask "visual-studio-code"
 cask "vlc"
+
+mas "Amphetamine", id: 937984704
