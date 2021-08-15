@@ -2,13 +2,13 @@
   "entries": {
     "tap": {
       "homebrew/cask": {
-        "revision": "2a0b75a36aac53a1b8989cf2c769701347877d84"
+        "revision": "c96377f840eecf5e5e345ee01ee7e0d64c481658"
       },
       "homebrew/cask-fonts": {
-        "revision": "2103f5cd4011426dcca46b00c5aed2feaeb19815"
+        "revision": "7fa960be970c7decb598b683a6597cbff94bdbad"
       },
       "homebrew/services": {
-        "revision": "ab1e705e6bb39a16aa39b8c0b320cd2a7ecf9697"
+        "revision": "89b6f172065ddcb7c9f3d0eeb0520f13fbe5d90c"
       },
       "heroku/brew": {
         "revision": "f0cf18f0fec2a4426c39cfa07cc55710bddb4eff"
@@ -519,35 +519,35 @@
         }
       },
       "awscli": {
-        "version": "2.2.28",
+        "version": "2.2.29",
         "bottle": {
           "rebuild": 0,
           "root_url": "https://ghcr.io/v2/homebrew/core",
           "files": {
             "arm64_big_sur": {
               "cellar": ":any",
-              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:ceb3f24f35b57cd09f139393714a8dc03844c7f3ce04b28eecb583f5c09f4b3c",
-              "sha256": "ceb3f24f35b57cd09f139393714a8dc03844c7f3ce04b28eecb583f5c09f4b3c"
+              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:19364fbe65b7f3fac44ea621412b7e389bd225fd11e8099914fd6d5f7d3dccb7",
+              "sha256": "19364fbe65b7f3fac44ea621412b7e389bd225fd11e8099914fd6d5f7d3dccb7"
             },
             "big_sur": {
               "cellar": "/usr/local/Cellar",
-              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:655f1a8d373084958816b44e6e0672aeb7a760217baa1b18735eb04ccd612e3f",
-              "sha256": "655f1a8d373084958816b44e6e0672aeb7a760217baa1b18735eb04ccd612e3f"
+              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:ffc831baf9fa927754ca16b955a8ba4878a2a1bd54d39d3390ba838434e4dc11",
+              "sha256": "ffc831baf9fa927754ca16b955a8ba4878a2a1bd54d39d3390ba838434e4dc11"
             },
             "catalina": {
               "cellar": "/usr/local/Cellar",
-              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:4f8a91efa67bffb322ba35c08a0847e5064034757a895754f219cd28a247c658",
-              "sha256": "4f8a91efa67bffb322ba35c08a0847e5064034757a895754f219cd28a247c658"
+              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:38c5cd01cf4f126c7448922de16b72d98691ea72c474e8cfdecf1c7091cff67b",
+              "sha256": "38c5cd01cf4f126c7448922de16b72d98691ea72c474e8cfdecf1c7091cff67b"
             },
             "mojave": {
               "cellar": "/usr/local/Cellar",
-              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:563410d9dda20afe439644a41da38ba3c6cfb85931a5b455e581a070f23d5a8d",
-              "sha256": "563410d9dda20afe439644a41da38ba3c6cfb85931a5b455e581a070f23d5a8d"
+              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:7cb713aaba7111b949092aae574a9ec323ef0b67708b5bb08043760d5cd45a84",
+              "sha256": "7cb713aaba7111b949092aae574a9ec323ef0b67708b5bb08043760d5cd45a84"
             },
             "x86_64_linux": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:2f24916fd69ccdb28d634ce361dc33fd7d82cf4d376d1e527b9ec3fe47c12799",
-              "sha256": "2f24916fd69ccdb28d634ce361dc33fd7d82cf4d376d1e527b9ec3fe47c12799"
+              "url": "https://ghcr.io/v2/homebrew/core/awscli/blobs/sha256:014d3f697fd6f83e7056b286ea7c26e78032d21279061df4e151774752b090cd",
+              "sha256": "014d3f697fd6f83e7056b286ea7c26e78032d21279061df4e151774752b090cd"
             }
           }
         }
@@ -764,6 +764,10 @@
             }
           }
         }
+      },
+      "heroku": {
+        "version": "7.56.1",
+        "bottle": false
       }
     },
     "cask": {
@@ -946,6 +950,15 @@
             "appdir": "/Applications"
           }
         }
+      },
+      "notion": {
+        "version": "2.0.16",
+        "options": {
+          "full_name": "notion",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
       }
     },
     "mas": {
@@ -960,10 +973,10 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.2.6",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "acfe06395bf2abe8b7f64c902c523765b27ecc9a",
+        "Homebrew/homebrew-core": "e9a6ffa2dca432c1135e680da0d6a5922433b827",
         "CLT": "12.5.1.0.1.1623191612",
         "Xcode": "12.5",
-        "macOS": "11.4"
+        "macOS": "11.5.2"
       }
     }
   }
