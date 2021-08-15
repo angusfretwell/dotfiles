@@ -74,6 +74,11 @@ if ! asdf plugin-list | grep -q 'postgres'; then
   asdf plugin-add postgres
 fi
 
+if ! asdf plugin-list | grep -q 'redis'; then
+  fancy_echo "Installing redis..."
+  asdf plugin-add redis
+fi
+
 fancy_echo "Installing default language versions..."
 asdf install
 

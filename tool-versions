@@ -2,3 +2,4 @@ nodejs 16.6.1
 python 3.9.6
 ruby 2.7.4
 postgres 13.3
+redis 6.2.5
