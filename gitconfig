@@ -19,7 +19,7 @@
 [user]
 	email = angusfretwell@me.com
 	name = Angus Fretwell
-	signingkey = 7DCA5B4810D7A6BD
+	signingkey = 39D86C22CC80D362
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -41,10 +41,5 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [init]
 	defaultBranch = main

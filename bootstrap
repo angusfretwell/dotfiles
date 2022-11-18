@@ -12,26 +12,6 @@ trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
 set -e
 
-HOMEBREW_PREFIX="/usr/local"
-
-if [ -d "$HOMEBREW_PREFIX" ]; then
-  if ! [ -r "$HOMEBREW_PREFIX" ]; then
-    sudo chown -R "$LOGNAME:admin" /usr/local
-  fi
-else
-  sudo mkdir "$HOMEBREW_PREFIX"
-  sudo chflags norestricted "$HOMEBREW_PREFIX"
-  sudo chown -R "$LOGNAME:admin" "$HOMEBREW_PREFIX"
-fi
-
-case "$SHELL" in
-  */zsh) : ;;
-  *)
-    fancy_echo "Changing your shell to zsh..."
-      chsh -s "$(which zsh)"
-    ;;
-esac
-
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew..."
   curl -fsS \
@@ -44,40 +24,18 @@ fancy_echo "Updating Homebrew formulae..."
 brew update
 brew bundle
 
-if [ ! -d "$HOME/.zsh/pure" ]; then
-  fancy_echo "Installing pure..."
-  mkdir -p "$HOME/.zsh"
-  git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
-fi
-
 fancy_echo "Installing dotfiles..."
 RCRC="$(pwd)/rcrc" rcup
 
-if ! asdf plugin-list | grep -q 'nodejs'; then
-  fancy_echo "Installing nodejs..."
-  asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  ~/.asdf/plugins/nodejs/bin/import-release-team-keyring 
-fi
+asdf_plugins=(mysql nodejs postgres python redis ruby)
 
-if ! asdf plugin-list | grep -q 'ruby'; then
-  fancy_echo "Installing ruby..."
-  asdf plugin-add ruby
-fi
-
-if ! asdf plugin-list | grep -q 'python'; then
-  fancy_echo "Installing python..."
-  asdf plugin-add python
-fi
-
-if ! asdf plugin-list | grep -q 'postgres'; then
-  fancy_echo "Installing postgres..."
-  asdf plugin-add postgres
-fi
-
-if ! asdf plugin-list | grep -q 'redis'; then
-  fancy_echo "Installing redis..."
-  asdf plugin-add redis
-fi
+for i in "${asdf_plugins[@]}"
+do
+	if ! asdf plugin-list | grep -q "$i"; then
+    fancy_echo "Installing $i..."
+    asdf plugin-add "$i"
+  fi
+done
 
 fancy_echo "Installing default language versions..."
 asdf install

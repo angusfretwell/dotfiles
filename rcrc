@@ -1,2 +1,2 @@
-EXCLUDES="README.md LICENSE Brewfile Brewfile.lock.json bootstrap macos spectacle.json"
+EXCLUDES="README.md LICENSE Brewfile Brewfile.lock.json bootstrap macos"
 DOTFILES_DIRS="$HOME/.dotfiles"
