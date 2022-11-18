@@ -1,9 +1,9 @@
 module.exports = {
   config: {
-    fontFamily: "SF Mono",
-    lineHeight: 1.2,
-    cursorShape: "UNDERLINE",
     bell: false,
+    cursorShape: "UNDERLINE",
+    fontFamily: "Hack Nerd Font",
+    lineHeight: 1.2,
   },
-  plugins: ["hyper-snazzy", "hypercwd"],
+  plugins: ["hyper-snazzy", "hyper-search", "hyper-pane", "hypercwd"],
 };
