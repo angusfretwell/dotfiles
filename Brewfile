@@ -12,14 +12,15 @@ brew "nano"
 brew "gnupg"
 
 # Utils
-brew "starship"
 brew "antigen"
 brew "bat"
-brew "exa"
 brew "diff-so-fancy"
+brew "exa"
+brew "fzf"
+brew "starship"
 brew "the_silver_searcher"
 brew "tldr"
-brew "z"
+brew "zoxide"
 
 # Languages
 brew "node-build"

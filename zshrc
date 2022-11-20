@@ -4,7 +4,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source "$(brew --prefix)/share/antigen/antigen.zsh"
 source "$(brew --prefix asdf)/libexec/asdf.sh"
-source "$(brew --prefix)/etc/profile.d/z.sh"
 
 antigen use oh-my-zsh
 
@@ -21,4 +20,5 @@ export GPG_TTY=$(tty)
 alias cat=bat
 alias ls=exa
 
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
