@@ -8,7 +8,7 @@ Icon
 
 
 # Thumbnails
-._*
+.\_\*
 
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
@@ -25,3 +25,9 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Visual Studio Code
+.vscode/\*
+
+# Local History for Visual Studio Code
+.history/

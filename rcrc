@@ -1,2 +1,3 @@
 EXCLUDES="README.md LICENSE Brewfile Brewfile.lock.json bootstrap macos"
+SYMLINK_DIRS="commands"
 DOTFILES_DIRS="$HOME/.dotfiles"

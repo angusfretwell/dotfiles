@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+export EDITOR="zed --wait"
+export BAT_THEME="Sublime Snazzy"
+export PROCFILE_RUNNER="overmind"

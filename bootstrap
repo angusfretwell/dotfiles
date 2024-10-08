@@ -27,7 +27,7 @@ brew bundle
 fancy_echo "Installing dotfiles..."
 RCRC="$(pwd)/rcrc" rcup
 
-asdf_plugins=(mysql nodejs postgres python redis ruby)
+asdf_plugins=(golang nodejs python ruby)
 
 for i in "${asdf_plugins[@]}"
 do

@@ -1,6 +1,4 @@
-mysql 8.0.31
-nodejs 18.12.1
-postgres 15.1
-python 3.11.0
-redis 7.0.5
-ruby 3.1.2
+golang 1.19.3
+nodejs 20.18.0
+python 3.13.0
+ruby 3.3.5

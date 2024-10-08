@@ -6,11 +6,34 @@
 	excludesfile = ~/.gitignore
 	autocrlf = input
 	ignorecase = false
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 [interactive]
-	diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
 [merge]
-	ff = only
+	conflictstyle = diff3
+[delta]
+	commit-decoration-style = 238 ol
+	commit-style = raw
+	file-modified-label = changed:
+	file-style = omit
+	hunk-header-decoration-style = 238 ul
+	hunk-header-style = file line-number syntax
+	keep-plus-minus-markers = false
+	line-numbers = true
+	line-numbers-left-format = "{nm:^4}│"
+	line-numbers-left-style = 238
+	line-numbers-minus-style = "#7d3d3c"
+	line-numbers-plus-style = "#3e5c40"
+	line-numbers-right-format = "{np:^4}│"
+	line-numbers-right-style = 238
+	minus-emph-style = syntax "#7d3d3c"
+	minus-style = syntax "#352d31"
+	navigate = true
+	plus-emph-style = syntax "#3e5c40"
+	plus-style = syntax "#2b3733"
+[diff]
+	colorMoved = default
+	ignoreSubmodules = all
 [commit]
 	template = ~/.gitmessage
 	gpgsign = true
@@ -19,7 +42,7 @@
 [user]
 	email = angusfretwell@me.com
 	name = Angus Fretwell
-	signingkey = 39D86C22CC80D362
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMBebMYQQM8cSk9v6liWVndiqExPrHGBnweuz7MCNlac
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -28,18 +51,30 @@
 	added = yellow
 	changed = green
 	untracked = cyan
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 11
-	frag = magenta bold
-	func = 146 bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+	append = town append
+	diff-parent = town diff-parent
+	hack = town hack
+	kill = town kill
+	prepend = town prepend
+	propose = town propose
+	rename-branch = town rename-branch
+	repo = town repo
+	ship = town ship
+	sync = town sync
+	feature = town switch
+[submodule]
+	recurse = true
+[rerere]
+	enabled = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
