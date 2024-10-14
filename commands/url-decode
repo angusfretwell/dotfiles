@@ -17,5 +17,5 @@ function urldecode() {
     printf '%b' "${url_encoded//%/\\x}"
 }
 
-urldecode $(pbpaste) | pbcopy
+urldecode "$(pbpaste)" | pbcopy
 echo "Decoded URL"

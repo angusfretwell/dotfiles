@@ -10,7 +10,11 @@ osascript -e 'tell application "System Preferences" to quit'
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+done 2>/dev/null &
 
 ###############################################################################
 # General                                                                     #
@@ -161,9 +165,9 @@ chflags nohidden ~/Library
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
-	General -bool true \
-	OpenWith -bool true \
-	Privileges -bool true
+    General -bool true \
+    OpenWith -bool true \
+    Privileges -bool true
 
 ###############################################################################
 # Dock                                                                        #
@@ -265,18 +269,18 @@ defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
- 
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
 for app in "cfprefsd" \
-	"Dock" \
-	"Finder" \
-	"Mail" \
-	"Photos" \
-	"Safari" \
-	"SystemUIServer"; do
-	killall "${app}" &> /dev/null
+    "Dock" \
+    "Finder" \
+    "Mail" \
+    "Photos" \
+    "Safari" \
+    "SystemUIServer"; do
+    killall "${app}" &>/dev/null
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
