@@ -4,9 +4,9 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore
-	autocrlf = input
 	ignorecase = false
 	pager = delta
+  editor = zed --wait
 [interactive]
 	diffFilter = delta --color-only
 [merge]
@@ -53,28 +53,16 @@
 	untracked = cyan
 [init]
 	defaultBranch = main
+[status]
+  short = true
+[submodule]
+	recurse = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[alias]
-	append = town append
-	diff-parent = town diff-parent
-	hack = town hack
-	kill = town kill
-	prepend = town prepend
-	propose = town propose
-	rename-branch = town rename-branch
-	repo = town repo
-	ship = town ship
-	sync = town sync
-	feature = town switch
-[submodule]
-	recurse = true
-[rerere]
-	enabled = true
-[gpg]
-	format = ssh
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign

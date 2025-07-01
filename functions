@@ -1,5 +1,35 @@
-#!/bin/zsh
+#!/bin/sh
 
-function overmind-start() {
-	rm -f ./.overmind.sock && overmind start
+bkdev() {
+  if [ -e .overmind.sock ]; then
+    rm .overmind.sock
+  fi
+
+  if localstack status | grep -q "running"; then
+    localstack stop
+  fi
+
+  if docker compose -p buildkite ps | grep -q "running"; then
+    docker compose -p buildkite down
+  fi
+
+  while getopts "f" opt; do
+    case $opt in
+    f) frontend=true ;;
+    *) return 1 ;;
+    esac
+  done
+
+  if [ "$frontend" ]; then
+    DEVELOPMENT_PROCFILE=Procfile.frontend-experimental.dev bin/start
+  else
+    bin/start
+  fi
+}
+
+bkagent() {
+  buildkite-agent start \
+    --token test \
+    --spawn 5 \
+    --endpoint http://agent.buildkite.localhost/v3
 }
