@@ -1,4 +1,0 @@
-#!/bin/zsh
-
-export PATH=~/.composer/vendor/bin:$PATH
-export PATH=~/.commands:$PATH

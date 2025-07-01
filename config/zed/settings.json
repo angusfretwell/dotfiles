@@ -1,0 +1,87 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "theme": "Catppuccin Mocha",
+  "icon_theme": "Catppuccin Mocha",
+  "buffer_font_size": 14.0,
+  "buffer_font_family": "BlexMono Nerd Font Mono",
+  "tab_size": 2,
+  "preferred_line_length": 100,
+  "wrap_guides": [100],
+  "allow_rewrap": "in_selections",
+  "tabs": {
+    "git_status": true
+  },
+  "edit_predictions": {
+    "mode": "eager"
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "agent": {
+    "default_profile": "write",
+    "always_allow_tool_actions": true,
+    "single_file_review": true,
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
+    }
+  },
+
+  "languages": {
+    // https://zed.dev/docs/languages/ruby#configuring-a-language-server
+    "Ruby": {
+      "language_servers": ["ruby-lsp", "rubocop", "!solargraph", "tailwindcss-language-server"],
+      "format_on_save": "on"
+    },
+
+    // https://docs.astral.sh/ruff/editors/setup/#zed
+    "Python": {
+      "language_servers": ["pyright", "ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
+    }
+  },
+
+  "lsp": {
+    // https://zed.dev/docs/languages/ruby#setting-up-ruby-lsp
+    "ruby-lsp": {
+      "initialization_options": {
+        "enabledFeatures": {
+          "diagnostics": false
+        }
+      }
+    },
+    // https://zed.dev/docs/languages/ruby#setting-up-rubocop-lsp
+    "rubocop": {
+      "initialization_options": {
+        "safeAutocorrect": false
+      }
+    },
+
+    // https://zed.dev/docs/languages/ruby#using-the-tailwind-css-language-server-with-ruby
+    "tailwindcss-language-server": {
+      "settings": {
+        "includeLanguages": {
+          "erb": "html",
+          "ruby": "html"
+        },
+        "experimental": {
+          "classRegex": ["\\bclass:\\s*['\"]([^'\"]*)['\"]"]
+        }
+      }
+    }
+  }
+}

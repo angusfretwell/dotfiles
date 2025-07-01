@@ -1,5 +1,14 @@
 #!/bin/zsh
 
-export EDITOR="zed --wait"
-export BAT_THEME="Sublime Snazzy"
-export PROCFILE_RUNNER="overmind"
+export EDITOR="micro"
+export BAT_THEME="Catppuccin Mocha"
+
+export MICRO_TRUECOLOR=1
+
+export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+
+export PNPM_HOME="/Users/angusfretwell/Library/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac

@@ -1,0 +1,10 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+[tools]
+node = "22"
+ruby = "3.4"
+python = "3.13"
+golang = "1.19"
+
+[settings]
+idiomatic_version_file_enable_tools = ["ruby", "node", "python", "golang"]

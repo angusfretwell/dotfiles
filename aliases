@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-alias code=zed
 alias cat=bat
-alias ls="eza --git --group-directories-first"
-
-alias \?\?="gh copilot suggest -t shell"
-alias \?="gh copilot explain"
+alias code=zed
+alias df=duf
+alias ls="eza --git --group-directories-first --icons -1"
+alias nano=micro
+alias ps=procs

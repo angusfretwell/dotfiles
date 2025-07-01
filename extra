@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-source "$(brew --prefix asdf)/libexec/asdf.sh"
-
-eval "$(zoxide init zsh)"
