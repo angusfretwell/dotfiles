@@ -71,15 +71,15 @@ brew 'vercel-cli'
 
 # Buildkite
 tap 'buildkite/buildkite'
-brew 'bik'
 brew 'bk@3'
 brew 'bktec'
 brew 'buildkite-agent'
 
 # Fonts
-cask 'font-sf-mono'
-cask 'font-sf-compact'
 cask 'font-blex-mono-nerd-font'
+cask 'font-sf-compact'
+cask 'font-sf-mono'
+cask 'font-sf-pro'
 
 # Applications
 cask '1password'
@@ -104,7 +104,6 @@ cask 'tableplus'
 cask 'tailscale'
 cask 'warp'
 cask 'whatsapp'
-cask 'wkhtmltopdf'
 cask 'zed'
 cask 'zoom'
 
