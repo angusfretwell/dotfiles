@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 alias cat=bat
-alias code=zed
+alias code=cursor
 alias df=duf
-alias ls="eza --git --group-directories-first --icons -1"
+alias ls="eza --git --group-directories-first -1"
 alias nano=micro
 alias ps=procs

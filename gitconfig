@@ -19,7 +19,7 @@
 [user]
 	email = angusfretwell@me.com
 	name = Angus Fretwell
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMBebMYQQM8cSk9v6liWVndiqExPrHGBnweuz7MCNlac
+  	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMBebMYQQM8cSk9v6liWVndiqExPrHGBnweuz7MCNlac
 [init]
 	defaultBranch = main
 [status]
@@ -58,3 +58,9 @@
 	added = yellow
 	changed = green
 	untracked = cyan
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential

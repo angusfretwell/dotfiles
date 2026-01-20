@@ -3,8 +3,8 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(mise activate zsh)"
 
-source ~/.config/op/plugins.sh
+source ~/.op/plugins.sh
 
-for file in ~/.{prompt,exports,aliases}; do
+for file in ~/.{prompt,exports,aliases,functions}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
