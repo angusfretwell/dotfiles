@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+sudo -v
+while true; do
+	sudo -n true
+	sleep 60
+	kill -0 "$$" || exit
+done 2>/dev/null &
+
+fancy_echo() {
+	local fmt="$1"
+	shift
+	printf '\n%s\n' "$fmt" "$@"
+}
+
+trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
+ret=0
+
+set -e
+
+fancy_echo "Updating Homebrew formulae..."
+brew update
+brew bundle
+brew bundle cleanup
+
+fancy_echo "Updating dotfiles..."
+RCRC="$(pwd)/rcrc" rcup
+
+fancy_echo "Updating default language versions..."
+mise install
