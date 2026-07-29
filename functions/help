@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+input=$(
+	cat <<EOF
+You are a Linux shell command expert.
+
+Task: Write a single shell command that accomplishes the following goal:
+<goal>
+$1
+</goal>
+
+Rules:
+- Output ONLY the command and a 1-2 sentence explanation
+- Do NOT execute the command
+- Do NOT add warnings or caveats
+- Do NOT wrap lines. Keep each line of output on a single line.
+
+Response format (use exactly this markdown structure):
+
+\`\`\`sh
+<your command here>
+\`\`\`
+
+**Explanation:** <short explanation>
+EOF
+)
+
+claude --print --model sonnet "$input" | glow

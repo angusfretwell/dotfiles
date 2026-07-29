@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+alias mcat="glow"
+
+# Modern replacements for common utils
+alias cat=bat
+alias code=cursor
+alias df=duf
+alias nano=micro
+alias ps=procs
+alias ls="eza --git --group-directories-first -1"
+
+# Worktrunk shortcuts
+alias wts="wt switch"
+alias wtx="wt step promote"
+alias wtp="wt step prune"

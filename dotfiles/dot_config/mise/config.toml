@@ -1,0 +1,14 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+[tools]
+node = "24"
+ruby = "4.0"
+python = "3.14"
+golang = "1.26"
+"npm:agent-browser" = "latest"
+"npm:ccstatusline" = "latest"
+"npm:ctx7" = "latest"
+"npm:vercel" = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["ruby", "node", "python", "golang"]

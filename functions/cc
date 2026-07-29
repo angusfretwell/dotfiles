@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+if [[ $(git rev-parse --show-toplevel 2>/dev/null) != $PWD ]]; then
+	echo >&2 "must be run from the repo root."
+	return 1
+else
+	claude "$@"
+fi
