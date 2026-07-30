@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# MacOS build version: {{ output "sw_vers" "--buildVersion" }}
-# Brewfile hash: {{ include "../../Brewfile" | sha256sum }}
-
-brew update
-brew bundle
-brew bundle cleanup

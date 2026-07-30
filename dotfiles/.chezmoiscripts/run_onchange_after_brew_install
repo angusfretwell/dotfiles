@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# MacOS build version: {{ output "sw_vers" "--buildVersion" }}
+# Brewfile hash: {{ include "../dot_homebrew/Brewfile" | sha256sum }}
+
+brew update
+brew bundle -g
+brew bundle cleanup -g --force

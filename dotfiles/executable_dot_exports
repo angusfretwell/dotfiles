@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-export RCRC="$HOME/.dotfiles/rcrc"
-
 export ZFUNCDIR="$HOME/.dotfiles/functions"
 
 export EDITOR="micro"
