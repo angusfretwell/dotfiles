@@ -26,14 +26,15 @@
     "command": "bash ~/.claude/statusline-wrapper.sh"
   },
   "enabledPlugins": {
+    "paper-desktop@paper": false,
     "worktrunk@worktrunk": true,
-    "paper-desktop@paper": true
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "worktrunk": {
       "source": {
-        "source": "git",
-        "url": "https://github.com/max-sixty/worktrunk.git"
+        "source": "github",
+        "repo": "max-sixty/worktrunk"
       }
     },
     "paper": {

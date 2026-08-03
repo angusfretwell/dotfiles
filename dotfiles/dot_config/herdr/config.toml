@@ -1,3 +1,19 @@
+onboarding = false
+
 [theme]
 name = "kanagawa"
 auto_switch = false
+
+[ui.toast]
+delivery = "herdr"
+
+[experimental]
+pane_history = false
+
+[ui]
+sidebar_width = 20
+prompt_new_tab_name = false
+agent_panel_sort = "spaces"
+
+[ui.sidebar.agents]
+rows = [["state_icon", "workspace", "tab"], ["terminal_title_stripped"]]
