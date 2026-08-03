@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # MacOS build version: {{ output "sw_vers" "--buildVersion" }}
-# mise config.toml hash: {{ include "../dot_config/mise/config.toml" | sha256sum }}
+# mise config.toml hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
 
 mise self-update
 mise install

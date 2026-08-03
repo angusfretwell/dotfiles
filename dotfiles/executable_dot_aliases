@@ -1,7 +1,11 @@
 #!/bin/zsh
 
+alias dot="chezmoi cd"
+
 alias mcat="glow"
 alias code=cursor
+
+alias bear='/Applications/Bear.app/Contents/MacOS/bearcli'
 
 # Modern replacements for common utils
 alias cat=bat
