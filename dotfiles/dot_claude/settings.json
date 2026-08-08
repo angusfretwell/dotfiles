@@ -23,7 +23,8 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "bash ~/.claude/statusline-wrapper.sh"
+    "command": "npx -y ccstatusline@latest",
+    "refreshInterval": 10
   },
   "enabledPlugins": {
     "paper-desktop@paper": false,

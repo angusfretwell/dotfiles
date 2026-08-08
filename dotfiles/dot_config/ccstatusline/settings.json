@@ -4,26 +4,79 @@
     [
       {
         "id": "1",
-        "type": "context-percentage",
-        "color": "yellow",
+        "type": "model",
         "bold": true,
+        "rawValue": true,
+        "color": ""
+      },
+      {
+        "id": "2",
+        "type": "separator",
+        "character": " "
+      },
+      {
+        "id": "3",
+        "type": "thinking-effort",
+        "color": "",
         "rawValue": true
+      },
+      {
+        "id": "4",
+        "type": "separator",
+        "character": " (",
+        "dim": true,
+        "color": "white"
+      },
+      {
+        "id": "5",
+        "type": "context-percentage",
+        "rawValue": true,
+        "color": "white",
+        "dim": true
+      },
+      {
+        "id": "6",
+        "type": "separator",
+        "character": ") ",
+        "dim": true,
+        "color": "white"
+      },
+      {
+        "id": "7",
+        "type": "git-branch",
+        "character": "",
+        "metadata": {
+          "hideNoGit": "true",
+          "linkToRepo": "true"
+        },
+        "color": "",
+        "maxWidth": 32
+      },
+      {
+        "id": "8",
+        "type": "separator",
+        "character": " "
+      },
+      {
+        "id": "9",
+        "type": "git-review",
+        "color": "white",
+        "dim": true,
+        "metadata": {
+          "hideNoGit": "true",
+          "hideStatus": "true",
+          "hideTitle": "true"
+        }
       }
-    ],
-    [],
-    []
+    ]
   ],
   "flexMode": "full-minus-40",
   "compactThreshold": 60,
   "colorLevel": 2,
-  "inheritSeparatorColors": false,
-  "globalBold": false,
-  "powerline": {
-    "enabled": false,
-    "separators": [""],
-    "separatorInvertBackground": [false],
-    "startCaps": [],
-    "endCaps": [],
-    "autoAlign": false
+  "defaultPaddingSide": "both",
+  "gitCacheTtlSeconds": 5,
+  "installation": {
+    "method": "auto-update",
+    "packageManager": "npm"
   }
 }

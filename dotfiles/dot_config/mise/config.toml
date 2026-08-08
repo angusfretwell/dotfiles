@@ -10,6 +10,7 @@ golang = "1.26"
 "npm:ccstatusline" = "latest"
 "npm:ctx7" = "latest"
 "npm:vercel" = "latest"
+mago = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby", "node", "python", "golang"]
