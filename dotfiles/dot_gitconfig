@@ -1,7 +1,6 @@
 [user]
 	name = Angus Fretwell
 	email = angusfretwell@me.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMBebMYQQM8cSk9v6liWVndiqExPrHGBnweuz7MCNlac
 
 [credential "https://github.com"]
 	helper =
@@ -11,15 +10,8 @@
 	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 
-[gpg]
-  format = ssh
-
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
 [commit]
 	template = ~/.gitmessage
-  	gpgsign = true
 
 [core]
 	excludesfile = ~/.gitignore
