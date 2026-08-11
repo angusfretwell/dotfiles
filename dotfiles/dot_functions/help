@@ -25,4 +25,4 @@ Response format (use exactly this markdown structure):
 EOF
 )
 
-claude --print --model sonnet "$input" | glow
+claude --print --model sonnet --effort medium "$input" | glow
