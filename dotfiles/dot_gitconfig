@@ -1,6 +1,25 @@
 [user]
 	name = Angus Fretwell
 	email = angusfretwell@me.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMBebMYQQM8cSk9v6liWVndiqExPrHGBnweuz7MCNlac
+
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+	template = ~/.gitmessage
+  	gpgsign = true
 
 [core]
 	excludesfile = ~/.gitignore
@@ -14,9 +33,6 @@
 
 [merge]
 	conflictstyle = zdiff3
-
-[commit]
-	template = ~/.gitmessage
 
 [push]
 	default = current
@@ -35,50 +51,20 @@
 [submodule]
 	recurse = true
 
-[credential "https://github.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
-
-[credential "https://gist.github.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
-
 [interactive]
 	diffFilter = delta --color-only
 
 [delta]
+    true-color = always
+    syntax-theme = Cursor Dark
 	dark = true
 	tabs = 2
-
-	file-decoration-style = "#163050" ul
-	file-added-label = " "
-	file-copied-label = " "
-	file-modified-label = " "
-	file-removed-label = " "
-	file-renamed-label = " "
-
+	hunk-header-decoration-style = ul blue dim
 	line-numbers-left-format = "{nm:>4} "
-	line-numbers-right-format = "│ {np:>4} "
-	line-numbers-left-style = white dim
-	line-numbers-right-style = "#1f2335" dim
-	line-numbers-zero-style = white dim
-	line-numbers-plus-style = white dim
-	line-numbers-minus-style = white dim
-
+	line-numbers-right-format = " {np:>4} "
 	wrap-left-symbol = " "
 	wrap-right-symbol = " "
 	wrap-right-prefix-symbol = " "
-
-	plus-style = syntax "#0e250e"
-	plus-emph-style = syntax "#103610"
-	minus-style = syntax "#402a26"
-	minus-emph-style = syntax "#45221c"
-
-	hunk-label = ""
-	hunk-header-style = "#868E99"
-	hunk-header-line-number-style = "#10233A"
-	hunk-header-file-style = "#868E99" dim
-	hunk-header-decoration-style = "#163050" ul dim
 
 [color "branch"]
 	current = yellow reverse
