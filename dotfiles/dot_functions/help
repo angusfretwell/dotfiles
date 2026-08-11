@@ -1,12 +1,12 @@
 #!/bin/zsh
 
-input=$(
+local input=$(
 	cat <<EOF
 You are a Linux shell command expert.
 
 Task: Write a single shell command that accomplishes the following goal:
 <goal>
-$1
+$*
 </goal>
 
 Rules:
@@ -25,4 +25,4 @@ Response format (use exactly this markdown structure):
 EOF
 )
 
-claude --print --model sonnet --effort medium "$input" | glow
+ccp --model sonnet --effort medium "$input" | glow

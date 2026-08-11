@@ -39,8 +39,6 @@ $extra
 EOF
 )
 
-print -r -- "$input" | claude --print \
-	--model sonnet \
-	--effort high \
-	--settings '{"includeCoAuthoredBy": false}' \
+print -r -- "$input" | GUM_SPIN_TITLE="Committing…" ccp \
+	--model sonnet --effort high --settings '{"includeCoAuthoredBy": false}' \
 	--allowedTools "Read Grep Glob Bash(git status:*) Bash(git diff:*) Bash(git log:*) Bash(git show:*) Bash(git add:*) Bash(git restore:*) Bash(git commit:*)"

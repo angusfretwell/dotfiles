@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+local output
+output=$(gum spin --spinner minidot --title "${GUM_SPIN_TITLE:-Thinking…}" --show-output -- claude --print "$@")
+local ret=$?
+
+[[ -n $output ]] && print -r -- "$output"
+
+return $ret
