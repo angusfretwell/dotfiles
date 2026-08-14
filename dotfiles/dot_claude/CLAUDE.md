@@ -1,7 +1,3 @@
-## Agent skills
-
-When grilling, ask one question at a time.
-
 ## Task delegation
 
 Spawn subagents to isolate context, parallelize independent work, or offload bulk mechanical tasks. Don't spawn when the parent needs the reasoning, when synthesis requires holding things together, or when spawn overhead dominates.
