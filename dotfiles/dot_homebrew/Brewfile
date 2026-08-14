@@ -12,6 +12,7 @@ brew 'zsh'
 
 # Utils
 brew 'bat'
+brew 'composer'
 brew 'coreutils'
 brew 'cowsay'
 brew 'curl'
@@ -94,7 +95,6 @@ cask 'signal'
 cask 'slack'
 cask 'tableplus'
 cask 'tailscale-app'
-cask 'thebrowsercompany-dia'
 cask 'whatsapp'
 cask 'zoom'
 
