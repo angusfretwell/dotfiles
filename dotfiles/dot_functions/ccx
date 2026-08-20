@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-assert_repo_root || return 1
-
-claude --dangerously-skip-permissions "$@"

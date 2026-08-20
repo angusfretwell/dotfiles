@@ -25,4 +25,4 @@ Response format (use exactly this markdown structure):
 EOF
 )
 
-ccp --model sonnet --effort medium "$input" | glow
+claude_print --model sonnet --effort medium "$input" | glow

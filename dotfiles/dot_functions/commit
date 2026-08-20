@@ -14,31 +14,19 @@ fi
 
 local input=$(
 	cat <<EOF
-Commit the changes in this repository.
+Use the /commit skill to commit the changes in this repository.
 
-Steps:
-1. Read the working tree: git status, git diff, git diff --staged.
-2. Read git log to learn the commit message style used here, and match it.
-3. Group the changes into the fewest coherent commits — one concern per commit.
-   Split by path, not by hunk. If a single file mixes concerns, keep it whole
-   and mention it. If it is all one concern, make one commit.
-4. Stage each group with explicit paths (git add -- <paths>) and commit it.
+When finished, print only a markdown summary in exactly this format and nothing else:
 
-Rules:
-- Only stage and commit. Never edit file contents, amend, rebase, push, or
-  touch remotes.
-- Include untracked files only when they clearly belong with the change. Skip
-  scratch, build, and temp files.
-- If anything looks like a secret or credential, stop and report it instead of
-  committing.
-- No Co-Authored-By or attribution footers.
-- When finished, print one line per commit: the short hash and subject. Nothing
-  else.
+# wrote <n> commits:
+- <commit subject> (\`<short hash>\`)
+- <commit subject> (\`<short hash>\`)
 
 $extra
 EOF
 )
 
-print -r -- "$input" | GUM_SPIN_TITLE="Committing…" ccp \
+print -r -- "$input" | GUM_SPIN_TITLE="Committing…" claude_print \
 	--model sonnet --effort high --settings '{"includeCoAuthoredBy": false}' \
-	--allowedTools "Read Grep Glob Bash(git status:*) Bash(git diff:*) Bash(git log:*) Bash(git show:*) Bash(git add:*) Bash(git restore:*) Bash(git commit:*)"
+	--allowedTools "Read Grep Glob Skill Bash(git status:*) Bash(git diff:*) Bash(git log:*) Bash(git show:*) Bash(git add:*) Bash(git restore:*) Bash(git commit:*)" |
+	glow

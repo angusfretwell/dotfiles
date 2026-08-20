@@ -1,10 +1,8 @@
 #!/bin/zsh
 
 alias dot="chezmoi cd"
-
 alias mcat="glow"
 alias code=cursor
-
 alias bear='/Applications/Bear.app/Contents/MacOS/bearcli'
 
 # Modern replacements for common utils
@@ -16,5 +14,8 @@ alias ls="eza --git --group-directories-first -1"
 
 # Worktrunk shortcuts
 alias wts="wt switch"
-alias wtx="wt step promote"
 alias wtp="wt step prune"
+
+# Claude shortcuts
+alias cc="assert_repo_root && claude"
+alias ccx="assert_repo_root && claude --dangerously-skip-permissions"
