@@ -1,9 +1,28 @@
 #!/bin/zsh
 
-local output
-output=$(gum spin --spinner minidot --title "${GUM_SPIN_TITLE:-Thinking…}" --show-output -- claude --print "$@")
-local ret=$?
+assert_repo_root || return 1
 
-[[ -n $output ]] && print -r -- "$output"
+local extra=""
+if (($#)); then
+	extra="Additional instructions: $*"
+fi
 
-return $ret
+local input=$(
+	cat <<EOF
+Use the /expect skill to test the pending changes in this repository.
+
+Do not fix anything — only test and report.
+
+When finished, print only a markdown report and nothing else:
+
+# <passed|failed>: <one-line verdict>
+- <what was tested and what happened>
+
+$extra
+EOF
+)
+
+print -r -- "$input" | GUM_SPIN_TITLE="Testing…" claude_print \
+	--model opus --effort high \
+	--allowedTools "Read Grep Glob Skill Bash mcp__expect" |
+	glow
