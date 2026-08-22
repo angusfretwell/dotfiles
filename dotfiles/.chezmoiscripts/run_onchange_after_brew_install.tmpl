@@ -3,5 +3,5 @@
 # Brewfile hash: {{ include "dot_homebrew/Brewfile" | sha256sum }}
 
 brew update
-brew bundle -g
+brew bundle -gv --jobs 4
 brew bundle cleanup -g --force
