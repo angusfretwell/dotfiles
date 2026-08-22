@@ -1,0 +1,48 @@
+{
+  "editor.fontFamily": "BlexMono Nerd Font Mono",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.65,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "window.autoDetectColorScheme": true,
+
+  "workbench.agentsWindowButton.enabled": false,
+  "workbench.tree.indent": 12,
+
+  "security.promptForLocalFileProtocolHandling": false,
+
+  // Git
+  "git.blame.editorDecoration.enabled": true,
+  "git.openRepositoryInParentFolders": "always",
+
+  // JSON schema
+  "json.schemaDownload.enable": true,
+
+  // Tailwind CSS
+  "tailwindCSS.classFunctions": ["cn", "cx", "cva"],
+
+  // JavaScript & TypeScript
+  "biome.requireConfiguration": true,
+
+  // Markdown & MDX
+  "[md]": {
+    "editor.wordWrap": "on"
+  },
+  "[mdx]": {
+    "editor.wordWrap": "on"
+  },
+
+  // Shell
+  "[shellscript]": {
+    "editor.defaultFormatter": "mkhl.shfmt"
+  },
+
+  // TOML
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+
+  // Docker
+  "docker.extension.enableComposeLanguageServer": false
+}
