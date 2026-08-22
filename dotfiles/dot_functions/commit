@@ -18,7 +18,7 @@ Use the /commit skill to commit the changes in this repository.
 
 When finished, print only a markdown summary in exactly this format and nothing else:
 
-# wrote <n> commits:
+# wrote <n> commit(s):
 - <commit subject> (\`<short hash>\`)
 - <commit subject> (\`<short hash>\`)
 
