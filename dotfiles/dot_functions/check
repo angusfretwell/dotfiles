@@ -22,7 +22,7 @@ $extra
 EOF
 )
 
-print -r -- "$input" | GUM_SPIN_TITLE="Testing…" claude_print \
+print -r -- "$input" | GUM_SPIN_TITLE="Testing..." claude_print \
 	--model opus --effort high \
 	--allowedTools "Read Grep Glob Skill Bash mcp__expect" |
 	glow
