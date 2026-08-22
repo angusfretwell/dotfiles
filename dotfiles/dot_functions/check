@@ -23,6 +23,6 @@ EOF
 )
 
 print -r -- "$input" | GUM_SPIN_TITLE="Testing..." claude_print \
-	--model opus --effort high \
+	--model sonnet --effort high \
 	--allowedTools "Read Grep Glob Skill Bash mcp__expect" |
 	glow
