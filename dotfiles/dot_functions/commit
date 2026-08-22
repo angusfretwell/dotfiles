@@ -29,4 +29,4 @@ EOF
 print -r -- "$input" | GUM_SPIN_TITLE="Committing…" claude_print \
 	--model sonnet --effort high --settings '{"includeCoAuthoredBy": false}' \
 	--allowedTools "Read Grep Glob Skill Bash(git status:*) Bash(git diff:*) Bash(git log:*) Bash(git show:*) Bash(git add:*) Bash(git restore:*) Bash(git commit:*)" |
-	glow
+	glow --width 0
