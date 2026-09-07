@@ -1,0 +1,36 @@
+#!/bin/zsh
+
+assert_repo_root || return 1
+
+if [[ $(git rev-parse --abbrev-ref HEAD) == $(git remote show origin 2>/dev/null | sed -n 's/.*HEAD branch: //p') ]]; then
+	echo >&2 "on the default branch; switch to a feature branch first."
+	return 1
+fi
+
+local extra=""
+if (($#)); then
+	extra="Additional instructions: $*"
+fi
+
+local input=$(
+	cat <<EOF
+Use the /open-pr skill to open a pull request for the current branch. Create it as a draft.
+
+When finished, print only a markdown summary in exactly this format and nothing else:
+
+# opened draft PR: <title>
+<PR URL>
+
+$extra
+EOF
+)
+
+local output
+output=$(print -r -- "$input" | GUM_SPIN_TITLE="Opening PR…" claude_print \
+	--model sonnet --effort high --settings '{"includeCoAuthoredBy": false}' \
+	--allowedTools "Read Grep Glob Skill Bash(git status:*) Bash(git diff:*) Bash(git log:*) Bash(git show:*) Bash(git push:*) Bash(gh pr create:*) Bash(gh pr view:*) Bash(gh pr edit:*)") || return $?
+
+print -r -- "$output" | glow
+
+local url=$(print -r -- "$output" | grep -Eo 'https://github\.com/[^ )]+/pull/[0-9]+' | head -1)
+[[ -n $url ]] && open "$url"
