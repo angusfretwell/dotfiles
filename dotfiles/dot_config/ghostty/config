@@ -11,7 +11,7 @@ theme = Cursor Dark
 font-family = BlexMono Nerd Font Mono
 font-size = 14
 
-shell-integration-features = true
+shell-integration-features = sudo
 desktop-notifications = true
 macos-option-as-alt = true
 font-thicken = true
