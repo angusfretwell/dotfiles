@@ -1,0 +1,19 @@
+skills:
+  angusfretwell/skills:
+    - address-review
+    - browser-qa
+    - commit
+    - dependency-graph
+    - interview-me
+    - open-pr
+    - show-me
+    - supervise
+    - writing-for-humans
+  img402/skills:
+    - github-image-hosting
+  mattpocock/skills:
+    - claude-handoff
+    - implement-spec
+    - retro
+  vercel-labs/agent-browser:
+    - agent-browser
