@@ -12,6 +12,8 @@
 
   "security.promptForLocalFileProtocolHandling": false,
 
+  "cursor.cpp.disabledLanguages": ["plaintext"],
+
   // Git
   "git.blame.editorDecoration.enabled": true,
   "git.openRepositoryInParentFolders": "always",
@@ -40,7 +42,7 @@
 
   // TOML
   "[toml]": {
-    "editor.defaultFormatter": "tamasfe.even-better-toml"
+    "editor.defaultFormatter": "tombi-toml.tombi"
   },
 
   // Docker
