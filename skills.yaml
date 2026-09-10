@@ -9,11 +9,11 @@ skills:
     - show-me
     - supervise
     - writing-for-humans
-  img402/skills:
-    - github-image-hosting
   mattpocock/skills:
     - claude-handoff
     - implement-spec
     - retro
+  img402/skills:
+    - github-image-hosting
   vercel-labs/agent-browser:
     - agent-browser

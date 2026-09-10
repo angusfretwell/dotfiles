@@ -1,10 +1,10 @@
 extensions:
-  - golang.go
   - bmewburn.vscode-intelephense-client
   - bradlc.vscode-tailwindcss
   - dbaeumer.vscode-eslint
   - docker.docker
   - esbenp.prettier-vscode
+  - golang.go
   - hverlin.mise-vscode
   - mikestead.dotenv
   - mkhl.shfmt
