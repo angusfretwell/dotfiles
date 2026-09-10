@@ -6,6 +6,7 @@ window-padding-balance = true
 
 macos-titlebar-style = tabs
 
+# theme = dark:Cursor Dark,light:Cursor Light
 theme = Cursor Dark
 
 font-family = BlexMono Nerd Font Mono
