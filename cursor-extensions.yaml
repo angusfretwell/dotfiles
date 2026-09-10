@@ -1,4 +1,5 @@
 extensions:
+  - golang.go
   - bmewburn.vscode-intelephense-client
   - bradlc.vscode-tailwindcss
   - dbaeumer.vscode-eslint
