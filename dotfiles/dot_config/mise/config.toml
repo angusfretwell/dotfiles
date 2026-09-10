@@ -1,13 +1,13 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
 [tools]
-bun = "1.4"
-golang = "1.26"
-node = "24"
-python = "3.14"
-ruby = "4.0"
-gum = "0.17"
+bun = "latest"
+golang = "latest"
+node = "latest"
+python = "latest"
+ruby = "latest"
 mago = "latest"
+gum = "0.17"
 "npm:agent-browser" = "latest"
 "npm:ccstatusline" = "latest"
 "npm:ctx7" = "latest"
