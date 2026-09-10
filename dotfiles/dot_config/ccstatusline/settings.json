@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "lines": [
     [
       {
@@ -25,13 +25,13 @@
         "type": "separator",
         "character": " (",
         "dim": true,
-        "color": "white"
+        "color": ""
       },
       {
         "id": "5",
         "type": "context-percentage",
         "rawValue": true,
-        "color": "white",
+        "color": "",
         "dim": true
       },
       {
@@ -39,15 +39,15 @@
         "type": "separator",
         "character": ") ",
         "dim": true,
-        "color": "white"
+        "color": ""
       },
       {
         "id": "7",
         "type": "git-branch",
         "character": "",
         "metadata": {
-          "hideNoGit": "true",
-          "linkToRepo": "true"
+          "linkToRepo": "true",
+          "hide": "no-git"
         },
         "color": "",
         "maxWidth": 32
@@ -60,12 +60,10 @@
       {
         "id": "9",
         "type": "git-review",
-        "color": "white",
+        "color": "",
         "dim": true,
         "metadata": {
-          "hideNoGit": "true",
-          "hideStatus": "true",
-          "hideTitle": "true"
+          "hide": "no-git,no-data,status,title"
         }
       }
     ]
