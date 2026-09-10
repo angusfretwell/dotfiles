@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 extensions=(
-{{- range (include (joinPath .chezmoi.workingTree "extensions.toml") | fromToml).extensions }}
+{{- range (include (joinPath .chezmoi.workingTree "cursor-extensions.yaml") | fromYaml).extensions }}
 	{{ . | quote }}
 {{- end }}
 )
 
 for extension in "${extensions[@]}"; do
-	cursor --install-extension "$extension"
+	cursor --install-extension "$extension" --force
 done

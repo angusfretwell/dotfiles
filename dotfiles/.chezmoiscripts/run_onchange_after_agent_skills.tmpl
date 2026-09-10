@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-{{ range $repo, $skills := (include (joinPath .chezmoi.workingTree "skills.toml") | fromToml).skills }}
+
+{{ range $repo, $skills := (include (joinPath .chezmoi.workingTree "skills.yaml") | fromYaml).skills }}
 npx skills add {{ $repo | quote }} {{ range $skills }}--skill {{ . }} {{ end }}--yes --global --agent claude-code --agent cursor
 {{- end }}
