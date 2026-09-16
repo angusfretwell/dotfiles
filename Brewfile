@@ -65,6 +65,7 @@ brew 'uv'
 
 # Fonts
 cask 'font-blex-mono-nerd-font'
+cask 'font-google-sans-code'
 cask 'font-sf-compact'
 cask 'font-sf-mono'
 cask 'font-sf-pro'
