@@ -8,11 +8,10 @@ window-padding-balance = true
 
 macos-titlebar-style = tabs
 
-# theme = dark:Cursor Dark,light:Cursor Light
 theme = Cursor Dark
 
 font-family = Google Sans Code
-font-size = 14
+font-size = 15
 
 shell-integration-features = sudo
 desktop-notifications = true
