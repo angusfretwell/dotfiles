@@ -5,7 +5,8 @@ alias mcat="glow"
 
 {{ if eq .chezmoi.os "darwin" -}}
 alias code=cursor
-alias devbox="mosh devbox -- herdr"
+alias devbox="herdr --remote devbox"
+alias devbox-mosh="mosh devbox -- tmux new -A -s main"
 {{- end }}
 
 # Modern replacements for common utils
