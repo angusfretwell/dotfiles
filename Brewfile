@@ -3,7 +3,6 @@ tap 'buildkite/buildkite', trusted: true
 tap 'ddev/ddev', trusted: true
 
 brew 'chezmoi'
-brew 'mas'
 
 # Shell
 brew 'antidote'
@@ -16,7 +15,6 @@ brew 'composer'
 brew 'coreutils'
 brew 'cowsay'
 brew 'curl'
-brew 'dockutil'
 brew 'duf'
 brew 'eza'
 brew 'ffmpeg'
@@ -30,13 +28,11 @@ brew 'micro'
 brew 'mkcert'
 brew 'nano'
 brew 'nss'
-brew 'pam-reattach'
 brew 'procs'
 brew 'pv'
 brew 'qsv'
 brew 'shfmt'
 brew 'tealdeer'
-brew 'telnet'
 brew 'the_silver_searcher'
 brew 'watchman'
 brew 'wget'
@@ -63,48 +59,56 @@ brew 'overmind'
 brew 'stripe-cli'
 brew 'uv'
 
-# Fonts
-cask 'font-blex-mono-nerd-font'
-cask 'font-google-sans-code'
-cask 'font-sf-compact'
-cask 'font-sf-mono'
-cask 'font-sf-pro'
+if OS.mac?
+  brew 'dockutil'
+  brew 'mas'
+  brew 'mosh'
+  brew 'pam-reattach'
+  brew 'telnet'
 
-# Applications
-cask '1password-cli'
-cask '1password'
-cask 'chromedriver'
-cask 'claude'
-cask 'cleanshot'
-cask 'cursor'
-cask 'figma'
-cask 'firefox'
-cask 'ghostty'
-cask 'google-chrome'
-cask 'httpie-desktop'
-cask 'linear'
-cask 'markdown-preview'
-cask 'mattermost'
-cask 'notion'
-cask 'opal-composer'
-cask 'orbstack'
-cask 'proxyman'
-cask 'raycast'
-cask 'screen-studio'
-cask 'sf-symbols'
-cask 'signal'
-cask 'slack'
-cask 'tableplus'
-cask 'tailscale-app'
-cask 'whatsapp'
-cask 'zoom'
+  # Fonts
+  cask 'font-blex-mono-nerd-font'
+  cask 'font-google-sans-code'
+  cask 'font-sf-compact'
+  cask 'font-sf-mono'
+  cask 'font-sf-pro'
 
-# Mac App Store applications
-mas '1Password for Safari', id: 1_569_813_296
-mas 'Bear', id: 1_091_189_122
-mas 'Keynote', id: 361_285_480
-mas 'Numbers', id: 361_304_891
-mas 'Pages', id: 361_309_726
-mas 'Pixelmator Pro', id: 6_746_662_575
-mas 'Things', id: 904_280_696
-mas 'Xcode', id: 497_799_835
+  # Applications
+  cask '1password-cli'
+  cask '1password'
+  cask 'chromedriver'
+  cask 'claude'
+  cask 'cleanshot'
+  cask 'cursor'
+  cask 'figma'
+  cask 'firefox'
+  cask 'ghostty'
+  cask 'google-chrome'
+  cask 'httpie-desktop'
+  cask 'linear'
+  cask 'markdown-preview'
+  cask 'mattermost'
+  cask 'notion'
+  cask 'opal-composer'
+  cask 'orbstack'
+  cask 'proxyman'
+  cask 'raycast'
+  cask 'screen-studio'
+  cask 'sf-symbols'
+  cask 'signal'
+  cask 'slack'
+  cask 'tableplus'
+  cask 'tailscale-app'
+  cask 'whatsapp'
+  cask 'zoom'
+
+  # Mac App Store applications
+  mas '1Password for Safari', id: 1_569_813_296
+  mas 'Bear', id: 1_091_189_122
+  mas 'Keynote', id: 361_285_480
+  mas 'Numbers', id: 361_304_891
+  mas 'Pages', id: 361_309_726
+  mas 'Pixelmator Pro', id: 6_746_662_575
+  mas 'Things', id: 904_280_696
+  mas 'Xcode', id: 497_799_835
+end

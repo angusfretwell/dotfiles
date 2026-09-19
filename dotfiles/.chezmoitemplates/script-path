@@ -1,0 +1,3 @@
+eval "$({{ template "brew-prefix" . }}/bin/brew shellenv)"
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(mise activate bash --shims)"

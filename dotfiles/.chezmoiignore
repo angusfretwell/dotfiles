@@ -1,0 +1,6 @@
+{{ if ne .chezmoi.os "darwin" }}
+Library
+.config/ghostty
+.functions/flush_dns_cache
+.op
+{{ end }}

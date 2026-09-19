@@ -4,18 +4,20 @@
 
 [credential "https://github.com"]
 	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !{{ template "brew-prefix" . }}/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
 	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !{{ template "brew-prefix" . }}/bin/gh auth git-credential
 
 [commit]
 	template = ~/.gitmessage
 
 [core]
 	excludesfile = ~/.gitignore
+{{- if eq .chezmoi.os "darwin" }}
 	ignorecase = true
+{{- end }}
 	editor = micro
 	pager = delta
 	mergeoptions = --no-edit

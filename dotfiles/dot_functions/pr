@@ -33,4 +33,4 @@ output=$(print -r -- "$input" | GUM_SPIN_TITLE="Opening PR…" claude_print \
 print -r -- "$output" | glow
 
 local url=$(print -r -- "$output" | grep -Eo 'https://github\.com/[^ )]+/pull/[0-9]+' | head -1)
-[[ -n $url ]] && open "$url"
+[[ -n $url && $OSTYPE == darwin* ]] && open "$url"

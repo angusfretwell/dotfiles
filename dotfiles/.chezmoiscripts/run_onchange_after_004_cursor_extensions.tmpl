@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
 extensions=(
@@ -9,3 +10,4 @@ extensions=(
 for extension in "${extensions[@]}"; do
 	cursor --install-extension "$extension" --force
 done
+{{ end -}}

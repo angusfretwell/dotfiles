@@ -1,3 +1,5 @@
+{{ if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
 echo "auth       sufficient     pam_tid.so" | sudo tee /etc/pam.d/sudo_local >/dev/null
+{{ end -}}

@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
+{{ if eq .chezmoi.os "darwin" -}}
 # MacOS build version: {{ output "sw_vers" "--buildVersion" }}
+{{ end -}}
 # mise config.toml hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
 
-mise self-update
+{{ template "script-path" . }}
+
+mise self-update --yes
 mise install

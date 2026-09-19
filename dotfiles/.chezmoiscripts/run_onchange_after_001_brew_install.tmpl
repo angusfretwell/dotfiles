@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
+{{ if eq .chezmoi.os "darwin" -}}
 # MacOS build version: {{ output "sw_vers" "--buildVersion" }}
+{{ end -}}
 # Brewfile hash: {{ include (joinPath .chezmoi.workingTree "Brewfile") | sha256sum }}
 
+{{ template "script-path" . }}
+
 brew update
-brew bundle -gv --jobs 4
+brew bundle -gv
 brew bundle cleanup -g --force

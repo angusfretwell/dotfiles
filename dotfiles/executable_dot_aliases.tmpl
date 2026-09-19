@@ -2,8 +2,11 @@
 
 alias dot="chezmoi cd"
 alias mcat="glow"
+{{ if eq .chezmoi.os "darwin" -}}
 alias code=cursor
 alias bear='/Applications/Bear.app/Contents/MacOS/bearcli'
+alias devbox="mosh devbox -- herdr"
+{{- end }}
 
 # Modern replacements for common utils
 alias cat=bat

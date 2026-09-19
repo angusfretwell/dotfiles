@@ -2,12 +2,14 @@
 
 source ~/.exports
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$({{ template "brew-prefix" . }}/bin/brew shellenv)"
 
 source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
 antidote load
 
+{{ if eq .chezmoi.os "darwin" -}}
 source ~/.op/plugins.sh
+{{- end }}
 
 source ~/.aliases
 
