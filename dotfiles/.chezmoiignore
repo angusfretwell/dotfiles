@@ -4,3 +4,6 @@ Library
 .functions/flush_dns_cache
 .op
 {{ end }}
+{{ if eq .chezmoi.os "darwin" }}
+.zshenv
+{{ end }}
