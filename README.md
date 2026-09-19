@@ -21,7 +21,7 @@ curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstr
 Log in as `angus` (`ssh angus@<host>` or `su - angus`) and apply the dotfiles:
 
 ```bash
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b "$HOME/.local/bin" init --apply angusfretwell/dotfiles
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfiles
 ```
 
 It asks you to log in to Tailscale, then blocks incoming connections from outside your tailnet. Reconnect over Tailscale to get zsh and the `docker` group.
