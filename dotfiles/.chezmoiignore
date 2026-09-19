@@ -5,6 +5,5 @@ Library
 .op
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
-.config/tmux
 .zshenv
 {{ end }}
