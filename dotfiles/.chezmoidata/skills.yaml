@@ -1,13 +1,18 @@
 skills:
   angusfretwell/skills:
     - address-review
+    - attach-media
     - browser-qa
     - commit
     - dependency-graph
+    - explain-irl
+    - how
     - interview-me
     - open-pr
-    - show-me
+    - showcase
     - supervise
+    - to-artifact
+    - why
     - writing-for-humans
   mattpocock/skills:
     - claude-handoff
