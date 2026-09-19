@@ -1,30 +1,16 @@
-{
+{{- /* chezmoi:modify-template */ -}}
+{{- $managed := `{
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher":"^(startup|resume|clear|compact|fork)$",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash '{{ .chezmoi.homeDir }}/.claude/hooks/herdr-agent-state.sh' session",
-            "timeout":10
-          }
-        ]
-      }
-    ]
-  },
   "statusLine": {
     "type": "command",
     "command": "npx -y ccstatusline@latest",
     "refreshInterval": 10
   },
   "enabledPlugins": {
-    "paper-desktop@paper": false,
     "worktrunk@worktrunk": true,
     "mattpocock-skills@claude-plugins-official": true
   },
@@ -33,12 +19,6 @@
       "source": {
         "source": "github",
         "repo": "max-sixty/worktrunk"
-      }
-    },
-    "paper": {
-      "source": {
-        "source": "github",
-        "repo": "paper-design/agent-plugins"
       }
     }
   },
@@ -61,4 +41,6 @@
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true
-}
+}` | fromJson -}}
+{{- $current := fromJson (default "{}" .chezmoi.stdin) -}}
+{{ mergeOverwrite $current $managed | toPrettyJson -}}
