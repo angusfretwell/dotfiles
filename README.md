@@ -14,7 +14,7 @@ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfi
 curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/devbox.sh | bash
 ```
 
-Then as `angus`:
+Then log in as `angus` (`ssh angus@<host>` or `su - angus`):
 
 ```bash
 sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b "$HOME/.local/bin" init --apply angusfretwell/dotfiles
