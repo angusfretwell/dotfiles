@@ -1,4 +1,4 @@
-extensions:
+cursorExtensions:
   - bmewburn.vscode-intelephense-client
   - bradlc.vscode-tailwindcss
   - dbaeumer.vscode-eslint

@@ -2,7 +2,7 @@
 #!/usr/bin/env bash
 
 extensions=(
-{{- range (include (joinPath .chezmoi.workingTree "cursor-extensions.yaml") | fromYaml).extensions }}
+{{- range .cursorExtensions }}
 	{{ . | quote }}
 {{- end }}
 )

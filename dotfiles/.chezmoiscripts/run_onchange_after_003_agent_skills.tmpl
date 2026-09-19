@@ -2,6 +2,6 @@
 
 {{ template "script-path" . }}
 
-{{ range $repo, $skills := (include (joinPath .chezmoi.workingTree "skills.yaml") | fromYaml).skills }}
+{{ range $repo, $skills := .skills }}
 npx skills add {{ $repo | quote }} {{ range $skills }}--skill {{ . }} {{ end }}--yes --global --agent claude-code{{ if eq $.chezmoi.os "darwin" }} --agent cursor{{ end }}
 {{- end }}
