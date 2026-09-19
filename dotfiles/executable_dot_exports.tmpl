@@ -1,12 +1,13 @@
 #!/bin/zsh
 
 export EDITOR="micro"
+export MICRO_TRUECOLOR=1
+
 {{ if eq .chezmoi.os "darwin" -}}
 export VISUAL="cursor -w"
 {{ else -}}
 export VISUAL="micro"
 {{ end -}}
-export MICRO_TRUECOLOR=1
 
 export ZFUNCDIR="$HOME/.functions"
 
@@ -15,11 +16,11 @@ export PNPM_HOME="$HOME/Library/pnpm"
 {{ else -}}
 export PNPM_HOME="$HOME/.local/share/pnpm"
 {{ end -}}
+
 case ":$PATH:" in
 *":$PNPM_HOME:"*) ;;
 *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 export PATH="$HOME/.local/bin:$PATH"
-
 export PATH="$HOME/.bun/bin:$PATH"
