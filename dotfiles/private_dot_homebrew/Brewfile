@@ -1,4 +1,3 @@
-tap 'angusfretwell/tap', trusted: true
 tap 'buildkite/buildkite', trusted: true
 tap 'ddev/ddev', trusted: true
 
@@ -54,7 +53,6 @@ brew 'bk@3'
 brew 'ddev'
 brew 'flyctl'
 brew 'herdr'
-brew 'localstack'
 brew 'overmind'
 brew 'stripe-cli'
 brew 'uv'
