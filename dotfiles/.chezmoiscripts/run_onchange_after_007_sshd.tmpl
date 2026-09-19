@@ -7,7 +7,7 @@ if [[ ! -s $HOME/.ssh/authorized_keys ]]; then
 	exit 1
 fi
 
-sudo tee /etc/ssh/sshd_config.d/10-devbox.conf >/dev/null <<-EOT
+sudo tee /etc/ssh/sshd_config.d/10-workbox.conf >/dev/null <<-EOT
 	PermitRootLogin no
 	PasswordAuthentication no
 	KbdInteractiveAuthentication no

@@ -1,6 +1,6 @@
 # dotfiles
 
-Dotfiles for my macOS laptop and Ubuntu devbox, managed with [chezmoi](https://www.chezmoi.io).
+Dotfiles for my macOS laptop and Ubuntu workbox, managed with [chezmoi](https://www.chezmoi.io).
 
 ## Install
 
@@ -10,12 +10,12 @@ Dotfiles for my macOS laptop and Ubuntu devbox, managed with [chezmoi](https://w
 sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfiles
 ```
 
-### Devbox
+### Workbox
 
 As root, create the `angus` user with passwordless sudo and root's SSH keys:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/devbox.sh | bash
+curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/workbox.sh | bash
 ```
 
 Log in as `angus` (`ssh angus@<host>` or `su - angus`) and apply the dotfiles:

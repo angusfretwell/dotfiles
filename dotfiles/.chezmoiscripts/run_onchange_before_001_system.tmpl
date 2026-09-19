@@ -4,6 +4,9 @@ set -euo pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
+sudo sed -i -E "s/(\s)$(hostname)(\s|$)/\1workbox\2/" /etc/hosts
+sudo hostnamectl set-hostname workbox
+
 sudo -E apt-get update
 sudo -E apt-get -y upgrade
 sudo -E apt-get -y install \
