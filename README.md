@@ -2,13 +2,23 @@
 
 ## Usage
 
+### Laptop
+
 ```bash
 sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfiles
 ```
 
-## Devbox
+### Devbox
 
-To set up a headless Linux dev server with these dotfiles, see [DEVBOX.md](./docs/DEVBOX.md).
+```bash
+curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/devbox.sh | bash
+```
+
+Then as `angus`:
+
+```bash
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfiles
+```
 
 ## License
 
