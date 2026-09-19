@@ -8,7 +8,7 @@ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfi
 
 ## Devbox
 
-To set up a headless Linux dev server with these dotfiles, see [DEVBOX.md](DEVBOX.md).
+To set up a headless Linux dev server with these dotfiles, see [DEVBOX.md](./docs/DEVBOX.md).
 
 ## License
 
