@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{ range glob (joinPath .chezmoi.sourceDir "dot_config/bat/themes/*") -}}
+# {{ base . }} hash: {{ include . | sha256sum }}
+{{ end }}
+{{ template "script-path" . }}
+
+bat cache --build
