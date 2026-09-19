@@ -1,0 +1,23 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+export DEBIAN_FRONTEND=noninteractive
+
+sudo -E apt-get update
+sudo -E apt-get -y upgrade
+sudo -E apt-get -y install \
+	build-essential ca-certificates curl file git locales mosh procps \
+	ufw unattended-upgrades zsh
+
+sudo locale-gen en_AU.UTF-8
+sudo update-locale LANG=en_AU.UTF-8
+
+sudo tee /etc/apt/apt.conf.d/20auto-upgrades >/dev/null <<-EOT
+	APT::Periodic::Update-Package-Lists "1";
+	APT::Periodic::Unattended-Upgrade "1";
+EOT
+
+sudo usermod --shell /usr/bin/zsh "$USER"
+sudo loginctl enable-linger "$USER"
+{{ end -}}

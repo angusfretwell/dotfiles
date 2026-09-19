@@ -1,0 +1,23 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v tailscale &>/dev/null; then
+	curl -fsSL https://tailscale.com/install.sh | sh
+fi
+sudo systemctl enable --now tailscaled
+
+if ! tailscale status &>/dev/null; then
+	if [[ ! -t 0 ]]; then
+		echo >&2 "tailscale isn't logged in; run 'sudo tailscale up', then 'chezmoi apply'."
+		exit 1
+	fi
+	sudo tailscale up
+fi
+
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow in on tailscale0
+sudo ufw allow 41641/udp
+sudo ufw --force enable
+{{ end -}}

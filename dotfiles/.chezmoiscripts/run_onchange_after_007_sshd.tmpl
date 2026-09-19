@@ -1,0 +1,18 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ ! -s $HOME/.ssh/authorized_keys ]]; then
+	echo >&2 "no ~/.ssh/authorized_keys; leaving sshd alone so you aren't locked out."
+	exit 1
+fi
+
+sudo tee /etc/ssh/sshd_config.d/10-devbox.conf >/dev/null <<-EOT
+	PermitRootLogin no
+	PasswordAuthentication no
+	KbdInteractiveAuthentication no
+	AcceptEnv LANG LC_*
+EOT
+sudo sshd -t
+sudo systemctl try-reload-or-restart ssh
+{{ end -}}
