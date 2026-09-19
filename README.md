@@ -5,7 +5,7 @@
 ### Laptop
 
 ```bash
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b "$HOME/.local/bin" init --apply angusfretwell/dotfiles
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfiles
 ```
 
 ### Devbox
