@@ -2,6 +2,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+{{ template "script-path" . }}
+
 extensions=(
 {{- range .cursorExtensions }}
 	{{ . | quote }}
