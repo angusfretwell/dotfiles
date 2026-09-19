@@ -1,4 +1,5 @@
-{
+{{- /* chezmoi:modify-template */ -}}
+{{- $managed := `{
   "editor.fontFamily": "Google Sans Code",
   "editor.fontSize": 14,
   "editor.lineHeight": 1.65,
@@ -47,4 +48,6 @@
 
   // Docker
   "docker.extension.enableComposeLanguageServer": false
-}
+}` | fromJsonc -}}
+{{- $current := fromJsonc (default "{}" .chezmoi.stdin) -}}
+{{ mergeOverwrite $current $managed | toPrettyJson -}}
