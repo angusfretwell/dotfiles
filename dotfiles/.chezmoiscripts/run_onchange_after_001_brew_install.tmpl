@@ -3,7 +3,7 @@ set -euo pipefail
 {{ if eq .chezmoi.os "darwin" -}}
 # MacOS build version: {{ output "sw_vers" "--buildVersion" }}
 {{ end -}}
-# Brewfile hash: {{ include "dot_homebrew/Brewfile" | sha256sum }}
+# Brewfile hash: {{ include "private_dot_homebrew/Brewfile" | sha256sum }}
 
 {{ template "script-path" . }}
 
