@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ template "script-path" . }}
+
+agent-browser install{{ if eq .chezmoi.os "linux" }} --with-deps{{ end }}
