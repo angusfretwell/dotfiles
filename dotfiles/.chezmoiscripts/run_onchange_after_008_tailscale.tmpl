@@ -14,6 +14,7 @@ if ! tailscale status &>/dev/null; then
 	fi
 	sudo tailscale up
 fi
+sudo tailscale set --operator="$USER"
 
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
