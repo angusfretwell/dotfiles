@@ -1,0 +1,10 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ template "script-path" . }}
+
+if ! command -v t3 &>/dev/null; then
+	curl -fsSL https://t3.codes/install.sh | sh
+fi
+{{ end -}}
