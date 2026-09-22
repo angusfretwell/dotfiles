@@ -10,6 +10,7 @@ brew 'zsh'
 
 # Utils
 brew 'bat'
+brew 'btop'
 brew 'composer'
 brew 'coreutils'
 brew 'cowsay'
