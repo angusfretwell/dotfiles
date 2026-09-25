@@ -1,0 +1,32 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ template "script-path" . }}
+
+domain=workbox.angusfretwell.com
+credentials=/etc/letsencrypt/cloudflare.ini
+live="/etc/letsencrypt/live/$domain"
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends certbot python3-certbot-dns-cloudflare
+
+if ! sudo test -s "$credentials"; then
+	eval "$(op signin)"
+	op read "op://Workbox/Cloudflare/credential" |
+		sed 's/^/dns_cloudflare_api_token = /' |
+		sudo install -D -m 600 /dev/stdin "$credentials"
+fi
+
+sudo certbot certonly --non-interactive --agree-tos --register-unsafely-without-email \
+	--dns-cloudflare --dns-cloudflare-credentials "$credentials" \
+	--cert-name "$domain" -d "*.$domain"
+
+sudo install -D -m 755 /dev/stdin /etc/letsencrypt/renewal-hooks/deploy/portless <<-EOT
+	#!/bin/sh
+	systemctl restart portless
+EOT
+
+portless service install --tld "$domain" --cert "$live/fullchain.pem" --key "$live/privkey.pem"
+
+tailscale serve --bg --tcp 443 tcp://localhost:443
+{{ end -}}

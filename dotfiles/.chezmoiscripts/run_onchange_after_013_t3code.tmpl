@@ -11,5 +11,5 @@ fi
 sudo loginctl enable-linger "$USER"
 
 t3 service install
-until t3 pair --tailscale --ttl 1m &>/dev/null; do sleep 2; done
+until t3 pair --tailscale --tailscale-serve-port 8443 --ttl 1m &>/dev/null; do sleep 2; done
 {{ end -}}
