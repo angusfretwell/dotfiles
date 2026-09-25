@@ -3,4 +3,24 @@ set -euo pipefail
 
 {{ template "script-path" . }}
 
+state="$HOME/.portless"
+item="op://Workbox/Portless CA"
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+eval "$(op signin)"
+op read "$item/cert" >"$tmp/ca.pem"
+
+if ! cmp -s "$tmp/ca.pem" "$state/ca.pem"; then
+	portless clean
+	mkdir -p "$state"
+	install -m 644 "$tmp/ca.pem" "$state/ca.pem"
+	(umask 077 && op read "$item/key" >"$state/ca-key.pem")
+fi
+
 portless trust
+{{ if eq .chezmoi.os "linux" }}
+portless service install --tld wbox.dev
+
+tailscale serve --bg --tcp 443 tcp://localhost:443
+{{ end -}}
