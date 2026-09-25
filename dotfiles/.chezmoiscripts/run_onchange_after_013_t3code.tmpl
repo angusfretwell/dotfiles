@@ -7,4 +7,9 @@ set -euo pipefail
 if ! command -v t3 &>/dev/null; then
 	curl -fsSL https://t3.codes/install.sh | sh
 fi
+
+sudo loginctl enable-linger "$USER"
+
+t3 service install
+t3 pair --tailscale --ttl 1m >/dev/null
 {{ end -}}
