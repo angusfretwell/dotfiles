@@ -1,0 +1,49 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends samba
+
+sudo tee /etc/samba/smb.conf >/dev/null <<-EOT
+	[global]
+	   server role = standalone server
+	   interfaces = lo tailscale0
+	   bind interfaces only = yes
+	   disable netbios = yes
+	   smb ports = 445
+	   server min protocol = SMB3
+	   map to guest = never
+	   load printers = no
+	   vfs objects = fruit streams_xattr
+	   fruit:metadata = stream
+	   fruit:model = MacSamba
+	   fruit:veto_appledouble = no
+	   fruit:wipe_intentionally_left_blank_rfork = yes
+	   fruit:delete_empty_adfiles = yes
+
+	[homes]
+	   browseable = no
+	   read only = no
+	   valid users = %S
+EOT
+sudo testparm -s >/dev/null
+
+sudo install -d /etc/systemd/system/smbd.service.d
+sudo tee /etc/systemd/system/smbd.service.d/tailscale.conf >/dev/null <<-EOT
+	[Unit]
+	After=tailscaled.service
+	Wants=tailscaled.service
+EOT
+sudo systemctl daemon-reload
+sudo systemctl disable --now nmbd &>/dev/null || true
+sudo systemctl enable smbd
+sudo systemctl restart smbd
+
+if ! sudo pdbedit -u "$USER" &>/dev/null; then
+	if [[ -t 0 ]]; then
+		sudo smbpasswd -a "$USER"
+	else
+		echo >&2 "no samba password for $USER; run 'sudo smbpasswd -a $USER' to enable the share."
+	fi
+fi
+{{ end -}}

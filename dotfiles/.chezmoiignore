@@ -7,4 +7,5 @@ Library
 {{ if eq .chezmoi.os "darwin" }}
 .zshenv
 .functions/code
+.functions/open
 {{ end }}
