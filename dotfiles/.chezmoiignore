@@ -6,4 +6,5 @@ Library
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
 .zshenv
+.functions/code
 {{ end }}
