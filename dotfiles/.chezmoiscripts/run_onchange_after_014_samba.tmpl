@@ -2,6 +2,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+{{ template "script-path" . }}
+
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends samba
 
 sudo tee /etc/samba/smb.conf >/dev/null <<-EOT
@@ -32,10 +34,8 @@ sudo systemctl enable smbd
 sudo systemctl restart smbd
 
 if ! sudo pdbedit -u "$USER" &>/dev/null; then
-	if [[ -t 0 ]]; then
-		sudo smbpasswd -a "$USER"
-	else
-		echo >&2 "no samba password for $USER; run 'sudo smbpasswd -a $USER' to enable the share."
-	fi
+	eval "$(op signin)"
+	password=$(op read "op://Workbox/Samba/password")
+	printf '%s\n%s\n' "$password" "$password" | sudo smbpasswd -a -s "$USER"
 fi
 {{ end -}}
