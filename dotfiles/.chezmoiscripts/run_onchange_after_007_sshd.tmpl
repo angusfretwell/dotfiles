@@ -11,7 +11,7 @@ sudo tee /etc/ssh/sshd_config.d/10-workbox.conf >/dev/null <<-EOT
 	PermitRootLogin no
 	PasswordAuthentication no
 	KbdInteractiveAuthentication no
-	AcceptEnv LANG LC_*
+	AcceptEnv LANG LC_* COLORTERM
 EOT
 sudo sshd -t
 sudo systemctl try-reload-or-restart ssh
