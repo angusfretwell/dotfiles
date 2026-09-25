@@ -18,4 +18,4 @@ gum = "0.17"
 idiomatic_version_file_enable_tools = ["ruby", "node", "python", "golang"]
 
 [hooks]
-postinstall = "npx corepack enable"
+postinstall = "npx --yes corepack enable"
