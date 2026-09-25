@@ -11,5 +11,5 @@ fi
 sudo loginctl enable-linger "$USER"
 
 t3 service install
-t3 pair --tailscale --ttl 1m >/dev/null
+until t3 pair --tailscale --ttl 1m &>/dev/null; do sleep 2; done
 {{ end -}}
