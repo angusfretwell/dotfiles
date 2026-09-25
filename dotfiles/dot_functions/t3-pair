@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+t3 pair --tailscale --tailscale-serve-port 8443 "$@"

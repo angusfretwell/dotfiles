@@ -8,4 +8,5 @@ Library
 .zshenv
 .functions/code
 .functions/open
+.functions/t3-pair
 {{ end }}
