@@ -57,6 +57,7 @@ brew 'herdr'
 brew 'overmind'
 brew 'stripe-cli'
 brew 'uv'
+cask '1password-cli'
 
 if OS.mac?
   brew 'dockutil'
@@ -73,7 +74,6 @@ if OS.mac?
   cask 'font-sf-pro'
 
   # Applications
-  cask '1password-cli'
   cask '1password'
   cask 'chromedriver'
   cask 'claude'
