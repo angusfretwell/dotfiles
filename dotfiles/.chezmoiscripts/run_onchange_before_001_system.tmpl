@@ -13,6 +13,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get -y install \
 
 sudo locale-gen en_AU.UTF-8
 sudo update-locale LANG=en_AU.UTF-8
+sudo timedatectl set-timezone Australia/Melbourne
 
 sudo tee /etc/apt/apt.conf.d/20auto-upgrades >/dev/null <<-EOT
 	APT::Periodic::Update-Package-Lists "1";
