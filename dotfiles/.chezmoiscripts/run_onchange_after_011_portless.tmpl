@@ -20,6 +20,12 @@ fi
 
 portless trust
 {{ if eq .chezmoi.os "linux" }}
+nssdb="sql:$HOME/.pki/nssdb"
+mkdir -p "$HOME/.pki/nssdb"
+[[ -f "$HOME/.pki/nssdb/cert9.db" ]] || certutil -d "$nssdb" -N --empty-password
+while certutil -d "$nssdb" -D -n "portless Local CA" 2>/dev/null; do :; done
+certutil -d "$nssdb" -A -n "portless Local CA" -t C,, -i "$state/ca.pem"
+
 portless service install --tld wbox.dev
 
 tailscale serve --bg --tcp 443 tcp://localhost:443
