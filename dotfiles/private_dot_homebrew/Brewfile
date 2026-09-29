@@ -53,7 +53,6 @@ brew 'worktrunk'
 # Tools
 brew 'awscli'
 brew 'biome'
-brew 'bk@3'
 brew 'ddev'
 brew 'flyctl'
 brew 'herdr'
