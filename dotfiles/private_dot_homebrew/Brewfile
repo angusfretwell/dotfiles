@@ -1,4 +1,3 @@
-tap 'buildkite/buildkite', trusted: true
 tap 'ddev/ddev', trusted: true
 
 brew 'chezmoi'
