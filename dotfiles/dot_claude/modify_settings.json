@@ -4,6 +4,9 @@
   "permissions": {
     "defaultMode": "auto"
   },
+  "env": {
+    "CLAUDE_CODE_SHELL": "bash"
+  },
   "model": "opus[1m]",
   "statusLine": {
     "type": "command",

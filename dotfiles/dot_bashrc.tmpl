@@ -1,0 +1,11 @@
+#!/bin/bash
+
+eval "$({{ template "brew-prefix" . }}/bin/brew shellenv)"
+
+source ~/.exports
+
+{{ if eq .chezmoi.os "darwin" -}}
+source ~/.op/plugins.sh
+{{- end }}
+
+eval "$(mise activate bash)"
