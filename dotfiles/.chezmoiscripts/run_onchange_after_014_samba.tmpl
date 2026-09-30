@@ -34,7 +34,7 @@ sudo systemctl enable smbd
 sudo systemctl restart smbd
 
 if ! sudo pdbedit -u "$USER" &>/dev/null; then
-	eval "$(op signin)"
+	{{ template "op-signin" . }}
 	password=$(op read "op://Workbox/Samba/password")
 	printf '%s\n%s\n' "$password" "$password" | sudo smbpasswd -a -s "$USER"
 fi

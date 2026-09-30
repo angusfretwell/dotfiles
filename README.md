@@ -12,19 +12,9 @@ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfi
 
 ### Workbox
 
-As root, create the `angus` user with passwordless sudo and root's SSH keys:
-
 ```bash
-curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/workbox.sh | bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/workbox.sh)"
 ```
-
-Log in as `angus` (`ssh angus@<host>` or `su - angus`) and apply the dotfiles:
-
-```bash
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfiles
-```
-
-It asks you to log in to Tailscale, then blocks incoming connections from outside your tailnet. Reconnect over Tailscale to get zsh and the `docker` group.
 
 ## Update
 

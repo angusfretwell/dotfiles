@@ -8,7 +8,7 @@ item="op://Workbox/Portless CA"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
-eval "$(op signin)"
+{{ template "op-signin" . }}
 op read "$item/cert" >"$tmp/ca.pem"
 
 if ! cmp -s "$tmp/ca.pem" "$state/ca.pem"; then

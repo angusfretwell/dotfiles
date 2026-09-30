@@ -2,9 +2,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-sudo sed -i -E "s/(\s)$(hostname)(\s|$)/\1workbox\2/" /etc/hosts
-sudo hostnamectl set-hostname workbox
-
 sudo DEBIAN_FRONTEND=noninteractive apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y install \
