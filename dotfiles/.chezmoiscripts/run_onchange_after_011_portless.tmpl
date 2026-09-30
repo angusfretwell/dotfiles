@@ -4,18 +4,18 @@ set -euo pipefail
 {{ template "script-path" . }}
 
 state="$HOME/.portless"
-item="op://Workbox/Portless CA"
+item="op://Workbox/Workbox CA"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
 {{ template "op-signin" . }}
-op read "$item/cert" >"$tmp/ca.pem"
+op read "$item/workbox-ca.crt" >"$tmp/ca.pem"
 
 if ! cmp -s "$tmp/ca.pem" "$state/ca.pem"; then
 	portless clean
 	mkdir -p "$state"
 	install -m 644 "$tmp/ca.pem" "$state/ca.pem"
-	(umask 077 && op read "$item/key" >"$state/ca-key.pem")
+	(umask 077 && op read "$item/workbox-ca.key" >"$state/ca-key.pem")
 fi
 
 portless trust
@@ -23,8 +23,8 @@ portless trust
 nssdb="sql:$HOME/.pki/nssdb"
 mkdir -p "$HOME/.pki/nssdb"
 [[ -f "$HOME/.pki/nssdb/cert9.db" ]] || certutil -d "$nssdb" -N --empty-password
-while certutil -d "$nssdb" -D -n "portless Local CA" 2>/dev/null; do :; done
-certutil -d "$nssdb" -A -n "portless Local CA" -t C,, -i "$state/ca.pem"
+while certutil -d "$nssdb" -D -n "Workbox CA" 2>/dev/null; do :; done
+certutil -d "$nssdb" -A -n "Workbox CA" -t C,, -i "$state/ca.pem"
 
 portless service install --tld wbox.dev
 
