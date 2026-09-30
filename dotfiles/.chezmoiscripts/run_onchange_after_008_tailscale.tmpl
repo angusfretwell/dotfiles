@@ -15,18 +15,16 @@ if ! tailscale status &>/dev/null; then
 fi
 sudo tailscale set --operator="$USER"
 
-public=$(ip -o route show default | awk '{print $5; exit}')
+sudo tee /etc/ufw/after.init >/dev/null <<-'EOT'
+		#!/bin/sh
 
-{
-	printf '#!/bin/sh\npublic=%s\n' "$public"
-	cat <<-'EOT'
 		rule() {
 			table=$1
 			chain=$2
 			shift 2
 			for cmd in iptables ip6tables; do
 				case $action in
-				start) $cmd -t "$table" -C "$chain" "$@" 2>/dev/null || $cmd -t "$table" -I "$chain" "$@" ;;
+				start) $cmd -t "$table" -C "$chain" "$@" 2>/dev/null || $cmd -t "$table" -A "$chain" "$@" ;;
 				stop) while $cmd -t "$table" -D "$chain" "$@" 2>/dev/null; do :; done ;;
 				esac
 			done
@@ -38,12 +36,14 @@ public=$(ip -o route show default | awk '{print $5; exit}')
 			ip6tables -N DOCKER-USER 2>/dev/null || true
 		fi
 
-		rule filter DOCKER-USER -i "$public" -m conntrack --ctstate NEW -j DROP
+		for iface in lo tailscale0 docker0 br+; do
+			rule filter DOCKER-USER -i "$iface" -j RETURN
+		done
+		rule filter DOCKER-USER -m conntrack --ctstate NEW -j DROP
 		for bridge in docker0 br+; do
 			rule mangle FORWARD -i "$bridge" -o tailscale0 -m conntrack --ctstate NEW -j DROP
 		done
 	EOT
-} | sudo tee /etc/ufw/after.init >/dev/null
 sudo chmod 750 /etc/ufw/after.init
 
 sudo ufw --force reset
