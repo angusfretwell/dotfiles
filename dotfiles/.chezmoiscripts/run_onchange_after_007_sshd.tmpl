@@ -11,8 +11,15 @@ sudo tee /etc/ssh/sshd_config.d/10-workbox.conf >/dev/null <<-EOT
 	PermitRootLogin no
 	PasswordAuthentication no
 	KbdInteractiveAuthentication no
+	AllowUsers $USER
+	X11Forwarding no
 	AcceptEnv LANG LC_* COLORTERM
 EOT
 sudo sshd -t
 sudo systemctl try-reload-or-restart ssh
+
+sudo rm -f /root/.ssh/authorized_keys
+if id linuxuser &>/dev/null; then
+	sudo deluser --remove-home linuxuser
+fi
 {{ end -}}
