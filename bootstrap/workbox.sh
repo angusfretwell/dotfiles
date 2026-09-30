@@ -48,5 +48,7 @@ ssh $new_hostname # from laptop, once $new_hostname is back up
 gh auth login
 
 claude # sign in to claude code
+
+t3_pair # pair t3 code over tailscale
 \`\`\`
 EOF
