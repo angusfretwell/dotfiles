@@ -7,7 +7,7 @@ Dotfiles for my macOS laptop and Ubuntu workbox, managed with [chezmoi](https://
 ### Laptop
 
 ```bash
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfiles
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/laptop.sh)"
 ```
 
 ### Workbox
