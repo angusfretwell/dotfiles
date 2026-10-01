@@ -12,6 +12,12 @@ export VISUAL="micro"
 
 export ZFUNCDIR="$HOME/.functions"
 
+if [[ $LC_SSH_USER == "$USER" ]]; then
+	export SSH_SAME_USER=1
+else
+	unset SSH_SAME_USER
+fi
+
 {{ if eq .chezmoi.os "darwin" -}}
 export PNPM_HOME="$HOME/Library/pnpm"
 {{ else -}}

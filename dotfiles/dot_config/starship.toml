@@ -49,9 +49,10 @@ detect_extensions = []
 detect_files = []
 
 [username]
-format = "[$user]($style)"
+format = "[$user@]($style)"
 style_user = "dimmed blue"
+detect_env_vars = ["!SSH_SAME_USER"]
 
 [hostname]
-format = "[@$hostname:]($style)"
+format = "[$hostname:]($style)"
 style = "dimmed blue"
