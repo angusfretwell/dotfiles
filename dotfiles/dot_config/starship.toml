@@ -50,8 +50,8 @@ detect_files = []
 
 [username]
 format = "[$user]($style)"
-style_user = "242"
+style_user = "bright-black"
 
 [hostname]
 format = "[@$hostname]($style)"
-style = "242"
+style = "bright-black"
