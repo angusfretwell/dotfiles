@@ -4,17 +4,19 @@ skills:
     - attach-media
     - browser-qa
     - commit
-    - dependency-graph
     - explain-irl
-    - finish
     - how
+    - humanize
     - interview-me
     - open-pr
+    - polish
+    - review-pr
+    - ship-it
     - showcase
     - supervise
     - to-artifact
     - why
-    - writing-for-humans
+    - work-on
   mattpocock/skills:
     - claude-handoff
     - implement-spec
