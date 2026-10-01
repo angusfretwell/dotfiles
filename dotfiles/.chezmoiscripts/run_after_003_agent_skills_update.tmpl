@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ template "script-path" . }}
+
+npx --yes skills update{{ range .skills }}{{ range . }} {{ . }}{{ end }}{{ end }} --global --yes
