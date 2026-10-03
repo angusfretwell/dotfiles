@@ -9,4 +9,5 @@ Library
 .functions/code
 .functions/open
 .functions/t3_pair
+.local/bin/reap-orphans
 {{ end }}

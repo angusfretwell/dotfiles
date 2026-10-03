@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+min_age=${1:-3600}
+
+for environ in /proc/[0-9]*/environ; do
+	pid=${environ#/proc/}
+	pid=${pid%/environ}
+	claude_pid=$(tr '\0' '\n' 2>/dev/null <"$environ" | sed -n 's/^CLAUDE_PID=//p') || continue
+	[[ -n $claude_pid ]] || continue
+	[[ $(ps -o comm= -p "$claude_pid") == claude ]] && continue
+	age=$(ps -o etimes= -p "$pid") || continue
+	((age >= min_age)) || continue
+	echo "reaping $(ps -o args= -p "$pid" | cut -c1-120)"
+	kill -TERM "$pid" 2>/dev/null || true
+done

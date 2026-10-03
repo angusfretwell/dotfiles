@@ -1,0 +1,24 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p "$HOME/.config/systemd/user"
+tee "$HOME/.config/systemd/user/reap-orphans.service" >/dev/null <<-EOT
+	[Unit]
+	Description=Kill processes left behind by exited Claude Code sessions
+
+	[Service]
+	Type=oneshot
+	ExecStart=%h/.local/bin/reap-orphans
+EOT
+tee "$HOME/.config/systemd/user/reap-orphans.timer" >/dev/null <<-EOT
+	[Timer]
+	OnBootSec=15min
+	OnUnitActiveSec=15min
+
+	[Install]
+	WantedBy=timers.target
+EOT
+systemctl --user daemon-reload
+systemctl --user enable --now reap-orphans.timer
+{{ end -}}
