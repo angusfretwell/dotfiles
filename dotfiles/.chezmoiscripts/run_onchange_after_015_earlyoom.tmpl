@@ -1,0 +1,12 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install earlyoom
+
+sudo tee /etc/default/earlyoom >/dev/null <<-'EOT'
+	EARLYOOM_ARGS="-m 8,4 -s 100 -r 0 --prefer ^(next-server|turbo|MainThread|esbuild|vite|chrom|headless_shell) --ignore ^(claude|codex|node-MainThread|t3-resource-mon|herdr|systemd|systemd-.*|sshd|sshd-session|tailscaled|dockerd|containerd|zsh|bash)$"
+EOT
+sudo systemctl enable earlyoom
+sudo systemctl restart earlyoom
+{{ end -}}

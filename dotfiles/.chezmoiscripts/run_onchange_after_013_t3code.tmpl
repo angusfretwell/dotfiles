@@ -11,5 +11,14 @@ fi
 sudo loginctl enable-linger "$USER"
 
 t3 service install
+
+mkdir -p "$HOME/.config/systemd/user/t3code.service.d"
+tee "$HOME/.config/systemd/user/t3code.service.d/limits.conf" >/dev/null <<-EOT
+	[Service]
+	MemoryHigh=70%
+	CPUWeight=50
+EOT
+systemctl --user daemon-reload
+
 portless alias t3 3773 --force
 {{ end -}}
