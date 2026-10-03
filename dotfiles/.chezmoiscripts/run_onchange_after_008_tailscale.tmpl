@@ -46,7 +46,6 @@ sudo tee /etc/ufw/after.init >/dev/null <<-'EOT'
 	EOT
 sudo chmod 750 /etc/ufw/after.init
 
-sudo ufw --force reset
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow in on tailscale0
