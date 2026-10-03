@@ -51,5 +51,6 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow in on tailscale0
 sudo ufw allow 41641/udp
+sudo ufw allow in from 172.16.0.0/12
 sudo ufw --force enable
 {{ end -}}
