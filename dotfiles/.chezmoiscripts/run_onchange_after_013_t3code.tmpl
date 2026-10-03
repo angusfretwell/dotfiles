@@ -5,7 +5,9 @@ set -euo pipefail
 {{ template "script-path" . }}
 
 if ! command -v t3 &>/dev/null; then
-	curl -fsSL https://t3.codes/install.sh | sh
+	curl -fsSL https://t3.codes/install.sh | T3CODE_CHANNEL=nightly sh
+elif [[ "$(t3 --version)" != *-nightly.* ]]; then
+	t3 update --channel nightly --yes
 fi
 
 sudo loginctl enable-linger "$USER"

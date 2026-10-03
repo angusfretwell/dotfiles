@@ -100,7 +100,7 @@ if OS.mac?
   cask 'sf-symbols'
   cask 'signal'
   cask 'slack'
-  cask 't3-code'
+  cask 't3-code@nightly'
   cask 'tableplus'
   cask 'tailscale-app'
   cask 'whatsapp'
