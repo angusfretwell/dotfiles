@@ -1,1 +1,1 @@
-{{- joinPath .chezmoi.homeDir "Code" -}}
+{{- .chezmoi.homeDir }}/{{ if eq .chezmoi.os "darwin" }}Code{{ else }}code{{ end -}}
