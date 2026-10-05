@@ -11,6 +11,7 @@ export VISUAL="micro"
 {{ end -}}
 
 export ZFUNCDIR="$HOME/.functions"
+export CODE_DIR="{{ template "code-dir" . }}"
 
 if [[ $LC_SSH_USER == "$USER" ]]; then
 	export SSH_SAME_USER=1
