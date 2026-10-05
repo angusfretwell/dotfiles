@@ -1,0 +1,1 @@
+worktree-path = '{{ template "code-dir" . }}/.worktrees/{{ `{{ owner | default("local") }}/{{ repo }}/{{ branch | sanitize }}` }}'
