@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+staging="$HOME/.cache/workbox-backup"
+rm -rf "$staging"
+mkdir -p "$staging"
+trap 'rm -rf "$staging"' EXIT
+
+for db in state statev2; do
+	sqlite3 "$HOME/.t3/userdata/$db.sqlite" ".backup '$staging/$db.sqlite'"
+done
+cp "$HOME/.t3/userdata/settings.json" "$HOME/.t3/userdata/keybindings.json" "$staging/"
+
+restic backup --host workbox "$staging" "$HOME/.claude/projects" "$HOME/.claude/history.jsonl"
+restic forget --host workbox --keep-hourly 24 --keep-daily 7 --prune

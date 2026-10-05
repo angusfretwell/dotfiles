@@ -1,0 +1,62 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ template "script-path" . }}
+{{ template "op-signin" . }}
+
+config="$HOME/.config/restic"
+mkdir -p "$config"
+(
+	umask 077
+	op read "op://Workbox/Restic/password" >"$config/password"
+	tee "$config/env" >/dev/null <<-EOT
+		RESTIC_REPOSITORY=s3:$(op read "op://Workbox/Restic/endpoint")/$(op read "op://Workbox/Restic/bucket")
+		RESTIC_PASSWORD_FILE=$config/password
+		AWS_ACCESS_KEY_ID=$(op read "op://Workbox/Restic/username")
+		AWS_SECRET_ACCESS_KEY=$(op read "op://Workbox/Restic/credential")
+		AWS_DEFAULT_REGION=auto
+	EOT
+)
+set -a
+source "$config/env"
+set +a
+
+if ! restic cat config &>/dev/null; then
+	restic init
+fi
+
+if [[ ! -e "$HOME/.t3/userdata/statev2.sqlite" ]] && restic snapshots --host workbox --latest 1 --json | jq -e 'length > 0' >/dev/null; then
+	tmp=$(mktemp -d)
+	restic restore latest --host workbox --target "$tmp"
+	mkdir -p "$HOME/.t3/userdata" "$HOME/.claude"
+	cp -a "$tmp$HOME/.cache/workbox-backup/." "$HOME/.t3/userdata/"
+	cp -a "$tmp$HOME/.claude/." "$HOME/.claude/"
+	rm -rf "$tmp"
+fi
+
+mkdir -p "$HOME/.config/systemd/user"
+tee "$HOME/.config/systemd/user/workbox-backup.service" >/dev/null <<-EOT
+	[Unit]
+	Description=Back up T3 Code and Claude Code history to R2
+
+	[Service]
+	Type=oneshot
+	EnvironmentFile=%h/.config/restic/env
+	Environment=PATH={{ template "brew-prefix" . }}/bin:/usr/bin:/bin
+	ExecStart=%h/.local/bin/workbox-backup
+	Nice=19
+	IOSchedulingClass=idle
+EOT
+tee "$HOME/.config/systemd/user/workbox-backup.timer" >/dev/null <<-EOT
+	[Timer]
+	OnCalendar=hourly
+	RandomizedDelaySec=5min
+	Persistent=true
+
+	[Install]
+	WantedBy=timers.target
+EOT
+systemctl --user daemon-reload
+systemctl --user enable --now workbox-backup.timer
+{{ end -}}
