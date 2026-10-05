@@ -1,0 +1,8 @@
+#!/bin/zsh
+setopt local_options pipefail
+
+local to
+wt step relocate --dry-run --format json | jq -r '.entries[].to' | while read -r to; do
+	mkdir -p "${to:h}"
+done || return
+wt step relocate "$@"
