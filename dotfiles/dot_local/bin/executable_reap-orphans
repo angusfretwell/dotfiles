@@ -2,7 +2,14 @@
 set -euo pipefail
 
 min_age=${1:-3600}
+grace=10
 
+alive() {
+	local stat
+	stat=$(ps -o stat= -p "$1") && [[ $stat != Z* ]]
+}
+
+pids=()
 for environ in /proc/[0-9]*/environ; do
 	pid=${environ#/proc/}
 	pid=${pid%/environ}
@@ -11,6 +18,27 @@ for environ in /proc/[0-9]*/environ; do
 	[[ $(ps -o comm= -p "$claude_pid") == claude ]] && continue
 	age=$(ps -o etimes= -p "$pid") || continue
 	((age >= min_age)) || continue
-	echo "reaping $(ps -o args= -p "$pid" | cut -c1-120)"
-	kill -TERM "$pid" 2>/dev/null || true
+	echo "reaping pid $pid (claude pid $claude_pid, age ${age// /}s): $(ps -o args= -p "$pid" | cut -c1-120)"
+	if kill -TERM "$pid" 2>/dev/null; then
+		pids+=("$pid")
+	else
+		echo "pid $pid: SIGTERM failed"
+	fi
+done
+
+((${#pids[@]})) || exit 0
+sleep "$grace"
+
+for pid in "${pids[@]}"; do
+	if ! alive "$pid"; then
+		echo "pid $pid: exited after SIGTERM"
+		continue
+	fi
+	kill -KILL "$pid" 2>/dev/null || true
+	sleep 1
+	if alive "$pid"; then
+		echo "pid $pid: still running after SIGKILL (state $(ps -o stat= -p "$pid"))"
+	else
+		echo "pid $pid: killed with SIGKILL after ignoring SIGTERM for ${grace}s"
+	fi
 done
