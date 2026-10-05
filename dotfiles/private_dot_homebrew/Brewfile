@@ -4,6 +4,7 @@ brew 'chezmoi'
 
 # Shell
 brew 'antidote'
+brew 'atuin'
 brew 'bash'
 brew 'starship'
 brew 'zsh'
