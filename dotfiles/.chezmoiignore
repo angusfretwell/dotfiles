@@ -3,6 +3,7 @@ Library
 .config/ghostty
 .functions/flush_dns_cache
 .op
+.local/bin/tailscale
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
 .zshenv
