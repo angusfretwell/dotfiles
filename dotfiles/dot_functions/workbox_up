@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+local ip
+read "ip?New workbox IP: " || return
+
+ssh-keygen -R workbox &>/dev/null
+ssh-keygen -R $ip &>/dev/null
+
+ssh -t -o StrictHostKeyChecking=accept-new root@$ip \
+	'bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/workbox.sh)"'

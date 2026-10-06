@@ -2,6 +2,7 @@
 Library
 .config/ghostty
 .functions/flush_dns_cache
+.functions/workbox_up
 .op
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
@@ -9,6 +10,7 @@ Library
 .functions/code
 .functions/open
 .functions/t3_pair
+.functions/workbox_down
 .local/bin/reap-orphans
 .local/bin/workbox-backup
 {{ end }}

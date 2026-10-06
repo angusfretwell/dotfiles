@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+local repo dirty stashed unpushed unsaved=()
+for repo in $CODE_DIR/*/.git(N:h) $CODE_DIR/.worktrees/*/.git(N:h); do
+	dirty=$(git -C $repo status --porcelain)
+	stashed=$(git -C $repo stash list)
+	unpushed=$(git -C $repo log --branches --not --remotes --oneline)
+	[[ -n $dirty$stashed$unpushed ]] && unsaved+=${repo#$CODE_DIR/}
+done
+
+if (($#unsaved)); then
+	print -rl -- "repos with uncommitted, stashed or unpushed work:" ${unsaved/#/  }
+	gum confirm "these aren't backed up. wind down anyway?" || return 1
+fi
+
+systemctl --user stop t3code || return
+
+if ! systemctl --user start workbox-backup.service; then
+	systemctl --user start t3code
+	echo >&2 "backup failed; see journalctl --user -u workbox-backup."
+	return 1
+fi
+
+sudo tailscale logout
