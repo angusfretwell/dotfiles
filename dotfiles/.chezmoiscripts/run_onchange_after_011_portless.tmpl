@@ -29,4 +29,12 @@ certutil -d "$nssdb" -A -n "Workbox CA" -t C,, -i "$state/ca.pem"
 portless service install --tld wbox.dev
 
 tailscale serve --bg --tcp 443 tcp://localhost:443
+
+cf_token=$(op read "op://Workbox/Cloudflare/credential")
+cf() {
+	curl -fsS -H "Authorization: Bearer $cf_token" -H "Content-Type: application/json" "https://api.cloudflare.com/client/v4/$1" "${@:2}"
+}
+zone=$(cf "zones?name=wbox.dev" | jq -er '.result[0].id')
+record=$(cf "zones/$zone/dns_records?type=A&name=%2A.wbox.dev" | jq -er '.result[0].id')
+cf "zones/$zone/dns_records/$record" -X PATCH --data "{\"content\":\"$(tailscale ip -4)\"}" >/dev/null
 {{ end -}}
