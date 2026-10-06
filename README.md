@@ -12,8 +12,16 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/m
 
 ### Workbox
 
+From the laptop:
+
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/workbox.sh)"
+workbox_up
+```
+
+Before replacing a workbox, run this on the old one:
+
+```bash
+workbox_down
 ```
 
 ## Update

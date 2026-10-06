@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ template "script-path" . }}
+export ATUIN_SESSION="$(atuin uuid)"
+
+if ! atuin status &>/dev/null; then
+	{{ template "op-signin" . }}
+	atuin login \
+		--username "$(op read "op://Workbox/Atuin/username")" \
+		--password "$(op read "op://Workbox/Atuin/password")" \
+		--key "$(op read "op://Workbox/Atuin/key")"
+	if [[ -f "$HOME/.zsh_history" ]]; then
+		atuin import zsh
+	fi
+fi
+atuin sync
