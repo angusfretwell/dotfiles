@@ -10,6 +10,8 @@ if ! atuin status &>/dev/null; then
 		--username "$(op read "op://Workbox/Atuin/username")" \
 		--password "$(op read "op://Workbox/Atuin/password")" \
 		--key "$(op read "op://Workbox/Atuin/key")"
-	atuin import zsh
+	if [[ -f "$HOME/.zsh_history" ]]; then
+		atuin import zsh
+	fi
 fi
 atuin sync
