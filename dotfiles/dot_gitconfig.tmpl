@@ -1,6 +1,7 @@
 [user]
 	name = Angus Fretwell
 	email = angusfretwell@me.com
+	signingkey = ~/.ssh/commit_signing
 
 [credential "https://github.com"]
 	helper =
@@ -12,6 +13,13 @@
 
 [commit]
 	template = ~/.gitmessage
+	gpgsign = true
+
+[tag]
+	gpgsign = true
+
+[gpg]
+	format = ssh
 
 [core]
 	excludesfile = ~/.gitignore

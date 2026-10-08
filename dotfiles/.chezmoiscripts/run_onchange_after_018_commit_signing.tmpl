@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ template "script-path" . }}
+{{ template "op-signin" . }}
+
+umask 077
+op read "op://Workbox/Commit Signing/private key?ssh-format=openssh" >"$HOME/.ssh/commit_signing"
