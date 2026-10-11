@@ -12,6 +12,7 @@ Library
 .functions/open
 .functions/t3_pair
 .functions/workbox_down
+.local/bin/heavy
 .local/bin/reap-orphans
 .local/bin/workbox-backup
 {{ end }}

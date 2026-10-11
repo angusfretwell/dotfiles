@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+slots=${HEAVY_SLOTS:-3}
+lock_conflict=75
+
+while :; do
+	for ((i = 1; i <= slots; i++)); do
+		flock -n -o -E "$lock_conflict" "/tmp/heavy.$i.lock" "$@"
+		status=$?
+		[[ $status -ne $lock_conflict ]] && exit "$status"
+	done
+	sleep 2
+done
