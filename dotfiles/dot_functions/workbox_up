@@ -1,10 +1,12 @@
 #!/bin/zsh
 
-local ip
+local ip ssh_user
 read "ip?New workbox IP: " || return
+read "ssh_user?SSH user [root]: " || return
+ssh_user=${ssh_user:-root}
 
 ssh-keygen -R workbox &>/dev/null
 ssh-keygen -R $ip &>/dev/null
 
-ssh -t -o StrictHostKeyChecking=accept-new root@$ip \
-	'bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/workbox.sh)"'
+ssh -t -o StrictHostKeyChecking=accept-new $ssh_user@$ip \
+	'sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/workbox.sh)"'

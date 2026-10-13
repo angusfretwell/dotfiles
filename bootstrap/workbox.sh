@@ -25,8 +25,9 @@ chmod 440 "/etc/sudoers.d/$WORKBOX_USER"
 
 home="/home/$WORKBOX_USER"
 install -d -m 700 -o "$WORKBOX_USER" -g "$WORKBOX_USER" "$home/.ssh"
-if [[ ! -s $home/.ssh/authorized_keys && -s /root/.ssh/authorized_keys ]]; then
-	install -m 600 -o "$WORKBOX_USER" -g "$WORKBOX_USER" /root/.ssh/authorized_keys "$home/.ssh/authorized_keys"
+ssh_keys="$(getent passwd "${SUDO_USER:-root}" | cut -d: -f6)/.ssh/authorized_keys"
+if [[ ! -s $home/.ssh/authorized_keys && -s $ssh_keys ]]; then
+	install -m 600 -o "$WORKBOX_USER" -g "$WORKBOX_USER" "$ssh_keys" "$home/.ssh/authorized_keys"
 fi
 
 install -d -o "$WORKBOX_USER" -g "$WORKBOX_USER" "$home/.config"
