@@ -6,7 +6,7 @@ lock_conflict=75
 
 while :; do
 	for ((i = 1; i <= slots; i++)); do
-		flock -n -o -E "$lock_conflict" "/tmp/heavy.$i.lock" "$@"
+		flock -n -o -E "$lock_conflict" "/tmp/heavy.$i.lock" choom -n 1000 -- nice -n 10 "$@"
 		status=$?
 		[[ $status -ne $lock_conflict ]] && exit "$status"
 	done
