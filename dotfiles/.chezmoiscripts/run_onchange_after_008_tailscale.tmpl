@@ -18,15 +18,20 @@ sudo tailscale set --operator="$USER"
 sudo tee /etc/ufw/after.init >/dev/null <<-'EOT'
 		#!/bin/sh
 
+		ipt() {
+			cmd=$1
+			table=$2
+			chain=$3
+			shift 3
+			case $action in
+			start) $cmd -t "$table" -C "$chain" "$@" 2>/dev/null || $cmd -t "$table" -A "$chain" "$@" ;;
+			stop) while $cmd -t "$table" -D "$chain" "$@" 2>/dev/null; do :; done ;;
+			esac
+		}
+
 		rule() {
-			table=$1
-			chain=$2
-			shift 2
-			for cmd in iptables ip6tables; do
-				case $action in
-				start) $cmd -t "$table" -C "$chain" "$@" 2>/dev/null || $cmd -t "$table" -A "$chain" "$@" ;;
-				stop) while $cmd -t "$table" -D "$chain" "$@" 2>/dev/null; do :; done ;;
-				esac
+			for family in iptables ip6tables; do
+				ipt "$family" "$@"
 			done
 		}
 
@@ -41,6 +46,9 @@ sudo tee /etc/ufw/after.init >/dev/null <<-'EOT'
 		done
 		rule filter DOCKER-USER -m conntrack --ctstate NEW -j DROP
 		for bridge in docker0 br+; do
+			for proto in udp tcp; do
+				ipt iptables mangle FORWARD -i "$bridge" -o tailscale0 -d 100.100.100.100 -p "$proto" --dport 53 -j ACCEPT
+			done
 			rule mangle FORWARD -i "$bridge" -o tailscale0 -m conntrack --ctstate NEW -j DROP
 		done
 	EOT
@@ -52,4 +60,5 @@ sudo ufw allow in on tailscale0
 sudo ufw allow 41641/udp
 sudo ufw allow in from 172.16.0.0/12
 sudo ufw --force enable
+sudo ufw reload
 {{ end -}}
