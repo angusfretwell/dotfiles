@@ -14,11 +14,14 @@ sudo loginctl enable-linger "$USER"
 
 t3 service install
 
-rm -f "$HOME/.config/systemd/user/t3code.service.d/limits.conf"
-mkdir -p "$HOME/.config/systemd/user/app-t3code.slice.d" "$HOME/.config/systemd/user.conf.d"
+mkdir -p "$HOME/.config/systemd/user/t3code.service.d" "$HOME/.config/systemd/user/app-t3code.slice.d" "$HOME/.config/systemd/user.conf.d"
+tee "$HOME/.config/systemd/user/t3code.service.d/limits.conf" >/dev/null <<-EOT
+	[Service]
+	MemorySwapMax=0
+EOT
 tee "$HOME/.config/systemd/user/app-t3code.slice.d/limits.conf" >/dev/null <<-EOT
 	[Slice]
-	MemoryMax=70%
+	MemoryMax=85%
 	MemorySwapMax=2G
 	CPUWeight=50
 EOT
