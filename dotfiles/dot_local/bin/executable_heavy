@@ -4,9 +4,15 @@ set -uo pipefail
 slots=${HEAVY_SLOTS:-3}
 lock_conflict=75
 
+export TURBO_CONCURRENCY=${TURBO_CONCURRENCY:-4}
+export VITEST_MAX_WORKERS=${VITEST_MAX_WORKERS:-4}
+
 while :; do
 	for ((i = 1; i <= slots; i++)); do
-		flock -n -o -E "$lock_conflict" "/tmp/heavy.$i.lock" nice -n 10 "$@"
+		flock -n -o -E "$lock_conflict" "/tmp/heavy.$i.lock" \
+			systemd-run --user --scope --quiet --collect --unit="heavy-$$" --slice=app-t3code-agents.slice \
+			-p MemoryMax=12G -p MemorySwapMax=2G -p OOMPolicy=stop \
+			nice -n 10 "$@"
 		status=$?
 		[[ $status -ne $lock_conflict ]] && exit "$status"
 	done
