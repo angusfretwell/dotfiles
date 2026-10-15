@@ -26,8 +26,8 @@ tee "$HOME/.config/systemd/user/app-t3code.slice.d/limits.conf" >/dev/null <<-EO
 EOT
 tee "$HOME/.config/systemd/user/app-t3code-agents.slice.d/limits.conf" >/dev/null <<-EOT
 	[Slice]
-	MemoryHigh=65%
-	MemoryMax=70%
+	MemoryHigh=70%
+	MemoryMax=75%
 	MemorySwapMax=4G
 EOT
 tee "$HOME/.config/systemd/user/t3code-.scope.d/oom.conf" >/dev/null <<-EOT
