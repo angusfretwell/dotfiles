@@ -2,9 +2,7 @@
 
 source ~/.exports
 
-for p in /opt/homebrew /home/linuxbrew/.linuxbrew; do
-	[[ -x $p/bin/brew ]] && eval "$($p/bin/brew shellenv)" && break
-done
+source ~/.brew_env
 
 source "$HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh"
 antidote load
