@@ -5,7 +5,6 @@ skills:
     - browser-qa
     - commit
     - explain-irl
-    - how
     - humanize
     - interview-me
     - open-pr
@@ -13,12 +12,9 @@ skills:
     - record-demo
     - review-pr
     - ship-it
-    - showcase
     - status-report
-    - supervise
     - tidy
     - to-artifact
-    - why
     - work-on
   mattpocock/skills:
     - claude-handoff
