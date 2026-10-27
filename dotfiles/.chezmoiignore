@@ -3,7 +3,6 @@ Library
 .config/ghostty
 .functions/flush_dns_cache
 .functions/workbox_up
-.op
 .local/bin/tailscale
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
