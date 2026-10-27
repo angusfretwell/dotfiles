@@ -8,6 +8,5 @@ Library
 .chezmoiscripts/linux/**
 .zshenv
 .functions/linux
-.local/bin/reap-orphans
 .local/bin/workbox-backup
 {{ end }}
