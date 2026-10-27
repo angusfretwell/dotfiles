@@ -44,12 +44,18 @@ su - "$WORKBOX_USER" -c 'export XDG_RUNTIME_DIR="/run/user/$(id -u)"; sh -c "$(c
 \`\`\`sh
 sudo reboot
 
-ssh $new_hostname # from laptop, once $new_hostname is back up
+ssh $new_hostname # from laptop, once $new_hostname is back up:
+
+t3-pair
+
+# sign in to services:
 
 gh auth login
 
-claude # sign in to claude code
+fly auth login
 
-t3-pair # pair t3 code at t3.wbox.dev
+vercel login
+
+claude
 \`\`\`
 EOF
