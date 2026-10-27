@@ -17,15 +17,3 @@ Pick the cheapest model that can do the subtask well:
 If a subagent realizes it needs a higher tier than itself, return to the parent.
 
 Parent owns final output and cross-spawn synthesis. User instructions override.
-{{- if eq .chezmoi.os "linux" }}
-
-## Heavy commands
-
-This machine runs several agents at once on shared memory. Run every heavy command through `heavy`, which caps how many run at once and queues the rest:
-
-```sh
-heavy pnpm lint
-```
-
-Heavy means anything that loads the whole project: type-aware lint, typecheck, fallow, full test suites, builds. Time spent queued counts toward the command's timeout, so give it a long one or run it in the background.
-{{- end }}
