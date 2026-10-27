@@ -1,0 +1,35 @@
+#!/bin/sh
+
+ipt() {
+	cmd=$1
+	table=$2
+	chain=$3
+	shift 3
+	case $action in
+	start) $cmd -t "$table" -C "$chain" "$@" 2>/dev/null || $cmd -t "$table" -A "$chain" "$@" ;;
+	stop) while $cmd -t "$table" -D "$chain" "$@" 2>/dev/null; do :; done ;;
+	esac
+}
+
+rule() {
+	for family in iptables ip6tables; do
+		ipt "$family" "$@"
+	done
+}
+
+action=$1
+if [ "$action" = start ]; then
+	iptables -N DOCKER-USER 2>/dev/null || true
+	ip6tables -N DOCKER-USER 2>/dev/null || true
+fi
+
+for iface in lo tailscale0 docker0 br+; do
+	rule filter DOCKER-USER -i "$iface" -j RETURN
+done
+rule filter DOCKER-USER -m conntrack --ctstate NEW -j DROP
+for bridge in docker0 br+; do
+	for proto in udp tcp; do
+		ipt iptables mangle FORWARD -i "$bridge" -o tailscale0 -d 100.100.100.100 -p "$proto" --dport 53 -j ACCEPT
+	done
+	rule mangle FORWARD -i "$bridge" -o tailscale0 -m conntrack --ctstate NEW -j DROP
+done
