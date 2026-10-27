@@ -2,17 +2,13 @@
 .chezmoiscripts/darwin/**
 Library
 .config/ghostty
-.functions/flush_dns_cache
-.functions/workbox_up
+.functions/darwin
 .local/bin/tailscale
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
 .chezmoiscripts/linux/**
 .zshenv
-.functions/code
-.functions/open
-.functions/t3_pair
-.functions/workbox_down
+.functions/linux
 .local/bin/reap-orphans
 .local/bin/workbox-backup
 {{ end }}
