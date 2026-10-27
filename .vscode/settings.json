@@ -1,5 +1,13 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.associations": {
+    "**/.chezmoiscripts/**/*.tmpl": "shellscript",
+    "**/dot_local/bin/**/*.tmpl": "shellscript",
+    "**/dot_{aliases,bashrc,exports,zshenv,zshrc}.tmpl": "shellscript",
+    "**/CLAUDE.md.tmpl": "markdown",
+    "**/dot_gitconfig.tmpl": "properties",
+    "**/.chezmoi.toml.tmpl": "toml"
+  },
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt"
   },
