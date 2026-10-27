@@ -39,6 +39,7 @@ packages:
       - qrencode
       - qsv
       - shfmt
+      - sqlite
       - tealdeer
       - the_silver_searcher
       - watchman
