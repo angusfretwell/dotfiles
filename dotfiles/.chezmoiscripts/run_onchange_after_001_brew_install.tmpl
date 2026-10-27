@@ -1,12 +1,35 @@
 #!/usr/bin/env bash
 set -euo pipefail
-{{ if eq .chezmoi.os "darwin" -}}
-# MacOS build version: {{ output "sw_vers" "--buildVersion" }}
-{{ end -}}
-# Brewfile hash: {{ include "private_dot_homebrew/Brewfile" | sha256sum }}
+{{- if eq .chezmoi.os "darwin" }}
+# MacOS build version: {{ output "sw_vers" "--buildVersion" | trim }}
+{{- end }}
 
 {{ template "script-path" . }}
 
+brewfile=$(cat <<'EOF'
+{{ range .packages.all.taps -}}
+tap {{ . | quote }}, trusted: true
+{{ end -}}
+{{ range .packages.all.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.all.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ if eq .chezmoi.os "darwin" -}}
+{{ range .packages.darwin.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ range $name, $id := .packages.darwin.mas -}}
+mas {{ $name | quote }}, id: {{ $id }}
+{{ end -}}
+{{ end -}}
+EOF
+)
+
 brew update
-brew bundle -gv
-brew bundle cleanup -g --force
+brew bundle -v --file=- <<<"$brewfile"
+brew bundle cleanup --file=- --force <<<"$brewfile"

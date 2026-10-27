@@ -1,0 +1,123 @@
+packages:
+  all:
+    taps:
+      - ddev/ddev
+    brews:
+      - chezmoi
+
+      # Shell
+      - antidote
+      - atuin
+      - bash
+      - starship
+      - zsh
+
+      # Utils
+      - bat
+      - btop
+      - composer
+      - coreutils
+      - cowsay
+      - curl
+      - duf
+      - eza
+      - ffmpeg
+      - fzf
+      - glow
+      - gnupg
+      - gum
+      - httpie
+      - imagemagick
+      - jq
+      - micro
+      - mkcert
+      - mosh
+      - nano
+      - nss
+      - procs
+      - pv
+      - qrencode
+      - qsv
+      - shfmt
+      - tealdeer
+      - the_silver_searcher
+      - watchman
+      - wget
+      - yq
+      - zoxide
+
+      # Git
+      - gh
+      - git
+      - git-absorb
+      - git-delta
+      - git-lfs
+      - worktrunk
+
+      # Tools
+      - awscli
+      - biome
+      - ddev
+      - flyctl
+      - herdr
+      - libpq
+      - mago
+      - mysql-client
+      - overmind
+      - restic
+      - stripe-cli
+      - uv
+    casks:
+      - 1password-cli
+
+  darwin:
+    brews:
+      - dockutil
+      - mas
+      - pam-reattach
+      - telnet
+    casks:
+      # Fonts
+      - font-blex-mono-nerd-font
+      - font-google-sans-code
+      - font-sf-compact
+      - font-sf-mono
+      - font-sf-pro
+
+      # Applications
+      - 1password
+      - chromedriver
+      - claude
+      - cleanshot
+      - cursor
+      - figma
+      - firefox
+      - ghostty
+      - google-chrome
+      - httpie-desktop
+      - linear
+      - markdown-preview
+      - mattermost
+      - notion
+      - opal-composer
+      - orbstack
+      - proxyman
+      - raycast
+      - screen-studio
+      - sf-symbols
+      - signal
+      - slack
+      - t3-code
+      - tableplus
+      - tailscale-app
+      - whatsapp
+      - zoom
+    mas:
+      1Password for Safari: 1569813296
+      Bear: 1091189122
+      Keynote: 361285480
+      Numbers: 361304891
+      Pages: 361309726
+      Pixelmator Pro: 6746662575
+      Things: 904280696
+      Xcode: 497799835
