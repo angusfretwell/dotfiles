@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ template "script-path" . }}
+
+{{ range .claudeMarketplaces -}}
+claude plugin marketplace add {{ . | quote }}
+{{ end -}}
+{{ range .claudePlugins -}}
+claude plugin install {{ . | quote }}
+{{ end -}}

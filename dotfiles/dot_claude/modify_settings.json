@@ -13,18 +13,6 @@
     "command": "npx -y ccstatusline@latest",
     "refreshInterval": 10
   },
-  "enabledPlugins": {
-    "worktrunk@worktrunk": true,
-    "mattpocock-skills@claude-plugins-official": true
-  },
-  "extraKnownMarketplaces": {
-    "worktrunk": {
-      "source": {
-        "source": "github",
-        "repo": "max-sixty/worktrunk"
-      }
-    }
-  },
   "outputStyle": "Concise",
   "modelSettings": {
     "claude-opus-5": {

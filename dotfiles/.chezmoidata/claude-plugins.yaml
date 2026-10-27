@@ -1,0 +1,5 @@
+claudeMarketplaces:
+  - max-sixty/worktrunk
+claudePlugins:
+  - worktrunk@worktrunk
+  - mattpocock-skills@claude-plugins-official
