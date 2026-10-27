@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# workbox-backup.service hash: {{ include "dot_config/systemd/user/workbox-backup.service.tmpl" | sha256sum }}
+# workbox-backup.timer hash: {{ include "dot_config/systemd/user/workbox-backup.timer" | sha256sum }}
 
 {{ template "script-path" . }}
 {{ template "op-signin" . }}
@@ -34,27 +36,5 @@ if [[ ! -e "$HOME/.t3/userdata/statev2.sqlite" ]] && restic snapshots --host wor
 	rm -rf "$tmp"
 fi
 
-mkdir -p "$HOME/.config/systemd/user"
-tee "$HOME/.config/systemd/user/workbox-backup.service" >/dev/null <<-EOT
-	[Unit]
-	Description=Back up T3 Code and Claude Code history to R2
-
-	[Service]
-	Type=oneshot
-	EnvironmentFile=%h/.config/restic/env
-	Environment=PATH={{ template "brew-prefix" . }}/bin:/usr/bin:/bin
-	ExecStart=%h/.local/bin/linux/workbox-backup
-	Nice=19
-	IOSchedulingClass=idle
-EOT
-tee "$HOME/.config/systemd/user/workbox-backup.timer" >/dev/null <<-EOT
-	[Timer]
-	OnCalendar=hourly
-	RandomizedDelaySec=5min
-	Persistent=true
-
-	[Install]
-	WantedBy=timers.target
-EOT
 systemctl --user daemon-reload
 systemctl --user enable --now workbox-backup.timer

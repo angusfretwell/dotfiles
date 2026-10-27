@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# t3code-.scope.d/oom.conf hash: {{ include "dot_config/systemd/user/t3code-.scope.d/oom.conf" | sha256sum }}
+# user.conf.d/oom.conf hash: {{ include "dot_config/systemd/user.conf.d/oom.conf" | sha256sum }}
 
 {{ template "script-path" . }}
 
@@ -12,16 +14,6 @@ fi
 sudo loginctl enable-linger "$USER"
 
 t3 service install
-
-mkdir -p "$HOME/.config/systemd/user/t3code-.scope.d" "$HOME/.config/systemd/user.conf.d"
-tee "$HOME/.config/systemd/user/t3code-.scope.d/oom.conf" >/dev/null <<-EOT
-	[Scope]
-	OOMPolicy=continue
-EOT
-tee "$HOME/.config/systemd/user.conf.d/oom.conf" >/dev/null <<-EOT
-	[Manager]
-	DefaultOOMPolicy=continue
-EOT
 systemctl --user daemon-reload
 
 portless alias t3 3773 --force

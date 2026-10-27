@@ -7,5 +7,6 @@ Library
 {{ if eq .chezmoi.os "darwin" }}
 .chezmoiscripts/linux/**
 .zshenv
+.config/systemd
 .local/bin/linux
 {{ end }}
