@@ -1,13 +1,13 @@
 #!/bin/zsh
 
-export EDITOR="micro"
+export EDITOR="micro-auto"
 export MICRO_TRUECOLOR=1
 
 {{ if eq .chezmoi.os "darwin" -}}
 export VISUAL="cursor -w"
 export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 {{ else -}}
-export VISUAL="micro"
+export VISUAL="micro-auto"
 {{ end -}}
 
 export ZFUNCDIR="$HOME/.functions"

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+if [[ $(color-mode) == light ]]; then
+	exec delta --light --syntax-theme "Cursor Light" "$@"
+fi
+exec delta --dark --syntax-theme "Cursor Dark" "$@"

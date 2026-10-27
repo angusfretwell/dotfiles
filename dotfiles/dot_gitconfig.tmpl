@@ -26,8 +26,8 @@
 {{- if eq .chezmoi.os "darwin" }}
 	ignorecase = true
 {{- end }}
-	editor = micro
-	pager = delta
+	editor = micro-auto
+	pager = delta-auto
 	mergeoptions = --no-edit
 
 [color]
@@ -54,12 +54,10 @@
 	recurse = true
 
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta-auto --color-only
 
 [delta]
     true-color = always
-    syntax-theme = Cursor Dark
-	dark = true
 	tabs = 2
 	hunk-header-decoration-style = ul blue dim
 	line-numbers-left-format = "{nm:>4} "

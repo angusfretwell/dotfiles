@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+mode=dark
+if exec 3<>/dev/tty 2>/dev/null; then
+	saved=$(stty -g <&3)
+	stty raw -echo <&3
+	printf '\e]11;?\e\\' >&3
+	IFS= read -r -s -t 0.2 -d '\' -u 3 reply
+	stty "$saved" <&3
+	exec 3>&-
+	if [[ ${reply:-} =~ rgb:([0-9a-fA-F]{2})[0-9a-fA-F]*/([0-9a-fA-F]{2})[0-9a-fA-F]*/([0-9a-fA-F]{2}) ]]; then
+		luma=$((299 * 16#${BASH_REMATCH[1]} + 587 * 16#${BASH_REMATCH[2]} + 114 * 16#${BASH_REMATCH[3]}))
+		((luma > 128000)) && mode=light
+	fi
+fi
+
+echo "$mode"

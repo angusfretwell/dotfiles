@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec micro -colorscheme "cursor-$(color-mode)" "$@"

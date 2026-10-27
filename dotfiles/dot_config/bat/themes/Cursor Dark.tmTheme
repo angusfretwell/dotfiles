@@ -10,13 +10,13 @@
         <key>settings</key>
         <dict>
           <key>caret</key>
-          <string>#E4E4E4EB</string>
+          <string>#F0F0F0</string>
           <key>selection</key>
           <string>#40404099</string>
           <key>lineHighlight</key>
           <string>#262626</string>
           <key>foreground</key>
-          <string>#E4E4E4EB</string>
+          <string>#F0F0F0</string>
           <key>background</key>
           <string>#181818</string>
           <key>invisibles</key>
@@ -1316,7 +1316,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#E4E4E45E</string>
+          <string>#F0F0F099</string>
         </dict>
       </dict>
       <dict>
@@ -2328,7 +2328,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#E4E4E45E</string>
+          <string>#F0F0F099</string>
         </dict>
       </dict>
       <dict>
@@ -2383,7 +2383,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#E4E4E45E</string>
+          <string>#F0F0F099</string>
         </dict>
       </dict>
       <dict>
@@ -2429,7 +2429,7 @@
           <key>fontStyle</key>
           <string>italic</string>
           <key>foreground</key>
-          <string>#E4E4E45E</string>
+          <string>#F0F0F099</string>
         </dict>
       </dict>
       <dict>
@@ -2440,7 +2440,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#E4E4E45E</string>
+          <string>#F0F0F099</string>
         </dict>
       </dict>
       <dict>
@@ -2452,6 +2452,28 @@
         <dict>
           <key>foreground</key>
           <string>#d6d6dd</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>name</key>
+        <string>YAML: Key</string>
+        <key>scope</key>
+        <string>entity.name.tag.yaml</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#82d2ce</string>
+        </dict>
+      </dict>
+      <dict>
+        <key>name</key>
+        <string>YAML: Boolean and Null</string>
+        <key>scope</key>
+        <string>constant.language.boolean.yaml,constant.language.null.yaml</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#F0F0F0</string>
         </dict>
       </dict>
       <dict>
