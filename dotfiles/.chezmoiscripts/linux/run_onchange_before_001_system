@@ -1,4 +1,3 @@
-{{ if eq .chezmoi.os "linux" -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -24,15 +23,3 @@ sudo sysctl -p /etc/sysctl.d/60-unprivileged-userns.conf
 
 sudo usermod --shell /usr/bin/zsh "$USER"
 sudo loginctl enable-linger "$USER"
-{{ else if eq .chezmoi.os "darwin" -}}
-#!/usr/bin/env bash
-set -euo pipefail
-# MacOS build version: {{ output "sw_vers" "--buildVersion" }}
-
-clt_label=$(softwareupdate --list 2>/dev/null |
-	sed -n 's/^\* Label: \(Command Line Tools.*\)$/\1/p' | sort -V | tail -n1)
-
-if [[ -n "$clt_label" ]]; then
-	sudo softwareupdate --install "$clt_label"
-fi
-{{ end -}}
