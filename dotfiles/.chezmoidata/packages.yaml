@@ -75,6 +75,7 @@ packages:
       - dockutil
       - mas
       - pam-reattach
+      - tailscale
       - telnet
     casks:
       # Fonts

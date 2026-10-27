@@ -3,7 +3,6 @@
 Library
 .config/ghostty
 .functions/darwin
-.local/bin/tailscale
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
 .chezmoiscripts/linux/**
