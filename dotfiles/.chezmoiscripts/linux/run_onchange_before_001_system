@@ -11,10 +11,8 @@ sudo locale-gen en_AU.UTF-8
 sudo update-locale LANG=en_AU.UTF-8
 sudo timedatectl set-timezone Australia/Melbourne
 
-sudo tee /etc/apt/apt.conf.d/20auto-upgrades >/dev/null <<-EOT
-	APT::Periodic::Update-Package-Lists "1";
-	APT::Periodic::Unattended-Upgrade "1";
-EOT
+echo 'unattended-upgrades unattended-upgrades/enable_auto_updates boolean true' | sudo debconf-set-selections
+sudo dpkg-reconfigure -f noninteractive unattended-upgrades
 
 sudo tee /etc/sysctl.d/60-unprivileged-userns.conf >/dev/null <<-EOT
 	kernel.apparmor_restrict_unprivileged_userns = 0
