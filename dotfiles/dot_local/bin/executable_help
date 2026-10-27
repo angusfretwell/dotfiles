@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-local input=$(
+input=$(
 	cat <<EOF
 You are a Linux shell command expert.
 

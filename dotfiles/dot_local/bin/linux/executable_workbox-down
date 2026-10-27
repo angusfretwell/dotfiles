@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-local repo dirty stashed unpushed unsaved=()
+unsaved=()
 for repo in $CODE_DIR/*/.git(N:h) $CODE_DIR/.worktrees/*/.git(N:h); do
 	dirty=$(git -C $repo status --porcelain)
 	stashed=$(git -C $repo stash list)

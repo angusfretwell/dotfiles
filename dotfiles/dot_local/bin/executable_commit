@@ -7,12 +7,12 @@ if [[ -z $(git status --porcelain) ]]; then
 	exit 1
 fi
 
-local extra=""
+extra=""
 if (($#)); then
 	extra="Additional instructions: $*"
 fi
 
-local input=$(
+input=$(
 	cat <<EOF
 Use the /commit skill to commit the changes in this repository.
 

@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-local ip ssh_user
 read "ip?New workbox IP: " || exit
 read "ssh_user?SSH user [root]: " || exit
 ssh_user=${ssh_user:-root}
