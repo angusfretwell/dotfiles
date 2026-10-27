@@ -1,4 +1,3 @@
-{{ if eq .chezmoi.os "linux" -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -38,4 +37,3 @@ if ! sudo pdbedit -u "$USER" &>/dev/null; then
 	password=$(op read "op://Workbox/Samba/password")
 	printf '%s\n%s\n' "$password" "$password" | sudo smbpasswd -a -s "$USER"
 fi
-{{ end -}}

@@ -1,4 +1,3 @@
-{{ if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -13,4 +12,3 @@ extensions=(
 for extension in "${extensions[@]}"; do
 	cursor --install-extension "$extension" --force
 done
-{{ end -}}

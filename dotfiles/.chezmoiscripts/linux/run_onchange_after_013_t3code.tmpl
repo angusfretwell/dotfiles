@@ -1,4 +1,3 @@
-{{ if eq .chezmoi.os "linux" -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -26,4 +25,3 @@ EOT
 systemctl --user daemon-reload
 
 portless alias t3 3773 --force
-{{ end -}}

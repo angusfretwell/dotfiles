@@ -1,4 +1,3 @@
-{{ if eq .chezmoi.os "linux" -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -21,4 +20,3 @@ tee "$HOME/.config/systemd/user/reap-orphans.timer" >/dev/null <<-EOT
 EOT
 systemctl --user daemon-reload
 systemctl --user enable --now reap-orphans.timer
-{{ end -}}
