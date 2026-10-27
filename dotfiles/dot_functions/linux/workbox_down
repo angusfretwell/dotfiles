@@ -20,5 +20,3 @@ if ! systemctl --user start workbox-backup.service; then
 	echo >&2 "backup failed; see journalctl --user -u workbox-backup."
 	return 1
 fi
-
-sudo tailscale logout
