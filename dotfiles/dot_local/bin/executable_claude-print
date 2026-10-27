@@ -6,4 +6,4 @@ local ret=$?
 
 [[ -n $output ]] && print -r -- "$output"
 
-return $ret
+exit $ret

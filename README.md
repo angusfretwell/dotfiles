@@ -15,13 +15,13 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/m
 From the laptop:
 
 ```bash
-workbox_up
+workbox-up
 ```
 
 Before replacing a workbox, run this on the old one:
 
 ```bash
-workbox_down
+workbox-down
 ```
 
 ## Update

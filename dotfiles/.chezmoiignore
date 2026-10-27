@@ -2,11 +2,10 @@
 .chezmoiscripts/darwin/**
 Library
 .config/ghostty
-.functions/darwin
+.local/bin/darwin
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
 .chezmoiscripts/linux/**
 .zshenv
-.functions/linux
-.local/bin/workbox-backup
+.local/bin/linux
 {{ end }}

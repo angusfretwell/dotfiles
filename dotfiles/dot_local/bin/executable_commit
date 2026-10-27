@@ -1,10 +1,10 @@
 #!/bin/zsh
 
-assert_repo_root || return 1
+assert-repo-root || exit 1
 
 if [[ -z $(git status --porcelain) ]]; then
 	echo >&2 "nothing to commit."
-	return 1
+	exit 1
 fi
 
 local extra=""
@@ -26,7 +26,7 @@ $extra
 EOF
 )
 
-print -r -- "$input" | GUM_SPIN_TITLE="Committing..." claude_print \
+print -r -- "$input" | GUM_SPIN_TITLE="Committing..." claude-print \
 	--model sonnet --effort medium --settings '{"includeCoAuthoredBy": false}' \
 	--allowedTools "Read Grep Glob Skill Bash(git status:*) Bash(git diff:*) Bash(git log:*) Bash(git show:*) Bash(git add:*) Bash(git restore:*) Bash(git commit:*)" |
 	glow --width 0

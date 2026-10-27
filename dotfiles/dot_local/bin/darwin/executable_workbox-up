@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 local ip ssh_user
-read "ip?New workbox IP: " || return
-read "ssh_user?SSH user [root]: " || return
+read "ip?New workbox IP: " || exit
+read "ssh_user?SSH user [root]: " || exit
 ssh_user=${ssh_user:-root}
 
 ssh-keygen -R workbox &>/dev/null

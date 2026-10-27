@@ -4,7 +4,7 @@ local dir=${${1:-.}:A}
 
 if [[ $dir != $HOME && $dir != $HOME/* ]]; then
 	echo >&2 "only paths under $HOME are shared."
-	return 1
+	exit 1
 fi
 
 local url="smb://workbox/$USER${${dir#$HOME}// /%20}"

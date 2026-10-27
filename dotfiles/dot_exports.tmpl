@@ -10,7 +10,6 @@ export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/
 export VISUAL="micro-auto"
 {{ end -}}
 
-export ZFUNCDIR="$HOME/.functions"
 export CODE_DIR="{{ template "code-dir" . }}"
 
 if [[ $LC_SSH_USER == "$USER" ]]; then
@@ -33,4 +32,5 @@ esac
 export PATH="{{ template "brew-prefix" . }}/opt/libpq/bin:$PATH"
 export PATH="{{ template "brew-prefix" . }}/opt/mysql-client/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin/{{ .chezmoi.os }}:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"

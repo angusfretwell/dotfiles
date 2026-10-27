@@ -50,6 +50,6 @@ gh auth login
 
 claude # sign in to claude code
 
-t3_pair # pair t3 code at t3.wbox.dev
+t3-pair # pair t3 code at t3.wbox.dev
 \`\`\`
 EOF

@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+local url
+url=$(t3 auth pairing create --base-url https://t3.wbox.dev --json "$@" | jq -er .pairUrl) || exit
+
+qrencode -t ansiutf8 -- "$url"
+print -r -- "$url"

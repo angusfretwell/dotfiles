@@ -10,13 +10,13 @@ done
 
 if (($#unsaved)); then
 	print -rl -- "repos with uncommitted, stashed or unpushed work:" ${unsaved/#/  }
-	gum confirm "these aren't backed up. wind down anyway?" || return 1
+	gum confirm "these aren't backed up. wind down anyway?" || exit 1
 fi
 
-systemctl --user stop t3code || return
+systemctl --user stop t3code || exit
 
 if ! systemctl --user start workbox-backup.service; then
 	systemctl --user start t3code
 	echo >&2 "backup failed; see journalctl --user -u workbox-backup."
-	return 1
+	exit 1
 fi
