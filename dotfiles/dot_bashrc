@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for p in /opt/homebrew /home/linuxbrew/.linuxbrew; do
+	[[ -x $p/bin/brew ]] && eval "$($p/bin/brew shellenv)" && break
+done
+
+source ~/.exports
+
+eval "$(mise activate bash)"

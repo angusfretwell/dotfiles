@@ -2,9 +2,11 @@
 
 source ~/.exports
 
-eval "$({{ template "brew-prefix" . }}/bin/brew shellenv)"
+for p in /opt/homebrew /home/linuxbrew/.linuxbrew; do
+	[[ -x $p/bin/brew ]] && eval "$($p/bin/brew shellenv)" && break
+done
 
-source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
+source "$HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh"
 antidote load
 
 source ~/.aliases
