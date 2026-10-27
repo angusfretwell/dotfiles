@@ -2,9 +2,9 @@
 
 source ~/.exports
 
-source ~/.brew_env
+eval "$({{ template "brew-prefix" . }}/bin/brew shellenv)"
 
-source "$HOMEBREW_PREFIX/opt/antidote/share/antidote/antidote.zsh"
+source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
 antidote load
 
 source ~/.aliases

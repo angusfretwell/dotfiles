@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.brew_env
+eval "$({{ template "brew-prefix" . }}/bin/brew shellenv)"
 
 source ~/.exports
 
