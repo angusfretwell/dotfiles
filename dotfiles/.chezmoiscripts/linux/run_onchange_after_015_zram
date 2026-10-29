@@ -10,3 +10,11 @@ sudo tee /etc/systemd/zram-generator.conf >/dev/null <<-'EOT'
 EOT
 sudo systemctl daemon-reload
 sudo systemctl restart systemd-zram-setup@zram0.service
+
+sudo tee /etc/sysctl.d/60-zram.conf >/dev/null <<-'EOT'
+	vm.swappiness = 180
+	vm.page-cluster = 0
+	vm.watermark_boost_factor = 0
+	vm.watermark_scale_factor = 125
+EOT
+sudo sysctl -p /etc/sysctl.d/60-zram.conf
