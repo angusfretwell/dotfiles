@@ -71,6 +71,10 @@ packages:
     casks:
       - 1password-cli
 
+  linux:
+    brews:
+      - signal-cli
+
   darwin:
     brews:
       - dockutil

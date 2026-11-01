@@ -48,6 +48,8 @@ ssh $new_hostname # from laptop, once $new_hostname is back up:
 
 t3-pair
 
+npx t3-signal-bridge install
+
 # sign in to services:
 
 gh auth login
