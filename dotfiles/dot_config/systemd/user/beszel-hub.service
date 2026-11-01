@@ -1,0 +1,9 @@
+[Unit]
+Description=Beszel hub
+
+[Service]
+ExecStart=%h/.local/bin/linux/beszel serve --http 127.0.0.1:8090 --dir %h/.local/share/beszel
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

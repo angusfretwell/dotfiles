@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# beszel-hub.service hash: {{ include "dot_config/systemd/user/beszel-hub.service" | sha256sum }}
+# beszel-agent.service hash: {{ include "dot_config/systemd/user/beszel-agent.service" | sha256sum }}
+
+{{ template "script-path" . }}
+
+systemctl --user daemon-reload
+systemctl --user enable beszel-hub.service beszel-agent.service
+systemctl --user restart beszel-hub.service
+
+key="$HOME/.local/share/beszel/id_ed25519"
+for _ in {1..30}; do
+	[[ -f $key ]] && break
+	sleep 1
+done
+ssh-keygen -y -f "$key" >"$key.pub"
+systemctl --user restart beszel-agent.service
+
+portless alias beszel 8090 --force

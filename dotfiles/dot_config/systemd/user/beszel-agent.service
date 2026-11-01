@@ -1,0 +1,12 @@
+[Unit]
+Description=Beszel agent
+After=beszel-hub.service
+
+[Service]
+Environment=LISTEN=127.0.0.1:45876
+Environment=KEY_FILE=%h/.local/share/beszel/id_ed25519.pub
+ExecStart=%h/.local/bin/linux/beszel-agent
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

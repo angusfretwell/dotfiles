@@ -1,0 +1,15 @@
+{{ if eq .chezmoi.os "linux" -}}
+[".local/bin/linux/beszel"]
+type = "archive-file"
+url = "https://github.com/henrygd/beszel/releases/latest/download/beszel_linux_{{ .chezmoi.arch }}.tar.gz"
+path = "beszel"
+executable = true
+refreshPeriod = "168h"
+
+[".local/bin/linux/beszel-agent"]
+type = "archive-file"
+url = "https://github.com/henrygd/beszel/releases/latest/download/beszel-agent_linux_{{ .chezmoi.arch }}.tar.gz"
+path = "beszel-agent"
+executable = true
+refreshPeriod = "168h"
+{{ end -}}
