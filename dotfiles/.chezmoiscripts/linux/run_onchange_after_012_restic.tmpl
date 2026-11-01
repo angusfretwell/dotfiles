@@ -30,9 +30,10 @@ fi
 if [[ ! -e "$HOME/.t3/userdata/statev2.sqlite" ]] && restic snapshots --host workbox --latest 1 --json | jq -e 'length > 0' >/dev/null; then
 	tmp=$(mktemp -d)
 	restic restore latest --host workbox --target "$tmp"
-	mkdir -p "$HOME/.t3/userdata" "$HOME/.claude"
+	mkdir -p "$HOME/.t3/userdata"
 	cp -a "$tmp$HOME/.cache/workbox-backup/." "$HOME/.t3/userdata/"
-	cp -a "$tmp$HOME/.claude/." "$HOME/.claude/"
+	rm -rf "$tmp$HOME/.cache/workbox-backup"
+	cp -a "$tmp$HOME/." "$HOME/"
 	rm -rf "$tmp"
 fi
 
