@@ -6,6 +6,12 @@ if ! { exec 3<>/dev/tty; } 2>/dev/null; then
 	exit
 fi
 
+tui_owns_tty() { [[ $(stty -a <&3) == *-icanon* ]]; }
+if tui_owns_tty; then
+	echo dark
+	exit
+fi
+
 saved=$(stty -g <&3)
 stty raw -echo <&3
 printf '\e]11;?\e\\' >&3
