@@ -76,6 +76,8 @@ packages:
       - signal-cli
 
   darwin:
+    taps:
+      - anomalyco/tap
     brews:
       - dockutil
       - mas
@@ -92,6 +94,7 @@ packages:
 
       # Applications
       - 1password
+      - anomalyco/tap/hex
       - chromedriver
       - claude
       - cleanshot

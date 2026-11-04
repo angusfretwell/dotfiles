@@ -10,6 +10,11 @@ brewfile=$(cat <<'EOF'
 {{ range .packages.all.taps -}}
 tap {{ . | quote }}, trusted: true
 {{ end -}}
+{{ if eq .chezmoi.os "darwin" -}}
+{{ range .packages.darwin.taps -}}
+tap {{ . | quote }}, trusted: true
+{{ end -}}
+{{ end -}}
 {{ range .packages.all.brews -}}
 brew {{ . | quote }}
 {{ end -}}
