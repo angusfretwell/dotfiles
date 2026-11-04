@@ -107,6 +107,7 @@ packages:
       - notion
       - opal-composer
       - orbstack
+      - postman
       - proxyman
       - raycast
       - screen-studio
