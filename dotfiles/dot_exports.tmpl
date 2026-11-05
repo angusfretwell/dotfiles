@@ -6,6 +6,8 @@ export MICRO_TRUECOLOR=1
 {{ if eq .chezmoi.os "darwin" -}}
 export VISUAL="cursor -w"
 export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
 {{ else -}}
 export VISUAL="micro-auto"
 {{ end -}}
@@ -34,3 +36,6 @@ export PATH="{{ template "brew-prefix" . }}/opt/mysql-client/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/{{ .chezmoi.os }}:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
+{{- if eq .chezmoi.os "darwin" }}
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
+{{- end }}

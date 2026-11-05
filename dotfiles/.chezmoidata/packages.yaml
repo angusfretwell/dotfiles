@@ -94,6 +94,7 @@ packages:
 
       # Applications
       - 1password
+      - android-commandlinetools
       - anomalyco/tap/hex
       - chromedriver
       - claude
@@ -122,6 +123,7 @@ packages:
       - tailscale-app
       - whatsapp
       - zoom
+      - zulu@17
     mas:
       1Password for Safari: 1569813296
       Bear: 1091189122

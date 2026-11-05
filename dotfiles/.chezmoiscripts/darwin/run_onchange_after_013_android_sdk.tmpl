@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ template "script-path" . }}
+set +u
+source "$HOME/.exports"
+set -u
+
+android --no-metrics sdk install platform-tools emulator platforms/android-36 cmdline-tools/latest
+
+if ! android --no-metrics emulator list | grep -qx medium_tablet; then
+	android --no-metrics emulator create medium_tablet
+fi
