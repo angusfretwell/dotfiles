@@ -22,3 +22,8 @@ skills:
     - agent-browser
   humanlayer/skills:
     - show-me
+  github/gh-stack:
+    - gh-stack
+  emilkowalski/skills:
+    - animate
+    - prototype
