@@ -7,6 +7,7 @@ skills:
     - explain-irl
     - humanize
     - interview-me
+    - merge-risk
     - open-pr
     - polish
     - record-demo
@@ -15,6 +16,7 @@ skills:
     - status-report
     - tidy
     - to-artifact
+    - unblock-pr
     - work-on
   mattpocock/skills:
     - claude-handoff
