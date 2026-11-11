@@ -104,6 +104,7 @@ packages:
       - firefox
       - ghostty
       - google-chrome
+      - grok-bot
       - httpie-desktop
       - linear
       - markdown-preview
