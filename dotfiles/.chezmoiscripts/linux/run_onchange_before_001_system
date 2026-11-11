@@ -19,5 +19,7 @@ sudo tee /etc/sysctl.d/60-unprivileged-userns.conf >/dev/null <<-EOT
 EOT
 sudo sysctl -p /etc/sysctl.d/60-unprivileged-userns.conf
 
+sudo systemctl mask tmp.mount
+
 sudo usermod --shell /usr/bin/zsh "$USER"
 sudo loginctl enable-linger "$USER"
