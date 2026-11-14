@@ -11,12 +11,5 @@ for db in state statev2; do
 done
 cp "$HOME/.t3/userdata/settings.json" "$HOME/.t3/userdata/keybindings.json" "$staging/"
 
-paths=("$staging" "$HOME/.claude/projects" "$HOME/.claude/history.jsonl")
-for path in "$HOME/.config/t3-signal-bridge" "$HOME/.local/state/t3-signal-bridge" "$HOME/.local/share/t3-signal-bridge/signal-cli"; do
-	if [[ -e $path ]]; then
-		paths+=("$path")
-	fi
-done
-
-restic backup --host workbox "${paths[@]}"
+restic backup --host workbox "$staging" "$HOME/.claude/projects" "$HOME/.claude/history.jsonl"
 restic forget --host workbox --keep-hourly 24 --keep-daily 7 --prune

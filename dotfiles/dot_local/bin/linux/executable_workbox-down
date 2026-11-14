@@ -13,12 +13,10 @@ if (($#unsaved)); then
 	gum confirm "these aren't backed up. wind down anyway?" || exit 1
 fi
 
-systemctl --user stop t3-signal-bridge 2>/dev/null
 systemctl --user stop t3code || exit
 
 if ! systemctl --user start workbox-backup.service; then
 	systemctl --user start t3code
-	systemctl --user start t3-signal-bridge 2>/dev/null
 	echo >&2 "backup failed; see journalctl --user -u workbox-backup."
 	exit 1
 fi

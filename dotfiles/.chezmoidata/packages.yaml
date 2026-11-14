@@ -71,10 +71,6 @@ packages:
     casks:
       - 1password-cli
 
-  linux:
-    brews:
-      - signal-cli
-
   darwin:
     taps:
       - anomalyco/tap
