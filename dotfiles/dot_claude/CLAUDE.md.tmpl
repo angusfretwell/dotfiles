@@ -17,3 +17,13 @@ Pick the cheapest model that can do the subtask well:
 If a subagent realizes it needs a higher tier than itself, return to the parent.
 
 Parent owns final output and cross-spawn synthesis. User instructions override.
+{{- if eq .chezmoi.os "linux" }}
+
+## Serving pages
+
+Serve anything the user might open in a browser through portless, and keep it running after you reply. On this machine portless serves `https://<name>.wbox.dev` to every device on the user's tailnet, so link that URL in place of `localhost:<port>`. Take the URL from portless's output or `portless get <name>`, since in a worktree portless prefixes the name with the branch.
+
+- A project with portless config (a `"portless"` key in `package.json`, or a `portless.json`): run its dev script.
+- Anything else: `portless <name> <cmd>`. Portless passes the port in `PORT`; hand it to commands that ignore that variable: `portless <name> sh -c 'python3 -m http.server "$PORT"'`.
+- A server already listening on a fixed port, such as a Docker container: `portless alias <name> <port>`.
+{{- end }}
