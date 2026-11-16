@@ -29,3 +29,5 @@ skills:
   emilkowalski/skills:
     - animate
     - prototype
+  vercel-labs/agent-skills:
+    - web-design-guidelines
