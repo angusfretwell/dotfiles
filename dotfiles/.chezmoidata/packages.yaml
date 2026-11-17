@@ -118,6 +118,7 @@ packages:
       - t3-code@nightly
       - tableplus
       - tailscale-app
+      - vanilla
       - whatsapp
       - zoom
       - zulu@17
