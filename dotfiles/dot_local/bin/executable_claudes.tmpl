@@ -102,14 +102,21 @@ sync_account() {
 	(
 		if [[ $dir == $link ]]; then
 			unset CLAUDE_CONFIG_DIR
+			state=$HOME/.claude.json
 		else
 			export CLAUDE_CONFIG_DIR=$dir
+			state=$dir/.claude.json
 		fi
 {{ range .claudeMarketplaces }}
 		claude plugin marketplace add {{ . | quote }}
 {{- end }}
 {{- range .claudePlugins }}
 		claude plugin install {{ . | quote }}
+{{- end }}
+{{ range $name, $server := index .claudeMcpServers .chezmoi.os }}
+		if ! jq -e --arg name {{ $name | quote }} '.mcpServers[$name]' $state >/dev/null 2>&1; then
+			claude mcp add-json --scope user {{ $name | quote }} {{ $server | toJson | replace "\"~/" (printf "\"%s/" $.chezmoi.homeDir) | squote }}
+		fi
 {{- end }}
 {{ range $repo, $skills := .skills }}
 		npx --yes skills add {{ $repo | quote }} {{ range $skills }}--skill {{ . }} {{ end }}--yes --global --agent claude-code --agent codex{{ if eq $.chezmoi.os "darwin" }} --agent cursor{{ end }}

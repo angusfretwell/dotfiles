@@ -5,3 +5,10 @@ claudePlugins:
   - worktrunk@worktrunk
   - mattpocock-skills@claude-plugins-official
   - postman@claude-plugins-official
+claudeMcpServers:
+  darwin:
+    paper:
+      type: stdio
+      command: "~/.paper/bin/paper"
+      args:
+        - mcp
