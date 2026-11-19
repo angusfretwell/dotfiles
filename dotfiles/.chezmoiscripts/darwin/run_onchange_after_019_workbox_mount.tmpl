@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# local.workbox-mount.plist hash: {{ include "private_Library/LaunchAgents/local.workbox-mount.plist.tmpl" | sha256sum }}
+
+{{ template "script-path" . }}
+
+if ! security find-internet-password -a "$USER" -s workbox -r "smb " &>/dev/null; then
+	{{ template "op-signin" . }}
+	netauth=/System/Library/CoreServices/NetAuthAgent.app/Contents/MacOS
+	security add-internet-password -a "$USER" -s workbox -r "smb " -l workbox \
+		-T "$netauth/NetAuthAgent" -T "$netauth/NetAuthSysAgent" \
+		-w "$(op read "op://Workbox/Samba/password")"
+fi
+
+plist="$HOME/Library/LaunchAgents/local.workbox-mount.plist"
+launchctl bootout "gui/$UID" "$plist" &>/dev/null || true
+launchctl bootstrap "gui/$UID" "$plist"

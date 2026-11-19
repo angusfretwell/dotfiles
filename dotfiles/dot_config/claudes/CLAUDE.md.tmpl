@@ -26,4 +26,8 @@ Serve anything the user might open in a browser through portless, and keep it ru
 - A project with portless config (a `"portless"` key in `package.json`, or a `portless.json`): run its dev script.
 - Anything else: `portless <name> <cmd>`. Portless passes the port in `PORT`; hand it to commands that ignore that variable: `portless <name> sh -c 'python3 -m http.server "$PORT"'`.
 - A server already listening on a fixed port, such as a Docker container: `portless alias <name> <port>`.
+
+## Exchanging files
+
+`~/dropbox` is shared with the user's laptops, which mount it at `/Volumes/dropbox`. Save files meant for the user there and give them the `/Volumes/dropbox/...` path. When you need a file from the user, ask them to put it in `/Volumes/dropbox` and read it from `~/dropbox`.
 {{- end }}
