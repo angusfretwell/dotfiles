@@ -3,3 +3,4 @@ claudeMarketplaces:
 claudePlugins:
   - worktrunk@worktrunk
   - mattpocock-skills@claude-plugins-official
+  - postman@claude-plugins-official
