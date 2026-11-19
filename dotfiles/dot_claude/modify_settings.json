@@ -24,8 +24,7 @@
   "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true
+  "skipAutoPermissionPrompt": true
 }` | fromJson -}}
 {{- $current := fromJson (default "{}" .chezmoi.stdin) -}}
 {{ mergeOverwrite $current $managed | toPrettyJson -}}
