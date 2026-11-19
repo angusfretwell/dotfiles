@@ -1,5 +1,5 @@
 #!/bin/zsh
 
-mount -t smbfs | grep -q "@workbox/dropbox on " && exit 0
+mount -t smbfs | grep -q "@workbox/Workbox on " && exit 0
 nc -z -G 2 workbox 445 &>/dev/null || exit 0
-osascript -e "mount volume \"smb://$USER@workbox/dropbox\"" >/dev/null
+osascript -e "mount volume \"smb://$USER@workbox/Workbox\"" >/dev/null
