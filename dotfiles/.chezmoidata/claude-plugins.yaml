@@ -1,4 +1,5 @@
 claudeMarketplaces:
+  - anthropics/claude-plugins-official
   - max-sixty/worktrunk
 claudePlugins:
   - worktrunk@worktrunk

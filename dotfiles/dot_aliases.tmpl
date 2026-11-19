@@ -24,3 +24,8 @@ alias wtp="wt step prune"
 # Claude shortcuts
 alias cc="assert-repo-root && claude"
 alias ccx="assert-repo-root && claude --dangerously-skip-permissions"
+
+for dir in ~/.claude-*(N/); do
+	alias "claude-${dir:t:s/.claude-/}"="CLAUDE_CONFIG_DIR=$dir claude"
+done
+unset dir

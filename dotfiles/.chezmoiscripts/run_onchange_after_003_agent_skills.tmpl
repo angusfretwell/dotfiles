@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-{{ template "script-path" . }}
-
-{{ range $repo, $skills := .skills }}
-npx --yes skills add {{ $repo | quote }} {{ range $skills }}--skill {{ . }} {{ end }}--yes --global --agent claude-code{{ if eq $.chezmoi.os "darwin" }} --agent cursor{{ end }}
-{{- end }}

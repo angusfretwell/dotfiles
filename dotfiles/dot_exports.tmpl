@@ -12,6 +12,10 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export VISUAL="micro-auto"
 {{ end -}}
 
+if [[ -L $HOME/.claude ]]; then
+	export CLAUDE_CONFIG_DIR="${CLAUDE_CONFIG_DIR:-$HOME/$(readlink "$HOME/.claude")}"
+fi
+
 export CODE_DIR="{{ template "code-dir" . }}"
 
 if [[ $LC_SSH_USER == "$USER" ]]; then
