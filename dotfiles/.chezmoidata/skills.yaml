@@ -23,6 +23,9 @@ skills:
     - claude-handoff
   vercel-labs/agent-browser:
     - agent-browser
+  vercel-labs/agent-desktop:
+    - agent-desktop
+    - agent-desktop-macos
   humanlayer/skills:
     - show-me
   github/gh-stack:
