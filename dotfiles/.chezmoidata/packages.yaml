@@ -100,6 +100,7 @@ packages:
       - firefox
       - ghostty
       - google-chrome
+      - granola
       - grok-bot
       - httpie-desktop
       - linear
