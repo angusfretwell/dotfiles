@@ -216,3 +216,9 @@ on_calendar = "hourly"
 randomized_delay_sec = "5min"
 persistent = true
 unit = "workbox-backup"
+
+[task_config]
+includes = ["tasks"]
+
+[tasks.bootstrap]
+depends = ["shared:*", "workbox:*"]

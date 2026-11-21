@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #MISE description="Install the portless service, trust the CA in NSS, expose it on the tailnet and point DNS at it"
 #MISE dir="{{ env.HOME }}"
-#MISE depends=["shared:portless", "linux:tailscale"]
+#MISE depends=["shared:portless", "workbox:tailscale"]
 #MISE sources=["{{ env.HOME }}/.portless/ca.pem"]
 set -euo pipefail
 

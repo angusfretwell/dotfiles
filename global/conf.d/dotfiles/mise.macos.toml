@@ -1,4 +1,0 @@
-[dotfiles]
-"~/.config/ghostty" = { source = "../../../home/.config/ghostty", mode = "symlink-each" }
-"~/.local/bin/darwin" = { source = "../../../home/.local/bin/darwin", mode = "symlink-each" }
-"~/Library/Application Support/Cursor/User/settings.json/managed" = { source = "cursor-settings.jsonc", merge = true, format = "jsonc" }

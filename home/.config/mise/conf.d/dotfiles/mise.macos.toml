@@ -1,0 +1,2 @@
+[dotfiles]
+"~/Library/Application Support/Cursor/User/settings.json/managed" = { source = "cursor-settings.jsonc", merge = true, format = "jsonc" }

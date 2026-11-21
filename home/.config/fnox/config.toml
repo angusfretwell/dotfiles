@@ -12,22 +12,22 @@ COMMIT_SIGNING_KEY = { provider = "commit_signing", value = "op://Workbox/Commit
 PORTLESS_CA_CERT = { provider = "portless_ca_cert", value = "op://Workbox/Workbox CA/workbox-ca.crt", if_missing = "error" }
 PORTLESS_CA_KEY = { provider = "portless_ca_key", value = "op://Workbox/Workbox CA/workbox-ca.key", if_missing = "error" }
 
-[profiles.linux.providers.restic_password]
+[profiles.workbox.providers.restic_password]
 type = "1password"
 
-[profiles.linux.providers.restic_endpoint]
+[profiles.workbox.providers.restic_endpoint]
 type = "1password"
 
-[profiles.linux.providers.restic_bucket]
+[profiles.workbox.providers.restic_bucket]
 type = "1password"
 
-[profiles.linux.providers.restic_username]
+[profiles.workbox.providers.restic_username]
 type = "1password"
 
-[profiles.linux.providers.restic_credential]
+[profiles.workbox.providers.restic_credential]
 type = "1password"
 
-[profiles.linux.secrets]
+[profiles.workbox.secrets]
 RESTIC_PASSWORD = { provider = "restic_password", value = "op://Workbox/Restic/password", if_missing = "error" }
 RESTIC_ENDPOINT = { provider = "restic_endpoint", value = "op://Workbox/Restic/endpoint", if_missing = "error" }
 RESTIC_BUCKET = { provider = "restic_bucket", value = "op://Workbox/Restic/bucket", if_missing = "error" }

@@ -1,16 +1,13 @@
 [settings.dotfiles]
-root = "../../.."
+root = "~/.local/share/chezmoi/home"
 
 [dotfile_groups.home]
-root = "home"
+root = "."
 target = "~"
 exclude = [
   "*.tera",
-  "/.config/btop/btop.conf",
   "/.config/ghostty",
-  "/.config/gh/config.yml",
-  "/.config/herdr/config.toml",
-  "/.config/micro/settings.json",
+  "/.config/mise",
   "/.local/bin/darwin",
   "/.local/bin/linux",
 ]
@@ -25,12 +22,16 @@ exclude = [
 "~/.config/claudes/CLAUDE.md" = { source = ".config/claudes/CLAUDE.md.tera", mode = "template" }
 "~/.local/bin/claudes" = { source = ".local/bin/claudes.tera", mode = "template", permissions = "0755" }
 "~/.local/bin/update-skills" = { source = ".local/bin/update-skills.tera", mode = "template", permissions = "0755" }
+"~/.local/bin/bootstrap" = { source = "../bin/bootstrap" }
+"~/.config/ghostty" = { source = ".config/ghostty", mode = "symlink-each", variants = [{ os = "macos" }] }
+"~/.local/bin/darwin" = { source = ".local/bin/darwin", mode = "symlink-each", variants = [{ os = "macos" }] }
+"~/.local/bin/linux" = { source = ".local/bin/linux", mode = "symlink-each", variants = [{ os = "linux" }] }
+"~/.zshenv" = { source = ".zshenv.tera", mode = "template", variants = [{ os = "linux" }] }
 
 [dotfiles]
 "~/.hushlogin" = { content = "", permissions = "0644" }
 "~/.ssh" = { permissions = "0700" }
-"~/.local/bin/bootstrap" = { source = "../../../bin/bootstrap" }
-"~/.config/gh/config.yml/shared" = { source = "../../../home/.config/gh/config.yml", merge = true }
-"~/.config/herdr/config.toml/shared" = { source = "../../../home/.config/herdr/config.toml", merge = true }
-"~/.config/micro/settings.json/shared" = { source = "../../../home/.config/micro/settings.json", merge = true }
-"~/.config/btop/btop.conf/shared" = { source = "../../../home/.config/btop/btop.conf", merge = true, format = "ini" }
+"~/.config/gh/config.yml/shared" = { source = "gh-config.yml", merge = true }
+"~/.config/herdr/config.toml/shared" = { source = "herdr-config.toml", merge = true }
+"~/.config/micro/settings.json/shared" = { source = "micro-settings.json", merge = true }
+"~/.config/btop/btop.conf/shared" = { source = "btop.conf", merge = true, format = "ini" }

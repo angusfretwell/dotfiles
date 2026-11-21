@@ -19,6 +19,7 @@ rust = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby", "node", "python", "golang"]
+trusted_config_paths = ["~/.config/mise/conf.d"]
 
 [bootstrap.hooks.pre-packages]
 description = "Install Homebrew if missing"
@@ -29,4 +30,4 @@ fi
 '''
 
 [tasks.bootstrap]
-depends = ["shared:*", "{{ os() }}:*"]
+depends = ["shared:*"]

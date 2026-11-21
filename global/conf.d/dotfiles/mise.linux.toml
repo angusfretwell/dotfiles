@@ -1,3 +1,0 @@
-[dotfiles]
-"~/.zshenv" = { source = "../../../home/.zshenv.tera", mode = "template" }
-"~/.local/bin/linux" = { source = "../../../home/.local/bin/linux", mode = "symlink-each" }

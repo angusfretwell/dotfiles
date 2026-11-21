@@ -174,3 +174,9 @@ domain = "com.apple.finder"
 key = "DesktopViewSettings"
 path = ["IconViewSettings", "labelOnBottom"]
 value = false
+
+[tasks.bootstrap]
+depends = ["shared:*", "macos:*"]
+
+[task_config]
+includes = ["tasks"]
