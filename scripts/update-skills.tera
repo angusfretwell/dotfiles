@@ -1,4 +1,4 @@
-{%- set skills_data = read_yaml(path=env.HOME ~ "/.config/mise/conf.d/dotfiles/skills.yaml") -%}
+{%- set skills_data = read_yaml(path=env.HOME ~ "/.config/mise/conf.d/packages/skills.yaml") -%}
 {%- set skills = skills_data.skills -%}
 #!/bin/zsh
 

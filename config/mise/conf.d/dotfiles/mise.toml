@@ -31,6 +31,9 @@ exclude = ["/*"]
 "~/.zshenv" = { source = "shell/zshenv.tera", mode = "template", variants = [{ os = "linux" }] }
 "~/.zshrc" = { source = "shell/zshrc.tera", mode = "template" }
 "~/.ssh/config" = { source = "ssh/config.tera", mode = "template", permissions = "0600" }
+"~/.ssh/commit_signing" = { source = "ssh/commit_signing.tera", mode = "template", permissions = "0600" }
+"~/.portless/ca.pem" = { source = "portless/ca.pem.tera", mode = "template", permissions = "0644" }
+"~/.portless/ca-key.pem" = { source = "portless/ca-key.pem.tera", mode = "template", permissions = "0600" }
 
 [dotfile_groups.scripts]
 root = "scripts"
@@ -46,3 +49,8 @@ target = "~/.local/bin"
 [dotfiles]
 "~/.hushlogin" = { content = "", permissions = "0644" }
 "~/.ssh" = { permissions = "0700" }
+
+[bootstrap.secrets]
+commit_signing_key = "COMMIT_SIGNING_KEY"
+portless_ca_cert = "PORTLESS_CA_CERT"
+portless_ca_key = "PORTLESS_CA_KEY"
