@@ -45,7 +45,7 @@ curl -fsSL https://mise.run | sh
 if [[ ! -d $repo ]]; then
 	git clone https://github.com/angusfretwell/dotfiles.git "$repo"
 fi
-echo 'env = ["workbox"]' >"$repo/home/.config/mise/miserc.local.toml"
+echo 'env = ["workbox"]' >"$repo/config/mise/miserc.local.toml"
 MISE_ENV=workbox "$repo/bin/bootstrap" --yes
 EOF
 

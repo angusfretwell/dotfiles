@@ -4,8 +4,9 @@ Dotfiles and machine setup for my macOS laptop and Ubuntu workbox, managed with 
 
 ## Layout
 
-- `home/` is laid out like `$HOME`. Bootstrap links each file into place.
-- `home/.config/mise` is linked as `~/.config/mise`. It declares the tools, packages, system config, dotfiles and bootstrap tasks.
+- `config/` has one folder per app. `config/mise/conf.d/dotfiles/mise.toml` maps each one to its place under `$HOME`.
+- `scripts/` is linked into `~/.local/bin`.
+- `config/mise` is linked as `~/.config/mise`. It declares the tools, packages, system config, dotfiles and bootstrap tasks.
   - `conf.d/macos` loads on macOS.
   - `conf.d/workbox` is the workbox [module](https://mise.jdx.dev/bootstrap/modules.html). A machine loads it when its `~/.config/mise/miserc.local.toml` has `env = ["workbox"]`, which `bin/setup-workbox` writes.
 - `bin/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
@@ -51,16 +52,16 @@ mise bootstrap packages prune --dry-run
 mise bootstrap packages prune
 ```
 
-Deleting a package from `home/.config/mise/conf.d/packages` does not uninstall it until `prune` runs.
+Deleting a package from `config/mise/conf.d/packages` does not uninstall it until `prune` runs.
 
 ## Secrets
 
-`bin/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `home/.config/fnox/config.toml`. Each module's secrets go in the fnox profile of the same name. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
+`bin/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `config/fnox/config.toml`. Each module's secrets go in the fnox profile of the same name. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
 
 ## Migrating an existing machine from chezmoi
 
 1. Keep `~/.local/share/chezmoi` as the checkout and update it to `main`.
-2. Move any existing mise config aside so bootstrap can link `~/.config/mise` into the checkout: `mv ~/.config/mise ~/.config/mise.bak`. On the workbox, select the module: `echo 'env = ["workbox"]' > ~/.local/share/chezmoi/home/.config/mise/miserc.local.toml`, and prefix the commands in step 3 with `MISE_ENV=workbox`, because `~/.config/mise` doesn't exist yet to select it.
+2. Move any existing mise config aside so bootstrap can link `~/.config/mise` into the checkout: `mv ~/.config/mise ~/.config/mise.bak`. On the workbox, select the module: `echo 'env = ["workbox"]' > ~/.local/share/chezmoi/config/mise/miserc.local.toml`, and prefix the commands in step 3 with `MISE_ENV=workbox`, because `~/.config/mise` doesn't exist yet to select it.
 3. Run `~/.local/share/chezmoi/bin/bootstrap --dry-run`, then `~/.local/share/chezmoi/bin/bootstrap`. Existing dotfiles that differ block the run; move them aside or use `--force-dotfiles`.
 4. Run `mise bootstrap packages prune --dry-run` and review before pruning. The `chezmoi` formula is no longer declared.
 
