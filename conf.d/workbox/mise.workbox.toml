@@ -142,6 +142,19 @@ on_change = "restart"
 [bootstrap.services.ufw]
 on_change = "restart"
 
+[bootstrap.services.beszel-hub]
+scope = "user"
+description = "Beszel hub"
+command = "%h/.local/share/mise/shims/beszel serve --http 127.0.0.1:8090 --dir %h/.local/share/beszel"
+requires_tools = true
+
+[bootstrap.services.beszel-agent]
+scope = "user"
+description = "Beszel agent"
+environment = { LISTEN = "127.0.0.1:45876", KEY_FILE = "%h/.local/share/beszel/id_ed25519.pub" }
+command = "/bin/sh -c 'key=%h/.local/share/beszel/id_ed25519; [ -s $$key.pub ] || ssh-keygen -y -f $$key > $$key.pub && exec %h/.local/share/mise/shims/beszel-agent'"
+requires_tools = true
+
 [bootstrap.services.smbd]
 on_change = "restart"
 
@@ -165,20 +178,6 @@ protocol = "udp"
 [[bootstrap.linux.firewall.rules]]
 name = "private-networks"
 source = "172.16.0.0/12"
-
-[bootstrap.linux.systemd.units.beszel-hub]
-description = "Beszel hub"
-exec_start = "%h/.local/share/mise/shims/beszel serve --http 127.0.0.1:8090 --dir %h/.local/share/beszel"
-restart = "on-failure"
-restart_sec = "10s"
-
-[bootstrap.linux.systemd.units.beszel-agent]
-description = "Beszel agent"
-after = ["dev.mise.beszel-hub.service"]
-environment = { LISTEN = "127.0.0.1:45876", KEY_FILE = "%h/.local/share/beszel/id_ed25519.pub" }
-exec_start = "%h/.local/share/mise/shims/beszel-agent"
-restart = "on-failure"
-restart_sec = "10s"
 
 [bootstrap.linux.systemd.units.cargo-sweep]
 description = "Sweep stale Rust build artifacts"

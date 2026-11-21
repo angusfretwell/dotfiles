@@ -1,25 +1,9 @@
 #!/usr/bin/env bash
-#MISE description="Generate the beszel agent key, start both units and alias the hub in portless"
+#MISE description="Alias the beszel hub in portless"
 #MISE dir="{{ env.HOME }}"
 #MISE depends=["workbox:portless"]
 set -euo pipefail
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-
-systemctl --user reset-failed dev.mise.beszel-hub.service dev.mise.beszel-agent.service 2>/dev/null || true
-systemctl --user start dev.mise.beszel-hub.service
-
-key="$HOME/.local/share/beszel/id_ed25519"
-for _ in {1..30}; do
-	[[ -f $key ]] && break
-	sleep 1
-done
-
-if [[ ! -s $key.pub ]]; then
-	ssh-keygen -y -f "$key" >"$key.pub"
-	systemctl --user restart dev.mise.beszel-agent.service
-else
-	systemctl --user start dev.mise.beszel-agent.service
-fi
 
 portless alias beszel 8090 --force

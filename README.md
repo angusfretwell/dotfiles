@@ -10,7 +10,7 @@ The repository root is mise's config directory. Bootstrap links it as `~/.config
 - `conf.d/` declares the rest, one folder per topic:
   - `packages` for Homebrew, casks and App Store apps.
   - `dotfiles` maps each folder in `dotfiles/` to its place under `$HOME`.
-  - `macos` loads on macOS.
+  - `macos` and `macos-defaults` load on macOS.
   - `workbox` is the workbox [module](https://mise.jdx.dev/bootstrap/modules.html). A machine loads it when `miserc.local.toml` has `env = ["workbox"]`, which `bin/setup-workbox` saves on its first run.
 - `tasks/` and each module's own `tasks/` hold the scripts bootstrap runs last.
 - `dotfiles/` has one folder per app.
