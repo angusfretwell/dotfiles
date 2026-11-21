@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#MISE description="Install the portless service, trust the CA in NSS, expose it on the tailnet and point DNS at it"
+#MISE dir="{{ env.HOME }}"
+#MISE depends=["shared:portless", "linux:tailscale"]
+#MISE sources=["{{ env.HOME }}/.portless/ca.pem"]
+set -euo pipefail
+
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
+nssdb="sql:$HOME/.pki/nssdb"
+mkdir -p "$HOME/.pki/nssdb"
+[[ -f "$HOME/.pki/nssdb/cert9.db" ]] || certutil -d "$nssdb" -N --empty-password
+while certutil -d "$nssdb" -D -n "Workbox CA" 2>/dev/null; do :; done
+certutil -d "$nssdb" -A -n "Workbox CA" -t C,, -i "$HOME/.portless/ca.pem"
+
+portless service install --tld wbox.dev
+
+tailscale serve --bg --tcp 443 tcp://localhost:443
+
+cf_token=$(op read "op://Workbox/Cloudflare/credential")
+cf() {
+	curl -fsS -H "Authorization: Bearer $cf_token" -H "Content-Type: application/json" "https://api.cloudflare.com/client/v4/$1" "${@:2}"
+}
+zone=$(cf "zones?name=wbox.dev" | jq -er '.result[0].id')
+record=$(cf "zones/$zone/dns_records?type=A&name=%2A.wbox.dev" | jq -er '.result[0].id')
+cf "zones/$zone/dns_records/$record" -X PATCH --data "{\"content\":\"$(tailscale ip -4)\"}" >/dev/null

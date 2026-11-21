@@ -1,0 +1,176 @@
+[env]
+_.path = ["/opt/homebrew/bin", "{{ env.HOME }}/.local/bin"]
+
+[bootstrap.files."/etc/pam.d/sudo_local"]
+content = "auth       sufficient     pam_tid.so\n"
+owner = "root"
+group = "wheel"
+mode = "0444"
+
+[bootstrap.macos.launchd.agents.workbox-mount]
+program = "~/.local/bin/darwin/workbox-mount"
+run_at_load = true
+start_interval = 60
+
+[bootstrap.settings.macos.keyboard]
+key_repeat = 2
+initial_key_repeat = 15
+press_and_hold = false
+automatic_spelling_correction = false
+
+[bootstrap.settings.macos.finder]
+show_pathbar = true
+sort_folders_first = true
+show_extensions_warning = false
+preferred_view_style = "list"
+
+[bootstrap.settings.macos.dock]
+tilesize = 48
+show_recents = false
+
+[bootstrap.settings.macos.defaults.NSGlobalDomain]
+NSNavPanelExpandedStateForSaveMode = true
+NSNavPanelExpandedStateForSaveMode2 = true
+PMPrintingExpandedStateForPrint = true
+PMPrintingExpandedStateForPrint2 = true
+AppleKeyboardUIMode = 3
+AppleFontSmoothing = 1
+AppleShowAllExtensions = true
+"com.apple.springing.enabled" = true
+"com.apple.springing.delay" = 0.0
+"com.apple.mouse.scaling" = "2.0"
+
+[bootstrap.settings.macos.defaults."com.apple.print.PrintingPrefs"]
+"Quit When Finished" = true
+
+[bootstrap.settings.macos.defaults."com.apple.LaunchServices"]
+LSQuarantine = false
+
+[bootstrap.settings.macos.defaults."com.apple.screensaver"]
+askForPassword = 1
+askForPasswordDelay = 0
+
+[bootstrap.settings.macos.defaults."com.apple.finder"]
+QuitMenuItem = true
+NewWindowTarget = "PfDe"
+NewWindowTargetPath = "file:///Users/angus/Desktop/"
+FXDefaultSearchScope = "SCcf"
+OpenWindowForNewRemovableDisk = true
+WarnOnEmptyTrash = false
+FXInfoPanesExpanded = { General = true, OpenWith = true, Privileges = true }
+
+[bootstrap.settings.macos.defaults."com.apple.desktopservices"]
+DSDontWriteNetworkStores = true
+DSDontWriteUSBStores = true
+
+[bootstrap.settings.macos.defaults."com.apple.frameworks.diskimages"]
+skip-verify = true
+skip-verify-locked = true
+skip-verify-remote = true
+auto-open-ro-root = true
+auto-open-rw-root = true
+
+[bootstrap.settings.macos.defaults."com.apple.NetworkBrowser"]
+BrowseAllInterfaces = true
+
+[bootstrap.settings.macos.defaults."com.apple.dock"]
+mineffect = "scale"
+minimize-to-application = true
+showhidden = true
+
+[bootstrap.settings.macos.defaults."com.apple.TimeMachine"]
+DoNotOfferNewDisksForBackup = true
+
+[bootstrap.settings.macos.defaults."com.apple.SoftwareUpdate"]
+AutomaticCheckEnabled = true
+ScheduleFrequency = 1
+AutomaticDownload = 1
+CriticalUpdateInstall = 1
+
+[bootstrap.settings.macos.defaults."com.apple.commerce"]
+AutoUpdate = true
+AutoUpdateRestartRequired = true
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.ImageCapture"
+key = "disableHotPlug"
+host = "current"
+value = true
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "DesktopViewSettings"
+path = ["IconViewSettings", "showItemInfo"]
+value = true
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "DesktopViewSettings"
+path = ["IconViewSettings", "arrangeBy"]
+value = "grid"
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "DesktopViewSettings"
+path = ["IconViewSettings", "gridSpacing"]
+value = 100.0
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "DesktopViewSettings"
+path = ["IconViewSettings", "iconSize"]
+value = 80.0
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "FK_StandardViewSettings"
+path = ["IconViewSettings", "showItemInfo"]
+value = true
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "FK_StandardViewSettings"
+path = ["IconViewSettings", "arrangeBy"]
+value = "grid"
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "FK_StandardViewSettings"
+path = ["IconViewSettings", "gridSpacing"]
+value = 100.0
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "FK_StandardViewSettings"
+path = ["IconViewSettings", "iconSize"]
+value = 80.0
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "StandardViewSettings"
+path = ["IconViewSettings", "showItemInfo"]
+value = true
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "StandardViewSettings"
+path = ["IconViewSettings", "arrangeBy"]
+value = "grid"
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "StandardViewSettings"
+path = ["IconViewSettings", "gridSpacing"]
+value = 100.0
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "StandardViewSettings"
+path = ["IconViewSettings", "iconSize"]
+value = 80.0
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.finder"
+key = "DesktopViewSettings"
+path = ["IconViewSettings", "labelOnBottom"]
+value = false

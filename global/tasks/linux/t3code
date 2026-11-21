@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#MISE description="Install or update T3 Code on the nightly channel and install its service"
+#MISE dir="{{ env.HOME }}"
+#MISE depends=["linux:restic", "linux:portless"]
+set -euo pipefail
+
+export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$PATH"
+
+if ! command -v t3 &>/dev/null; then
+	curl -fsSL https://t3.codes/install.sh | T3CODE_CHANNEL=nightly sh
+elif [[ "$(t3 --version)" != *-nightly.* ]]; then
+	t3 update --channel nightly --yes
+fi
+
+t3 service install
+systemctl --user daemon-reload
+
+portless alias t3 3773 --force

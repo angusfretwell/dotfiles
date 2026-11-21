@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
+export FNOX_CONFIG_DIR="$root/home/.config/fnox"
+
+token_file="$HOME/.config/op/service-account-token"
+if [[ -r $token_file ]]; then
+	OP_SERVICE_ACCOUNT_TOKEN=$(<"$token_file")
+	export OP_SERVICE_ACCOUNT_TOKEN
+fi
+
+if [[ $(uname) == Linux ]]; then
+	export FNOX_PROFILE=linux
+elif [[ -t 0 ]]; then
+	sudo -v
+fi
+
+from_args=()
+if [[ ! -e $HOME/.config/mise ]]; then
+	from_args=(--from "$(git -C "$root" remote get-url origin)" --from-dir "$root" --config-dir global)
+fi
+
+exec mise exec fnox@latest op@latest -- fnox exec -- mise bootstrap ${from_args[@]+"${from_args[@]}"} "$@"

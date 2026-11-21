@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+repo="$HOME/.local/share/chezmoi"
+
 read -rp "Hostname [laptop]: " new_hostname
 new_hostname="${new_hostname:-laptop}"
 
@@ -8,4 +10,19 @@ sudo scutil --set ComputerName "$new_hostname"
 sudo scutil --set HostName "$new_hostname"
 sudo scutil --set LocalHostName "$new_hostname"
 
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfiles
+if ! xcode-select -p &>/dev/null; then
+	xcode-select --install
+	until xcode-select -p &>/dev/null; do
+		sleep 5
+	done
+fi
+
+if [[ ! -x $HOME/.local/bin/mise ]]; then
+	curl -fsSL https://mise.run | sh
+fi
+
+if [[ ! -d $repo ]]; then
+	git clone https://github.com/angusfretwell/dotfiles.git "$repo"
+fi
+
+exec "$repo/bin/bootstrap" --yes

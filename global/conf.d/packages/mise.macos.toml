@@ -1,0 +1,60 @@
+[bootstrap.packages]
+"brew:dockutil" = "latest"
+"brew:mas" = "latest"
+"brew:pam-reattach" = "latest"
+"brew:tailscale" = "latest"
+"brew:telnet" = "latest"
+
+"brew-cask:font-blex-mono-nerd-font" = "latest"
+"brew-cask:font-google-sans-code" = "latest"
+"brew-cask:font-sf-compact" = "latest"
+"brew-cask:font-sf-mono" = "latest"
+"brew-cask:font-sf-pro" = "latest"
+
+"brew-cask:1password" = "latest"
+"brew-cask:android-commandlinetools" = "latest"
+"brew-cask:anomalyco/tap/hex" = "latest"
+"brew-cask:chromedriver" = "latest"
+"brew-cask:claude" = "latest"
+"brew-cask:cleanshot" = "latest"
+"brew-cask:cursor" = "latest"
+"brew-cask:figma" = "latest"
+"brew-cask:firefox" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:google-chrome" = "latest"
+"brew-cask:granola" = "latest"
+"brew-cask:grok-bot" = "latest"
+"brew-cask:httpie-desktop" = "latest"
+"brew-cask:linear" = "latest"
+"brew-cask:markdown-preview" = "latest"
+"brew-cask:mattermost" = "latest"
+"brew-cask:notion" = "latest"
+"brew-cask:opal-composer" = "latest"
+"brew-cask:orbstack" = "latest"
+"brew-cask:postman" = "latest"
+"brew-cask:proxyman" = "latest"
+"brew-cask:raycast" = "latest"
+"brew-cask:screen-studio" = "latest"
+"brew-cask:sf-symbols" = "latest"
+"brew-cask:signal" = "latest"
+"brew-cask:slack" = "latest"
+"brew-cask:t3-code@nightly" = "latest"
+"brew-cask:tableplus" = "latest"
+"brew-cask:tailscale-app" = "latest"
+"brew-cask:vanilla" = "latest"
+"brew-cask:whatsapp" = "latest"
+"brew-cask:zoom" = "latest"
+"brew-cask:zulu@17" = "latest"
+
+"mas:937984704" = "latest" # Amphetamine
+"mas:1569813296" = "latest" # 1Password for Safari
+"mas:1091189122" = "latest" # Bear
+"mas:361285480" = "latest" # Keynote
+"mas:361304891" = "latest" # Numbers
+"mas:361309726" = "latest" # Pages
+"mas:1289583905" = "latest" # Pixelmator Pro
+"mas:904280696" = "latest" # Things
+"mas:497799835" = "latest" # Xcode
+
+[bootstrap.directories."~/Code/.worktrees"]
+owner = "angus"

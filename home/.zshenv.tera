@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+eval "$({{ system_brew_prefix }}/bin/brew shellenv)"

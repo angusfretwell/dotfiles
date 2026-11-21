@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#MISE description="Add the user to the docker group"
+#MISE dir="{{ env.HOME }}"
+set -euo pipefail
+
+user=$(id -un)
+id -nG "$user" | tr ' ' '\n' | grep -qx docker || sudo usermod -aG docker "$user"

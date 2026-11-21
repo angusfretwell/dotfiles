@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#MISE description="Start zram swap if its unit is inactive"
+#MISE dir="{{ env.HOME }}"
+set -euo pipefail
+
+sudo systemctl daemon-reload
+systemctl is-active --quiet systemd-zram-setup@zram0.service ||
+	sudo systemctl start systemd-zram-setup@zram0.service

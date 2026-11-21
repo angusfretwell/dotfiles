@@ -1,0 +1,13 @@
+{
+  "ip": "127.0.0.1",
+  "log-driver": "local",
+  "builder": {
+    "gc": {
+      "enabled": true,
+      "policy": [
+        {"all": true, "filter": ["until=168h"]},
+        {"all": true, "maxUsedSpace": "50GB"}
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#MISE description="Set the Samba password if the user has none"
+#MISE dir="{{ env.HOME }}"
+set -euo pipefail
+
+user=$(id -un)
+if ! sudo pdbedit -u "$user" &>/dev/null; then
+	password=$(op read "op://Workbox/Samba/password")
+	printf '%s\n%s\n' "$password" "$password" | sudo smbpasswd -a -s "$user"
+fi

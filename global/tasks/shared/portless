@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#MISE description="Trust the workbox CA, resetting portless state when it changes"
+#MISE dir="{{ env.HOME }}"
+#MISE sources=["{{ env.HOME }}/.portless/ca.pem", "{{ env.HOME }}/.portless/ca-key.pem"]
+set -euo pipefail
+
+for prefix in /opt/homebrew /home/linuxbrew/.linuxbrew; do
+	if [[ -x $prefix/bin/brew ]]; then
+		eval "$("$prefix/bin/brew" shellenv)"
+	fi
+done
+
+portless clean
+portless trust
+brew postinstall ca-certificates

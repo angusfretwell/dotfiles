@@ -36,7 +36,17 @@ printf '%s\n' "$op_token" |
 	install -m 600 -o "$WORKBOX_USER" -g "$WORKBOX_USER" /dev/stdin "$home/.config/op/service-account-token"
 
 loginctl enable-linger "$WORKBOX_USER"
-su - "$WORKBOX_USER" -c 'export XDG_RUNTIME_DIR="/run/user/$(id -u)"; sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply angusfretwell/dotfiles'
+apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential curl file git procps
+su - "$WORKBOX_USER" -c 'export XDG_RUNTIME_DIR="/run/user/$(id -u)"; bash -s' <<'EOF'
+set -euo pipefail
+repo="$HOME/.local/share/chezmoi"
+curl -fsSL https://mise.run | sh
+if [[ ! -d $repo ]]; then
+	git clone https://github.com/angusfretwell/dotfiles.git "$repo"
+fi
+"$repo/bin/bootstrap" --yes
+EOF
 
 /home/linuxbrew/.linuxbrew/bin/glow <<EOF
 # Next steps
