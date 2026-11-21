@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+status=0
+for repo in "$HOME"/code/*/; do
+	[[ -e $repo/.git ]] || continue
+	(cd "$repo" && wt step prune --yes --foreground --min-age=7d) || status=1
+done
+exit "$status"

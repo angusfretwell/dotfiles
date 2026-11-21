@@ -9,7 +9,16 @@ sudo install -d /etc/docker
 sudo tee /etc/docker/daemon.json >/dev/null <<-EOT
 	{
 	  "ip": "127.0.0.1",
-	  "log-driver": "local"
+	  "log-driver": "local",
+	  "builder": {
+	    "gc": {
+	      "enabled": true,
+	      "policy": [
+	        {"all": true, "filter": ["until=168h"]},
+	        {"all": true, "maxUsedSpace": "50GB"}
+	      ]
+	    }
+	  }
 	}
 EOT
 sudo systemctl restart docker

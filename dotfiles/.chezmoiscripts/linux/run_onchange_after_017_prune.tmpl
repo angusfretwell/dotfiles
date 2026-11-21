@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# docker-image-prune.service hash: {{ include "dot_config/systemd/user/docker-image-prune.service" | sha256sum }}
+# docker-image-prune.timer hash: {{ include "dot_config/systemd/user/docker-image-prune.timer" | sha256sum }}
+# cargo-sweep.service hash: {{ include "dot_config/systemd/user/cargo-sweep.service" | sha256sum }}
+# cargo-sweep.timer hash: {{ include "dot_config/systemd/user/cargo-sweep.timer" | sha256sum }}
+# worktree-prune.service hash: {{ include "dot_config/systemd/user/worktree-prune.service.tmpl" | sha256sum }}
+# worktree-prune.timer hash: {{ include "dot_config/systemd/user/worktree-prune.timer" | sha256sum }}
+
+systemctl --user daemon-reload
+systemctl --user enable --now cargo-sweep.timer docker-image-prune.timer worktree-prune.timer
