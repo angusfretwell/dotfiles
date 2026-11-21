@@ -7,7 +7,7 @@ Dotfiles and machine setup for my macOS laptop and Ubuntu workbox, managed with 
 - `global/` is `~/.config/mise`: tools, packages, system config and bootstrap tasks.
 - `home/` holds the dotfiles, laid out like `$HOME`.
 - `bin/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
-- `bootstrap/` holds the scripts for a fresh machine.
+- `bin/setup-laptop` and `bin/setup-workbox` set up a fresh machine.
 
 Always apply from the checkout at `~/.local/share/chezmoi`, never from a worktree: dotfiles are symlinks into the checkout.
 
@@ -16,7 +16,7 @@ Always apply from the checkout at `~/.local/share/chezmoi`, never from a worktre
 ### Laptop
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/laptop.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bin/setup-laptop)"
 ```
 
 ### Workbox
