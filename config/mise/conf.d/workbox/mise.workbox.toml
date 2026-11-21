@@ -1,6 +1,5 @@
 [tools."github:henrygd/beszel"]
 version = "latest"
-os = ["linux"]
 asset_pattern = 'beszel_linux_{{ arch(x64="amd64") }}.tar.gz'
 additional_asset_patterns = ['beszel-agent_linux_{{ arch(x64="amd64") }}.tar.gz']
 filter_bins = ["beszel", "beszel-agent"]
@@ -29,15 +28,12 @@ filter_bins = ["beszel", "beszel-agent"]
 
 [bootstrap.apt.sources.docker]
 uris = "https://download.docker.com/linux/ubuntu"
-suites = "noble"
 components = "stable"
 key = "https://download.docker.com/linux/ubuntu/gpg"
 fingerprint = "9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88"
 
 [bootstrap.apt.sources.tailscale]
 uris = "https://pkgs.tailscale.com/stable/ubuntu"
-suites = "noble"
-components = "main"
 key = "https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg"
 fingerprint = "2596 A99E AAB3 3821 893C 0A79 458C A832 957F 5868"
 
@@ -81,7 +77,14 @@ template = true
 notify = ["smbd"]
 
 [bootstrap.directories."~/dropbox"]
-owner = "angus"
+
+[bootstrap.groups.docker]
+system = true
+
+[bootstrap.users.angus]
+group = "angus"
+groups = ["docker"]
+shell = "/usr/bin/zsh"
 
 [dotfiles."~/.config/systemd/user/t3code-.scope.d/oom.conf"]
 source = "files/t3code-scope-oom.conf"
@@ -107,17 +110,11 @@ restic_username = "RESTIC_USERNAME"
 restic_credential = "RESTIC_CREDENTIAL"
 
 [bootstrap.services.docker]
-state = "running"
-enabled = true
 on_change = "restart"
 
 [bootstrap.services.tailscaled]
-state = "running"
-enabled = true
 
 [bootstrap.services.smbd]
-state = "running"
-enabled = true
 on_change = "restart"
 
 [bootstrap.services.nmbd]
@@ -126,8 +123,6 @@ enabled = false
 
 [bootstrap.linux.firewall]
 backend = "ufw"
-default_incoming = "deny"
-default_outgoing = "allow"
 allow_lockout = true
 
 [[bootstrap.linux.firewall.rules]]

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#MISE description="Apply sysctl settings, mask tmp.mount, set the locale, timezone, lingering and login shell"
+#MISE description="Apply sysctl settings, mask tmp.mount, set the locale and timezone"
 #MISE dir="{{ env.HOME }}"
 set -euo pipefail
 
@@ -12,9 +12,3 @@ grep -qx 'LANG=en_AU.UTF-8' /etc/default/locale || sudo update-locale LANG=en_AU
 
 [[ $(timedatectl show --property=Timezone --value) == Australia/Melbourne ]] ||
 	sudo timedatectl set-timezone Australia/Melbourne
-
-[[ $(loginctl show-user "$(id -un)" --property=Linger --value) == yes ]] ||
-	sudo loginctl enable-linger "$(id -un)"
-
-[[ $(getent passwd "$(id -un)" | cut -d: -f7) == /usr/bin/zsh ]] ||
-	sudo usermod --shell /usr/bin/zsh "$(id -un)"

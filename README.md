@@ -8,7 +8,7 @@ Dotfiles and machine setup for my macOS laptop and Ubuntu workbox, managed with 
 - `scripts/` is linked into `~/.local/bin`.
 - `config/mise` is linked as `~/.config/mise`. It declares the tools, packages, system config, dotfiles and bootstrap tasks.
   - `conf.d/macos` loads on macOS.
-  - `conf.d/workbox` is the workbox [module](https://mise.jdx.dev/bootstrap/modules.html). A machine loads it when its `~/.config/mise/miserc.local.toml` has `env = ["workbox"]`, which `bin/setup-workbox` writes.
+  - `conf.d/workbox` is the workbox [module](https://mise.jdx.dev/bootstrap/modules.html). A machine loads it when its `~/.config/mise/miserc.local.toml` has `env = ["workbox"]`, which `bin/setup-workbox` saves on its first run.
 - `bin/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
 - `bin/setup-laptop` and `bin/setup-workbox` set up a fresh machine.
 
@@ -61,7 +61,7 @@ Deleting a package from `config/mise/conf.d/packages` does not uninstall it unti
 ## Migrating an existing machine from chezmoi
 
 1. Keep `~/.local/share/chezmoi` as the checkout and update it to `main`.
-2. Move any existing mise config aside so bootstrap can link `~/.config/mise` into the checkout: `mv ~/.config/mise ~/.config/mise.bak`. On the workbox, select the module: `echo 'env = ["workbox"]' > ~/.local/share/chezmoi/config/mise/miserc.local.toml`, and prefix the commands in step 3 with `MISE_ENV=workbox`, because `~/.config/mise` doesn't exist yet to select it.
+2. Move any existing mise config aside so bootstrap can link `~/.config/mise` into the checkout: `mv ~/.config/mise ~/.config/mise.bak`. On the workbox, prefix the commands in step 3 with `MISE_ENV=workbox` and add `--save-env` to the second, which selects the module and records it for later runs.
 3. Run `~/.local/share/chezmoi/bin/bootstrap --dry-run`, then `~/.local/share/chezmoi/bin/bootstrap`. Existing dotfiles that differ block the run; move them aside or use `--force-dotfiles`.
 4. Run `mise bootstrap packages prune --dry-run` and review before pruning. The `chezmoi` formula is no longer declared.
 

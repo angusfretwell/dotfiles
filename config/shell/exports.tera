@@ -16,7 +16,7 @@ if [[ -L $HOME/.claude ]]; then
 	export CLAUDE_CONFIG_DIR="${CLAUDE_CONFIG_DIR:-$HOME/$(readlink "$HOME/.claude")}"
 fi
 
-export CODE_DIR="{{ env.HOME }}/{% if os() == "macos" %}Code{% else %}code{% endif %}"
+export CODE_DIR="{{ env.HOME }}/{{ os(macos="Code", linux="code") }}"
 
 if [[ $LC_SSH_USER == "$USER" ]]; then
 	export SSH_SAME_USER=1
@@ -24,12 +24,7 @@ else
 	unset SSH_SAME_USER
 fi
 
-{% if os() == "macos" -%}
-export PNPM_HOME="$HOME/Library/pnpm"
-{% else -%}
-export PNPM_HOME="$HOME/.local/share/pnpm"
-{% endif -%}
-
+export PNPM_HOME="$HOME/{{ os(macos="Library/pnpm", linux=".local/share/pnpm") }}"
 case ":$PATH:" in
 *":$PNPM_HOME:"*) ;;
 *) export PATH="$PNPM_HOME:$PATH" ;;

@@ -1,4 +1,4 @@
-{%- set data_dir = env.HOME ~ "/.config/mise/conf.d/packages" -%}
+{%- set data_dir = mise_config_dir ~ "/conf.d/packages" -%}
 {%- set skills_data = read_yaml(path=data_dir ~ "/skills.yaml") -%}
 {%- set plugin_data = read_yaml(path=data_dir ~ "/claude-plugins.yaml") -%}
 {%- set skills = skills_data.skills -%}

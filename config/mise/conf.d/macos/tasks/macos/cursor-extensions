@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #MISE description="Install missing Cursor extensions"
 #MISE dir="{{ env.HOME }}"
+#MISE sources=["{{ env.HOME }}/.config/mise/conf.d/macos/cursor-extensions.txt"]
 set -euo pipefail
 
 list="$HOME/.config/mise/conf.d/macos/cursor-extensions.txt"

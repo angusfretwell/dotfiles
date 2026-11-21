@@ -37,7 +37,7 @@ printf '%s\n' "$op_token" |
 
 loginctl enable-linger "$WORKBOX_USER"
 apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential curl file git procps
+DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential curl file git procps zsh
 su - "$WORKBOX_USER" -c 'export XDG_RUNTIME_DIR="/run/user/$(id -u)"; bash -s' <<'EOF'
 set -euo pipefail
 repo="$HOME/.local/share/chezmoi"
@@ -45,8 +45,7 @@ curl -fsSL https://mise.run | sh
 if [[ ! -d $repo ]]; then
 	git clone https://github.com/angusfretwell/dotfiles.git "$repo"
 fi
-echo 'env = ["workbox"]' >"$repo/config/mise/miserc.local.toml"
-MISE_ENV=workbox "$repo/bin/bootstrap" --yes
+MISE_ENV=workbox "$repo/bin/bootstrap" --yes --save-env
 EOF
 
 /home/linuxbrew/.linuxbrew/bin/glow <<EOF

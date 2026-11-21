@@ -58,3 +58,9 @@
 "brew:restic" = "latest"
 "brew:stripe-cli" = "latest"
 "brew:uv" = "latest"
+
+[bootstrap.directories."~/Code/.worktrees"]
+os = "macos"
+
+[bootstrap.directories."~/code/.worktrees"]
+os = "linux"

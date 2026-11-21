@@ -55,6 +55,3 @@
 "mas:1289583905" = "latest" # Pixelmator Pro
 "mas:904280696" = "latest" # Things
 "mas:497799835" = "latest" # Xcode
-
-[bootstrap.directories."~/Code/.worktrees"]
-owner = "angus"

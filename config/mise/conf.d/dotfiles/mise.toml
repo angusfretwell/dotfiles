@@ -41,13 +41,13 @@ target = "~/.local/bin"
 
 [dotfile_groups.scripts.entries]
 "~/.local/bin/bootstrap" = "../bin/bootstrap"
-"~/.local/bin/claudes" = { mode = "template", permissions = "0755" }
-"~/.local/bin/update-skills" = { mode = "template", permissions = "0755" }
+"~/.local/bin/claudes" = { mode = "template" }
+"~/.local/bin/update-skills" = { mode = "template" }
 "~/.local/bin/darwin" = { variants = [{ os = "macos" }] }
 "~/.local/bin/linux" = { variants = [{ os = "linux" }] }
 
 [dotfiles]
-"~/.hushlogin" = { content = "", permissions = "0644" }
+"~/.hushlogin" = { content = "" }
 "~/.ssh" = { permissions = "0700" }
 
 [bootstrap.secrets]
