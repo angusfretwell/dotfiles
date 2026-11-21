@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#MISE description="Log in to Atuin if needed, then sync"
+#MISE dir="{{ env.HOME }}"
+set -euo pipefail
+
+ATUIN_SESSION=$(atuin uuid)
+export ATUIN_SESSION
+
+if ! atuin status &>/dev/null; then
+	atuin login \
+		--username "$(op read "op://Workbox/Atuin/username")" \
+		--password "$(op read "op://Workbox/Atuin/password")" \
+		--key "$(op read "op://Workbox/Atuin/key")"
+	if [[ -f $HOME/.zsh_history ]]; then
+		atuin import zsh
+	fi
+fi
+atuin sync

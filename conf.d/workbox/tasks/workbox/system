@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Apply sysctl settings, mask tmp.mount, set the locale and timezone"
+#MISE dir="{{ env.HOME }}"
+set -euo pipefail
+
+sudo sysctl --system >/dev/null
+
+locale -a | grep -qix 'en_AU.utf-\?8' || sudo locale-gen en_AU.UTF-8
+grep -qx 'LANG=en_AU.UTF-8' /etc/default/locale || sudo update-locale LANG=en_AU.UTF-8
+
+[[ $(systemctl is-enabled tmp.mount 2>/dev/null || true) == masked ]] || sudo systemctl mask tmp.mount
+
+[[ $(timedatectl show --property=Timezone --value) == Australia/Melbourne ]] ||
+	sudo timedatectl set-timezone Australia/Melbourne

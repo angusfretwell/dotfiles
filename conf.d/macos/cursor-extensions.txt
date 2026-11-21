@@ -1,0 +1,14 @@
+bmewburn.vscode-intelephense-client
+bradlc.vscode-tailwindcss
+dbaeumer.vscode-eslint
+docker.docker
+esbenp.prettier-vscode
+golang.go
+hverlin.mise-vscode
+mikestead.dotenv
+mkhl.shfmt
+ms-playwright.playwright
+redhat.vscode-yaml
+tombi-toml.tombi
+unifiedjs.vscode-mdx
+void-zero.vite-plus-extension-pack

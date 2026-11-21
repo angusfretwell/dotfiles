@@ -1,9 +1,0 @@
-[Unit]
-Description=Sweep stale Rust build artifacts
-
-[Service]
-Type=oneshot
-Environment=PATH=%h/.local/share/mise/shims:/usr/bin:/bin
-ExecStart=%h/.local/share/mise/shims/cargo-sweep sweep --recursive --time 7 %h/code %h/.t3/worktrees
-Nice=19
-IOSchedulingClass=idle

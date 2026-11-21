@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#MISE description="Update installed agent skills"
+#MISE dir="{{ env.HOME }}"
+set -euo pipefail
+
+"$HOME/.local/bin/update-skills"

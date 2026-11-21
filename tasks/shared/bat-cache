@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#MISE description="Rebuild the bat theme cache"
+#MISE dir="{{ env.HOME }}"
+#MISE sources=["{{ env.HOME }}/.config/bat/themes/*", "{{ system_brew_prefix }}/bin/bat"]
+set -euo pipefail
+
+bat cache --build

@@ -1,0 +1,246 @@
+[tools."github:henrygd/beszel"]
+version = "latest"
+asset_pattern = 'beszel_linux_{{ arch(x64="amd64") }}.tar.gz'
+additional_asset_patterns = ['beszel-agent_linux_{{ arch(x64="amd64") }}.tar.gz']
+filter_bins = ["beszel", "beszel-agent"]
+
+[bootstrap.packages]
+"apt:build-essential" = "latest"
+"apt:ca-certificates" = "latest"
+"apt:curl" = "latest"
+"apt:file" = "latest"
+"apt:git" = "latest"
+"apt:locales" = "latest"
+"apt:procps" = "latest"
+"apt:ufw" = "latest"
+"apt:unattended-upgrades" = "latest"
+"apt:unzip" = "latest"
+"apt:zsh" = "latest"
+"apt:docker-ce" = "latest"
+"apt:docker-ce-cli" = "latest"
+"apt:containerd.io" = "latest"
+"apt:docker-buildx-plugin" = "latest"
+"apt:docker-compose-plugin" = "latest"
+"apt:tailscale" = "latest"
+"apt:samba" = "latest"
+"apt:samba-vfs-modules" = "latest"
+"apt:systemd-zram-generator" = "latest"
+
+[bootstrap.apt.sources.docker]
+uris = "https://download.docker.com/linux/ubuntu"
+components = "stable"
+key = "https://download.docker.com/linux/ubuntu/gpg"
+fingerprint = "9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88"
+
+[bootstrap.apt.sources.tailscale]
+uris = "https://pkgs.tailscale.com/stable/ubuntu"
+key = "https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg"
+fingerprint = "2596 A99E AAB3 3821 893C 0A79 458C A832 957F 5868"
+
+[bootstrap.files."/etc/apt/apt.conf.d/20auto-upgrades"]
+content = """
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+"""
+
+[bootstrap.files."/etc/sysctl.d/60-unprivileged-userns.conf"]
+content = """
+kernel.apparmor_restrict_unprivileged_userns = 0
+"""
+
+[bootstrap.files."/etc/sysctl.d/60-zram.conf"]
+content = """
+vm.swappiness = 180
+vm.page-cluster = 0
+vm.watermark_boost_factor = 0
+vm.watermark_scale_factor = 125
+"""
+
+[bootstrap.files."/etc/systemd/zram-generator.conf"]
+content = """
+[zram0]
+zram-size = ram / 2
+compression-algorithm = zstd
+"""
+
+[bootstrap.files."/etc/docker/daemon.json"]
+source = "./files/docker-daemon.json"
+notify = ["docker"]
+
+[bootstrap.files."/etc/ufw/after.init"]
+source = "./files/ufw-after.init"
+mode = "0750"
+notify = ["ufw"]
+
+[bootstrap.files."/etc/ssh/sshd_config.d/10-workbox.conf"]
+content = """
+PermitRootLogin no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+AllowUsers angus
+X11Forwarding no
+AcceptEnv LANG LC_* COLORTERM
+"""
+notify = ["ssh"]
+
+[bootstrap.files."/root/.ssh/authorized_keys"]
+state = "absent"
+
+[bootstrap.files."/etc/samba/smb.conf"]
+source = "./files/smb.conf"
+template = true
+notify = ["smbd"]
+
+[bootstrap.directories."~/dropbox"]
+
+[bootstrap.groups.docker]
+system = true
+
+[bootstrap.users.angus]
+group = "angus"
+groups = ["docker"]
+shell = "/usr/bin/zsh"
+
+[bootstrap.users.linuxuser]
+state = "absent"
+remove_home = true
+
+[bootstrap.hooks.pre-packages]
+description = "Refuse to harden sshd without authorized keys"
+run = "test -s ~/.ssh/authorized_keys"
+
+[dotfiles."~/.config/systemd/user/t3code-.scope.d/oom.conf"]
+source = "files/t3code-scope-oom.conf"
+
+[dotfiles."~/.config/systemd/user.conf.d/oom.conf"]
+source = "files/user-manager-oom.conf"
+
+[dotfiles."~/.config/restic/password"]
+source = "files/restic-password.tera"
+mode = "template"
+permissions = "0600"
+
+[dotfiles."~/.config/restic/env"]
+source = "files/restic-env.tera"
+mode = "template"
+permissions = "0600"
+
+[bootstrap.secrets]
+restic_password = "RESTIC_PASSWORD"
+restic_endpoint = "RESTIC_ENDPOINT"
+restic_bucket = "RESTIC_BUCKET"
+restic_username = "RESTIC_USERNAME"
+restic_credential = "RESTIC_CREDENTIAL"
+
+[bootstrap.services.docker]
+on_change = "restart"
+
+[bootstrap.services.tailscaled]
+
+[bootstrap.services.ssh]
+
+[bootstrap.services.ufw]
+on_change = "restart"
+
+[bootstrap.services.beszel-hub]
+scope = "user"
+description = "Beszel hub"
+command = "%h/.local/share/mise/shims/beszel serve --http 127.0.0.1:8090 --dir %h/.local/share/beszel"
+requires_tools = true
+
+[bootstrap.services.beszel-agent]
+scope = "user"
+description = "Beszel agent"
+environment = { LISTEN = "127.0.0.1:45876", KEY_FILE = "%h/.local/share/beszel/id_ed25519.pub" }
+command = "/bin/sh -c 'key=%h/.local/share/beszel/id_ed25519; [ -s $$key.pub ] || ssh-keygen -y -f $$key > $$key.pub && exec %h/.local/share/mise/shims/beszel-agent'"
+requires_tools = true
+
+[bootstrap.services.smbd]
+on_change = "restart"
+
+[bootstrap.services.nmbd]
+state = "stopped"
+enabled = false
+
+[bootstrap.linux.firewall]
+backend = "ufw"
+allow_lockout = true
+
+[[bootstrap.linux.firewall.rules]]
+name = "tailscale-interface"
+interface = "tailscale0"
+
+[[bootstrap.linux.firewall.rules]]
+name = "tailscale-wireguard"
+port = 41641
+protocol = "udp"
+
+[[bootstrap.linux.firewall.rules]]
+name = "private-networks"
+source = "172.16.0.0/12"
+
+[bootstrap.linux.systemd.units.cargo-sweep]
+description = "Sweep stale Rust build artifacts"
+type = "oneshot"
+environment = { PATH = "%h/.local/share/mise/shims:/usr/bin:/bin" }
+exec_start = "/usr/bin/ionice -c3 %h/.local/share/mise/shims/cargo-sweep sweep --recursive --time 7 %h/code %h/.t3/worktrees"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.cargo-sweep-timer]
+on_calendar = "weekly"
+randomized_delay_sec = "1h"
+persistent = true
+unit = "cargo-sweep"
+
+[bootstrap.linux.systemd.units.docker-image-prune]
+description = "Prune unused Docker images"
+type = "oneshot"
+exec_start = "/usr/bin/ionice -c3 /usr/bin/docker image prune -af --filter until=168h"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.docker-image-prune-timer]
+on_calendar = "weekly"
+randomized_delay_sec = "1h"
+persistent = true
+unit = "docker-image-prune"
+
+[bootstrap.linux.systemd.units.worktree-prune]
+description = "Prune merged git worktrees"
+type = "oneshot"
+environment = { PATH = "%h/.local/share/mise/shims:%h/.local/bin:/home/linuxbrew/.linuxbrew/bin:/usr/bin:/bin" }
+exec_start = "/usr/bin/ionice -c3 %h/.local/bin/linux/worktree-prune"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.worktree-prune-timer]
+on_calendar = "daily"
+randomized_delay_sec = "1h"
+persistent = true
+unit = "worktree-prune"
+
+[bootstrap.linux.systemd.units.workbox-backup]
+description = "Back up T3 Code and Claude Code history to R2"
+type = "oneshot"
+environment = { PATH = "/home/linuxbrew/.linuxbrew/bin:/usr/bin:/bin" }
+environment_file = ["%h/.config/restic/env"]
+exec_start = "/usr/bin/ionice -c3 %h/.local/bin/linux/workbox-backup"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.workbox-backup-timer]
+on_calendar = "hourly"
+randomized_delay_sec = "5min"
+persistent = true
+unit = "workbox-backup"
+
+[task_config]
+includes = ["tasks"]
+
+[tasks.bootstrap]
+depends = ["shared:*", "workbox:*"]

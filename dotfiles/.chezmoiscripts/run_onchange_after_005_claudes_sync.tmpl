@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-# claudes: {{ includeTemplate "dot_local/bin/executable_claudes.tmpl" . | sha256sum }}
-# settings: {{ include "dot_config/claudes/settings.json" | sha256sum }}
-
-{{ template "script-path" . }}
-
-claudes sync

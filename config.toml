@@ -1,0 +1,31 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+[tools]
+bun = "latest"
+fnox = "latest"
+golang = "latest"
+node = { version = "latest", postinstall = "corepack enable" }
+op = "latest"
+python = "latest"
+ruby = "latest"
+rust = "latest"
+"cargo:cargo-sweep" = "latest"
+"npm:agent-browser" = { version = "latest", postinstall = "agent-browser install{% if os() == 'linux' %} --with-deps{% endif %}" }
+"npm:agent-desktop" = "latest"
+"npm:ccstatusline" = "latest"
+"npm:ctx7" = "latest"
+"npm:portless" = "latest"
+"npm:vercel" = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["ruby", "node", "python", "golang"]
+trusted_config_paths = ["~/.config/mise/conf.d"]
+
+[bootstrap.hooks.pre-packages]
+description = "Install Homebrew if missing"
+run = '''
+[ -x "{{ system_brew_prefix }}/bin/brew" ] || NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+'''
+
+[tasks.bootstrap]
+depends = ["shared:*"]

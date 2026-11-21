@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#MISE description="Apply the managed Claude config to every account"
+#MISE dir="{{ env.HOME }}"
+#MISE depends=["shared:claude", "shared:agent-skills-update"]
+#MISE sources=["{{ env.HOME }}/.local/bin/claudes", "{{ env.HOME }}/.config/claudes/settings.json", "{{ env.HOME }}/.config/claudes/CLAUDE.md"]
+set -euo pipefail
+
+"$HOME/.local/bin/claudes" sync

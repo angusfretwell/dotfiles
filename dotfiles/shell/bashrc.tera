@@ -1,0 +1,7 @@
+#!/bin/bash
+
+eval "$({{ system_brew_prefix }}/bin/brew shellenv)"
+
+source ~/.exports
+
+eval "$(mise activate bash)"

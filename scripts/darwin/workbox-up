@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+read "ip?New workbox IP: " || exit
+read "ssh_user?SSH user [root]: " || exit
+ssh_user=${ssh_user:-root}
+
+ssh-keygen -R workbox &>/dev/null
+ssh-keygen -R $ip &>/dev/null
+
+ssh -t -o StrictHostKeyChecking=accept-new $ssh_user@$ip \
+	'sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bin/setup-workbox)"'

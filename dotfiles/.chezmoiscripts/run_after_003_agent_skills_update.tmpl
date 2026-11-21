@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-{{ template "script-path" . }}
-
-gum spin --show-error --title "Updating skills" -- npx --yes skills update{{ range .skills }}{{ range . }} {{ . }}{{ end }}{{ end }} --global --yes
