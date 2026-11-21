@@ -1,11 +1,8 @@
-[settings.dotfiles]
-root = "~/.local/share/chezmoi"
-
-[dotfile_groups.config]
-root = "config"
+[dotfile_groups.dotfiles]
+root = "dotfiles"
 exclude = ["/*"]
 
-[dotfile_groups.config.entries]
+[dotfile_groups.dotfiles.entries]
 "~/.agent-browser/config.json" = "agent-browser/config.json"
 "~/.config/bat" = "bat"
 "~/.config/btop/btop.conf/shared" = { source = "btop/btop.conf", merge = true, format = "ini" }

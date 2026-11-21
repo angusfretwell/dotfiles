@@ -70,6 +70,21 @@ notify = ["docker"]
 [bootstrap.files."/etc/ufw/after.init"]
 source = "./files/ufw-after.init"
 mode = "0750"
+notify = ["ufw"]
+
+[bootstrap.files."/etc/ssh/sshd_config.d/10-workbox.conf"]
+content = """
+PermitRootLogin no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+AllowUsers angus
+X11Forwarding no
+AcceptEnv LANG LC_* COLORTERM
+"""
+notify = ["ssh"]
+
+[bootstrap.files."/root/.ssh/authorized_keys"]
+state = "absent"
 
 [bootstrap.files."/etc/samba/smb.conf"]
 source = "./files/smb.conf"
@@ -85,6 +100,14 @@ system = true
 group = "angus"
 groups = ["docker"]
 shell = "/usr/bin/zsh"
+
+[bootstrap.users.linuxuser]
+state = "absent"
+remove_home = true
+
+[bootstrap.hooks.pre-packages]
+description = "Refuse to harden sshd without authorized keys"
+run = "test -s ~/.ssh/authorized_keys"
 
 [dotfiles."~/.config/systemd/user/t3code-.scope.d/oom.conf"]
 source = "files/t3code-scope-oom.conf"
@@ -113,6 +136,11 @@ restic_credential = "RESTIC_CREDENTIAL"
 on_change = "restart"
 
 [bootstrap.services.tailscaled]
+
+[bootstrap.services.ssh]
+
+[bootstrap.services.ufw]
+on_change = "restart"
 
 [bootstrap.services.smbd]
 on_change = "restart"

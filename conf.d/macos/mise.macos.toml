@@ -107,7 +107,7 @@ value = true
 domain = "com.apple.finder"
 key = "DesktopViewSettings"
 path = ["IconViewSettings", "arrangeBy"]
-value = "grid"
+value = "name"
 
 [[bootstrap.settings.macos.defaults_entries]]
 domain = "com.apple.finder"

@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-#MISE description="Reload ufw so a changed after.init takes effect"
-#MISE dir="{{ env.HOME }}"
-#MISE sources=["/etc/ufw/after.init"]
-set -euo pipefail
-
-sudo ufw reload

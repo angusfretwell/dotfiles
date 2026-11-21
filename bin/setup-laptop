@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo="$HOME/.local/share/chezmoi"
+repo="$HOME/.dotfiles"
 
 read -rp "Hostname [laptop]: " new_hostname
 new_hostname="${new_hostname:-laptop}"

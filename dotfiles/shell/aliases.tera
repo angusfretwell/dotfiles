@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-alias dot="cd ~/.local/share/chezmoi"
+alias dot="cd ~/.dotfiles"
 alias mcat="glow"
 
 {% if os() == "macos" -%}

@@ -1,11 +1,11 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
-    "**/config/mise/**/tasks/**": "shellscript",
+    "**/tasks/**": "shellscript",
     "**/scripts/**/*.tera": "shellscript",
-    "**/config/shell/*.tera": "shellscript",
+    "**/dotfiles/shell/*.tera": "shellscript",
     "**/CLAUDE.md.tera": "markdown",
-    "**/config/git/config.tera": "properties"
+    "**/dotfiles/git/config.tera": "properties"
   },
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt"

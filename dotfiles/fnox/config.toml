@@ -1,0 +1,17 @@
+default_provider = "op"
+if_missing = "error"
+
+[providers.op]
+type = "1password"
+
+[secrets]
+COMMIT_SIGNING_KEY = { value = "op://Workbox/Commit Signing/private key?ssh-format=openssh" }
+PORTLESS_CA_CERT = { value = "op://Workbox/Workbox CA/workbox-ca.crt" }
+PORTLESS_CA_KEY = { value = "op://Workbox/Workbox CA/workbox-ca.key" }
+
+[profiles.workbox.secrets]
+RESTIC_PASSWORD = { value = "op://Workbox/Restic/password" }
+RESTIC_ENDPOINT = { value = "op://Workbox/Restic/endpoint" }
+RESTIC_BUCKET = { value = "op://Workbox/Restic/bucket" }
+RESTIC_USERNAME = { value = "op://Workbox/Restic/username" }
+RESTIC_CREDENTIAL = { value = "op://Workbox/Restic/credential" }
