@@ -3,10 +3,11 @@ content = """
 PermitRootLogin no
 PasswordAuthentication no
 KbdInteractiveAuthentication no
-AllowUsers angus
+AllowUsers {{ env.USER }}
 X11Forwarding no
 AcceptEnv LANG LC_* COLORTERM
 """
+template = true
 notify = ["ssh"]
 
 [bootstrap.files."/root/.ssh/authorized_keys"]
