@@ -5,9 +5,9 @@
 #MISE interactive=true
 set -euo pipefail
 
-clt_label=$(softwareupdate --list 2>/dev/null |
+label=$(softwareupdate --list 2>/dev/null |
 	sed -n 's/^\* Label: \(Command Line Tools.*\)$/\1/p' | sort -V | tail -n1)
 
-if [[ -n "$clt_label" ]]; then
-	sudo softwareupdate --install "$clt_label"
+if [[ -n "$label" ]]; then
+	sudo softwareupdate --install "$label"
 fi
