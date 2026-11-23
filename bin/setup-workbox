@@ -52,7 +52,7 @@ bootstrap_as_user() {
 		if [[ ! -e $HOME/.config/mise ]]; then
 			ln -s "$repo" "$HOME/.config/mise"
 		fi
-		MISE_ENV=workbox "$repo/conf.d/dotfiles/bin/dot-bootstrap" --yes --save-env
+		MISE_ENV=workbox "$repo/conf.d/dotfiles/bin/dot-bootstrap" --yes --save-env --force-dotfiles
 	EOF
 }
 

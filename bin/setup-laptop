@@ -50,4 +50,4 @@ install_mise
 clone_dotfiles
 link_mise_config
 
-MISE_ENV=laptop exec "$repo/conf.d/dotfiles/bin/dot-bootstrap" --yes --save-env
+MISE_ENV=laptop exec "$repo/conf.d/dotfiles/bin/dot-bootstrap" --yes --save-env --force-dotfiles
