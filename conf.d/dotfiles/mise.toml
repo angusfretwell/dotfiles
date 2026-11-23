@@ -7,8 +7,8 @@ exclude = ["/*"]
 "~/.config/bat" = "bat"
 "~/.config/btop/btop.conf/shared" = { source = "btop/btop.conf", merge = true, format = "ini" }
 "~/.config/ccstatusline" = "ccstatusline"
-"~/.config/claudes" = "claudes"
-"~/.config/claudes/CLAUDE.md" = { source = "claudes/CLAUDE.md.tera", mode = "template" }
+"~/.config/claudes" = "claude"
+"~/.config/claudes/CLAUDE.md" = { source = "claude/CLAUDE.md.tera", mode = "template" }
 "~/.config/fnox" = "fnox"
 "~/.config/gh/config.yml/shared" = { source = "gh/config.yml", merge = true }
 "~/.config/ghostty" = { source = "ghostty", variants = [{ os = "macos" }] }
