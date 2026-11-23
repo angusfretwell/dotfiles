@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#MISE description="Install missing Cursor extensions"
+#MISE dir="{{ env.HOME }}"
+#MISE sources=["{{ env.HOME }}/.config/mise/conf.d/cursor/extensions.txt"]
+set -euo pipefail
+
+list="$HOME/.config/mise/conf.d/cursor/extensions.txt"
+
+missing=$(comm -13 \
+	<(cursor --list-extensions | tr '[:upper:]' '[:lower:]' | sort) \
+	<(tr '[:upper:]' '[:lower:]' <"$list" | sort))
+
+for extension in $missing; do
+	cursor --install-extension "$extension"
+done

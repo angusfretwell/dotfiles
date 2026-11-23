@@ -1,0 +1,39 @@
+#!/bin/zsh
+
+export EDITOR="micro-auto"
+export MICRO_TRUECOLOR=1
+
+{% if os() == "macos" -%}
+export VISUAL="cursor -w"
+export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+{% else -%}
+export VISUAL="micro-auto"
+{% endif -%}
+
+if [[ -L $HOME/.claude ]]; then
+	export CLAUDE_CONFIG_DIR="${CLAUDE_CONFIG_DIR:-$HOME/$(readlink "$HOME/.claude")}"
+fi
+
+export CODE_DIR="{{ env.HOME }}/{{ os(macos="Code", linux="code") }}"
+
+if [[ $LC_SSH_USER == "$USER" ]]; then
+	export SSH_SAME_USER=1
+else
+	unset SSH_SAME_USER
+fi
+
+export PNPM_HOME="$HOME/{{ os(macos="Library/pnpm", linux=".local/share/pnpm") }}"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+export PATH="{{ system_brew_prefix }}/opt/libpq/bin:$PATH"
+export PATH="{{ system_brew_prefix }}/opt/mysql-client/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
+{%- if os() == "macos" %}
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
+{%- endif %}

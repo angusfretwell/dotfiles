@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+key="$HOME/.local/share/beszel/id_ed25519"
+for _ in {1..30}; do
+	[[ -f $key ]] && break
+	sleep 1
+done
+[[ -s $key.pub ]] || ssh-keygen -y -f "$key" >"$key.pub"
+
+exec beszel-agent

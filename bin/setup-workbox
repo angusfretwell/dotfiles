@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+user="${WORKBOX_USER:-angus}"
+home="/home/$user"
+
+set_hostname() {
+	sed -i -E "s/(\s)$(hostname)(\s|$)/\1$new_hostname\2/" /etc/hosts
+	hostnamectl set-hostname "$new_hostname"
+}
+
+create_user() {
+	if ! id "$user" &>/dev/null; then
+		useradd --create-home --shell /bin/bash --groups sudo "$user"
+	fi
+
+	echo "$user ALL=(ALL) NOPASSWD:ALL" >"/etc/sudoers.d/$user"
+	chmod 440 "/etc/sudoers.d/$user"
+}
+
+authorize_ssh_keys() {
+	local keys
+	keys="$(getent passwd "${SUDO_USER:-root}" | cut -d: -f6)/.ssh/authorized_keys"
+
+	install -d -m 700 -o "$user" -g "$user" "$home/.ssh"
+	if [[ ! -s $home/.ssh/authorized_keys && -s $keys ]]; then
+		install -m 600 -o "$user" -g "$user" "$keys" "$home/.ssh/authorized_keys"
+	fi
+}
+
+store_op_token() {
+	install -d -o "$user" -g "$user" "$home/.config"
+	install -d -m 700 -o "$user" -g "$user" "$home/.config/op"
+	printf '%s\n' "$op_token" |
+		install -m 600 -o "$user" -g "$user" /dev/stdin "$home/.config/op/service-account-token"
+}
+
+install_prerequisites() {
+	apt-get update
+	DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential curl file git procps zsh
+}
+
+bootstrap_as_user() {
+	loginctl enable-linger "$user"
+	su - "$user" -c 'export XDG_RUNTIME_DIR="/run/user/$(id -u)"; bash -s' <<-'EOF'
+		set -euo pipefail
+		repo="$HOME/.dotfiles"
+		curl -fsSL https://mise.run | sh
+		if [[ ! -d $repo ]]; then
+			git clone https://github.com/angusfretwell/dotfiles.git "$repo"
+		fi
+		if [[ ! -e $HOME/.config/mise ]]; then
+			ln -s "$repo" "$HOME/.config/mise"
+		fi
+		MISE_ENV=workbox "$repo/conf.d/dotfiles/bin/dot-bootstrap" --yes --save-env
+	EOF
+}
+
+print_next_steps() {
+	/home/linuxbrew/.linuxbrew/bin/glow <<-EOF
+		# Next steps
+
+		\`\`\`sh
+		sudo reboot
+
+		ssh $new_hostname # from laptop, once $new_hostname is back up:
+
+		t3-pair
+
+		# sign in to services:
+
+		gh auth login
+
+		fly auth login
+
+		vercel login
+
+		claude
+		\`\`\`
+	EOF
+}
+
+if [[ $EUID -ne 0 ]]; then
+	echo >&2 "run as root."
+	exit 1
+fi
+
+read -rp "Hostname [workbox]: " new_hostname
+new_hostname="${new_hostname:-workbox}"
+read -rsp "1Password service account token: " op_token
+echo
+
+set_hostname
+create_user
+authorize_ssh_keys
+store_op_token
+install_prerequisites
+bootstrap_as_user
+print_next_steps

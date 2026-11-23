@@ -1,0 +1,25 @@
+[tools."github:henrygd/beszel"]
+version = "latest"
+asset_pattern = 'beszel_linux_{{ arch(x64="amd64") }}.tar.gz'
+additional_asset_patterns = ['beszel-agent_linux_{{ arch(x64="amd64") }}.tar.gz']
+filter_bins = ["beszel", "beszel-agent"]
+
+[bootstrap.services.beszel-hub]
+scope = "user"
+description = "Beszel hub"
+command = "%h/.local/bin/start-beszel-hub"
+requires_tools = true
+
+[bootstrap.services.beszel-agent]
+scope = "user"
+description = "Beszel agent"
+environment = { LISTEN = "127.0.0.1:45876", KEY_FILE = "%h/.local/share/beszel/id_ed25519.pub" }
+command = "%h/.local/bin/start-beszel-agent"
+requires_tools = true
+
+[dotfiles]
+"~/.local/bin/start-beszel-agent" = "bin/start-beszel-agent"
+"~/.local/bin/start-beszel-hub" = "bin/start-beszel-hub"
+
+[task_config]
+includes = ["tasks"]

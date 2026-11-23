@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#MISE description="Initialise the restic repository and restore on a fresh workbox"
+#MISE dir="{{ env.HOME }}"
+set -euo pipefail
+
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
+set -a
+source "$HOME/.config/restic/env"
+set +a
+
+if ! restic cat config &>/dev/null; then
+	restic init
+fi
+
+if [[ -e $HOME/.t3/userdata/statev2.sqlite ]]; then
+	exit 0
+fi
+
+if ! restic snapshots --host workbox --latest 1 --json | jq -e 'length > 0' >/dev/null; then
+	exit 0
+fi
+
+tmp=$(mktemp -d)
+restic restore latest --host workbox --target "$tmp"
+
+mkdir -p "$HOME/.t3/userdata"
+cp -a "$tmp$HOME/.cache/workbox-backup/." "$HOME/.t3/userdata/"
+rm -rf "$tmp$HOME/.cache/workbox-backup"
+cp -a "$tmp$HOME/." "$HOME/"
+
+rm -rf "$tmp"

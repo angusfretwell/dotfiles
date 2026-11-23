@@ -1,0 +1,13 @@
+[bootstrap.linux.systemd.units.cargo-sweep]
+description = "Sweep stale Rust build artifacts"
+type = "oneshot"
+exec_start = "ionice -c3 cargo-sweep sweep --recursive --time 7 %h/code %h/.t3/worktrees"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.cargo-sweep-timer]
+on_calendar = "weekly"
+randomized_delay_sec = "1h"
+persistent = true
+unit = "cargo-sweep"

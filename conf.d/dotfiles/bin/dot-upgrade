@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+"$(dirname "$0")/dot-bootstrap" --update --upgrade "$@"
+
+mise bootstrap packages prune
+if [[ $(uname) == Darwin ]]; then
+	mise bootstrap packages prune --manager brew-cask
+fi

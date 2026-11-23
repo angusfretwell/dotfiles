@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
+export FNOX_CONFIG_DIR="$HOME/.config/mise/conf.d/fnox"
+
+token_file="$HOME/.config/op/service-account-token"
+if [[ -r $token_file ]]; then
+	OP_SERVICE_ACCOUNT_TOKEN=$(<"$token_file")
+	export OP_SERVICE_ACCOUNT_TOKEN
+fi
+
+if [[ $(uname) == Darwin && -t 0 ]]; then
+	sudo -v
+fi
+
+exec mise exec fnox@latest op@latest -- bash -c '
+	[[ -n ${MISE_ENV:-} ]] && export FNOX_PROFILE=$MISE_ENV
+	if [[ -z ${OP_SERVICE_ACCOUNT_TOKEN:-} ]]; then
+		session=$(op signin) || exit
+		eval "$session"
+	fi
+	exec fnox exec -- mise bootstrap "$@"
+' dot-bootstrap "$@"

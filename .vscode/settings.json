@@ -1,13 +1,12 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
-    "**/.chezmoiscripts/**/*.tmpl": "shellscript",
-    "**/dot_local/bin/**/*.tmpl": "shellscript",
-    "**/dot_{aliases,bashrc,exports,zshenv,zshrc}.tmpl": "shellscript",
-    "**/CLAUDE.md.tmpl": "markdown",
-    "**/dot_gitconfig.tmpl": "properties",
-    "**/.chezmoi.toml.tmpl": "toml"
+    "**/tasks/**": "shellscript",
+    "**/bin/**/*.tera": "shellscript",
+    "**/conf.d/shell/*.tera": "shellscript",
+    "**/CLAUDE.md.tera": "markdown",
+    "**/conf.d/git/config.tera": "properties"
   },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt"
   },

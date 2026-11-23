@@ -1,0 +1,6 @@
+[bootstrap.packages]
+"brew:bat" = "latest"
+
+[dotfiles]
+"~/.config/bat/config" = "config"
+"~/.config/bat/themes" = { source = "themes", mode = "symlink-each" }

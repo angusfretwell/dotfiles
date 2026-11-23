@@ -1,0 +1,18 @@
+[bootstrap.directories."~/code/.worktrees"]
+
+[bootstrap.linux.systemd.units.worktree-prune]
+description = "Prune merged git worktrees"
+type = "oneshot"
+exec_start = "ionice -c3 %h/.local/bin/worktree-prune"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.worktree-prune-timer]
+on_calendar = "daily"
+randomized_delay_sec = "1h"
+persistent = true
+unit = "worktree-prune"
+
+[dotfiles]
+"~/.local/bin/worktree-prune" = "bin/worktree-prune"

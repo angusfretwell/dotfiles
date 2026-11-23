@@ -1,8 +1,0 @@
-[Unit]
-Description=Prune unused Docker images
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/docker image prune -af --filter until=168h
-Nice=19
-IOSchedulingClass=idle

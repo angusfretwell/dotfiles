@@ -1,0 +1,18 @@
+[bootstrap.packages]
+"apt:ufw" = "latest"
+
+[bootstrap.files."/etc/ufw/after.init"]
+source = "./after.init"
+mode = "0750"
+notify = ["ufw"]
+
+[bootstrap.services.ufw]
+on_change = "restart"
+
+[bootstrap.linux.firewall]
+backend = "ufw"
+allow_lockout = true
+
+[[bootstrap.linux.firewall.rules]]
+name = "private-networks"
+source = "172.16.0.0/12"

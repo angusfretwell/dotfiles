@@ -1,0 +1,36 @@
+[bootstrap.packages]
+"apt:docker-ce" = "latest"
+"apt:docker-ce-cli" = "latest"
+"apt:containerd.io" = "latest"
+"apt:docker-buildx-plugin" = "latest"
+"apt:docker-compose-plugin" = "latest"
+
+[bootstrap.apt.sources.docker]
+uris = "https://download.docker.com/linux/ubuntu"
+components = "stable"
+key = "https://download.docker.com/linux/ubuntu/gpg"
+fingerprint = "9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88"
+
+[bootstrap.files."/etc/docker/daemon.json"]
+source = "./daemon.json"
+notify = ["docker"]
+
+[bootstrap.groups.docker]
+system = true
+
+[bootstrap.services.docker]
+on_change = "restart"
+
+[bootstrap.linux.systemd.units.docker-image-prune]
+description = "Prune unused Docker images"
+type = "oneshot"
+exec_start = "ionice -c3 docker image prune -af --filter until=168h"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.docker-image-prune-timer]
+on_calendar = "weekly"
+randomized_delay_sec = "1h"
+persistent = true
+unit = "docker-image-prune"

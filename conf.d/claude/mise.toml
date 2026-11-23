@@ -1,0 +1,10 @@
+[dotfiles]
+"~/.config/claudes/settings.json" = "settings.json"
+"~/.config/claudes/CLAUDE.md" = { source = "CLAUDE.md.tera", mode = "template" }
+"~/.local/bin/claude-print" = "bin/claude-print"
+"~/.local/bin/claudes" = { source = "bin/claudes.tera", mode = "template" }
+"~/.local/bin/commit" = "bin/commit"
+"~/.local/bin/help" = "bin/help"
+
+[task_config]
+includes = ["tasks"]

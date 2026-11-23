@@ -1,0 +1,5 @@
+{%- set skills_data = read_yaml(path=mise_config_dir ~ "/conf.d/skills/skills.yaml") -%}
+{%- set skills = skills_data.skills -%}
+#!/bin/zsh
+
+gum spin --show-error --title "Updating skills" -- npx --yes skills update{% for repo in skills | keys | sort %}{% for skill in skills[repo] %} {{ skill }}{% endfor %}{% endfor %} --global --yes

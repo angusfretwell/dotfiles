@@ -1,5 +1,0 @@
-if [[ -r "$HOME/.config/op/service-account-token" ]]; then
-	export OP_SERVICE_ACCOUNT_TOKEN="$(<"$HOME/.config/op/service-account-token")"
-else
-	eval "$(op signin)"
-fi

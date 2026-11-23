@@ -1,0 +1,8 @@
+[bootstrap.packages]
+"brew:atuin" = "latest"
+
+[dotfiles]
+"~/.config/atuin/config.toml" = "config.toml"
+
+[task_config]
+includes = ["tasks"]

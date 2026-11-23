@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+alias dot="cd ~/.dotfiles"
+alias mcat="glow"
+
+{% if os() == "macos" -%}
+alias code=cursor
+alias workbox="herdr --remote workbox"
+{%- endif %}
+
+# Modern replacements for common utils
+alias cat=bat
+alias delta=delta-auto
+alias df=duf
+alias micro=micro-auto
+alias nano=micro-auto
+alias ps=procs
+alias ls="eza --git --group-directories-first -1"
+
+# Worktrunk shortcuts
+alias wts="wt switch"
+alias wtp="wt step prune"
+
+# Claude shortcuts
+alias cc="assert-repo-root && claude"
+alias ccx="assert-repo-root && claude --dangerously-skip-permissions"
+
+for dir in ~/.claude-*(N/); do
+	alias "claude-${dir:t:s/.claude-/}"="CLAUDE_CONFIG_DIR=$dir claude"
+done
+unset dir

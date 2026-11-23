@@ -1,0 +1,12 @@
+[bootstrap.packages]
+"brew:git" = "latest"
+"brew:git-absorb" = "latest"
+"brew:git-delta" = "latest"
+"brew:git-lfs" = "latest"
+
+[dotfiles]
+"~/.gitconfig" = { source = "config.tera", mode = "template" }
+"~/.gitignore" = "ignore"
+"~/.gitmessage" = "message"
+"~/.local/bin/assert-repo-root" = "bin/assert-repo-root"
+"~/.local/bin/delta-auto" = "bin/delta-auto"

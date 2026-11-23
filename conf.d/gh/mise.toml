@@ -1,0 +1,5 @@
+[bootstrap.packages]
+"brew:gh" = "latest"
+
+[dotfiles]
+"~/.config/gh/config.yml/shared" = { source = "config.yml", merge = true }

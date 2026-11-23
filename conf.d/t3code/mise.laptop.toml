@@ -1,0 +1,2 @@
+[bootstrap.packages]
+"brew-cask:t3-code@nightly" = "latest"

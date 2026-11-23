@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#MISE description="Install Xcode Command Line Tools updates"
+#MISE dir="{{ env.HOME }}"
+#MISE sources=["/System/Library/CoreServices/SystemVersion.plist"]
+#MISE interactive=true
+set -euo pipefail
+
+label=$(softwareupdate --list 2>/dev/null |
+	sed -n 's/^\* Label: \(Command Line Tools.*\)$/\1/p' | sort -V | tail -n1)
+
+if [[ -n $label ]]; then
+	sudo softwareupdate --install "$label"
+fi

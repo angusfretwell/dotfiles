@@ -1,0 +1,4 @@
+[dotfiles]
+"~/.local/bin/dot-bootstrap" = "bin/dot-bootstrap"
+"~/.local/bin/dot-update" = "bin/dot-update"
+"~/.local/bin/dot-upgrade" = "bin/dot-upgrade"

@@ -1,0 +1,2 @@
+[dotfiles]
+"~/.zshenv" = { source = "zshenv.tera", mode = "template" }

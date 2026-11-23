@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#MISE description="Join the tailnet if needed and let the user operate tailscale"
+#MISE dir="{{ env.HOME }}"
+set -euo pipefail
+
+if ! tailscale status &>/dev/null; then
+	sudo tailscale up --auth-key="$(op read "op://Workbox/Tailscale/credential")"
+fi
+
+sudo tailscale set --operator="$(id -un)"

@@ -1,13 +1,13 @@
 # dotfiles
 
-Dotfiles for my macOS laptop and Ubuntu workbox, managed with [chezmoi](https://www.chezmoi.io).
+Dotfiles and machine setup for my macOS laptop and Ubuntu workbox, managed with [mise](https://mise.jdx.dev).
 
 ## Install
 
 ### Laptop
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bootstrap/laptop.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bin/setup-laptop)"
 ```
 
 ### Workbox
@@ -27,7 +27,13 @@ workbox-down
 ## Update
 
 ```bash
-chezmoi update
+dot-update
+```
+
+To also upgrade installed packages and tools, and uninstall packages nothing declares any more:
+
+```bash
+dot-upgrade
 ```
 
 ## License

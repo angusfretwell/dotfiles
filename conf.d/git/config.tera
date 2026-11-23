@@ -1,0 +1,93 @@
+[user]
+	name = Angus Fretwell
+	email = angusfretwell@me.com
+	signingkey = ~/.ssh/commit_signing
+
+[credential "https://github.com"]
+	helper =
+	helper = !{{ system_brew_prefix }}/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !{{ system_brew_prefix }}/bin/gh auth git-credential
+
+[commit]
+	template = ~/.gitmessage
+	gpgsign = true
+
+[tag]
+	gpgsign = true
+
+[gpg]
+	format = ssh
+
+[core]
+	excludesfile = ~/.gitignore
+{%- if os() == "macos" %}
+	ignorecase = true
+{%- endif %}
+	editor = micro-auto
+	pager = delta-auto
+	mergeoptions = --no-edit
+
+[color]
+	ui = true
+
+[merge]
+	conflictstyle = zdiff3
+
+[push]
+	default = current
+
+[fetch]
+	prune = true
+
+[init]
+	defaultBranch = main
+
+[status]
+	branch = true
+	short = true
+	untracked-files = all
+
+[submodule]
+	recurse = true
+
+[interactive]
+	diffFilter = delta-auto --color-only
+
+[hook "hk-commit-msg"]
+	command = test \"${HK:-1}\" = \"0\" || ~/.local/bin/mise x hk -- hk run commit-msg --from-hook
+	event = commit-msg
+
+[hook "hk-pre-commit"]
+	command = test \"${HK:-1}\" = \"0\" || ~/.local/bin/mise x hk -- hk run pre-commit --from-hook --staged
+	event = pre-commit
+
+[hook "hk-pre-push"]
+	command = test \"${HK:-1}\" = \"0\" || ~/.local/bin/mise x hk -- hk run pre-push --from-hook
+	event = pre-push
+
+[hook "hk-prepare-commit-msg"]
+	command = test \"${HK:-1}\" = \"0\" || ~/.local/bin/mise x hk -- hk run prepare-commit-msg --from-hook
+	event = prepare-commit-msg
+
+[delta]
+    true-color = always
+	tabs = 2
+	hunk-header-decoration-style = ul blue dim
+	line-numbers-left-format = "{nm:>4} "
+	line-numbers-right-format = " {np:>4} "
+	wrap-left-symbol = " "
+	wrap-right-symbol = " "
+	wrap-right-prefix-symbol = " "
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan

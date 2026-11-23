@@ -1,0 +1,5 @@
+[bootstrap.packages]
+"brew:herdr" = "latest"
+
+[dotfiles]
+"~/.config/herdr/config.toml/shared" = { source = "config.toml", merge = true }

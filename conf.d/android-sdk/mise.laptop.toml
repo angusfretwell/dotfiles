@@ -1,0 +1,6 @@
+[bootstrap.packages]
+"brew-cask:android-commandlinetools" = "latest"
+"brew-cask:zulu@17" = "latest"
+
+[task_config]
+includes = ["tasks"]

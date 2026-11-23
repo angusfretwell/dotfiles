@@ -1,0 +1,37 @@
+[dotfiles."~/.config/restic/password"]
+source = "password.tera"
+mode = "template"
+permissions = "0600"
+
+[dotfiles."~/.config/restic/env"]
+source = "env.tera"
+mode = "template"
+permissions = "0600"
+
+[dotfiles."~/.local/bin/workbox-backup"]
+source = "bin/workbox-backup"
+
+[bootstrap.secrets]
+restic_password = "RESTIC_PASSWORD"
+restic_endpoint = "RESTIC_ENDPOINT"
+restic_bucket = "RESTIC_BUCKET"
+restic_username = "RESTIC_USERNAME"
+restic_credential = "RESTIC_CREDENTIAL"
+
+[bootstrap.linux.systemd.units.workbox-backup]
+description = "Back up T3 Code and Claude Code history to R2"
+type = "oneshot"
+environment_file = ["%h/.config/restic/env"]
+exec_start = "ionice -c3 %h/.local/bin/workbox-backup"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.workbox-backup-timer]
+on_calendar = "hourly"
+randomized_delay_sec = "5min"
+persistent = true
+unit = "workbox-backup"
+
+[task_config]
+includes = ["tasks"]

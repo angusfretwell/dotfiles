@@ -1,0 +1,43 @@
+[bootstrap.packages]
+"apt:build-essential" = "latest"
+"apt:ca-certificates" = "latest"
+"apt:curl" = "latest"
+"apt:file" = "latest"
+"apt:git" = "latest"
+"apt:locales" = "latest"
+"apt:procps" = "latest"
+"apt:unattended-upgrades" = "latest"
+"apt:zsh" = "latest"
+"brew:unzip" = "latest"
+
+[bootstrap.files."/etc/apt/apt.conf.d/20auto-upgrades"]
+content = """
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+"""
+
+[bootstrap.files."/etc/sysctl.d/60-unprivileged-userns.conf"]
+content = """
+kernel.apparmor_restrict_unprivileged_userns = 0
+"""
+
+[bootstrap.users.angus]
+group = "angus"
+groups = ["docker"]
+shell = "/usr/bin/zsh"
+
+[bootstrap.users.linuxuser]
+state = "absent"
+remove_home = true
+
+[dotfiles."~/.config/systemd/user.conf.d/oom.conf"]
+source = "user-manager-oom.conf"
+
+[dotfiles."~/.config/environment.d/path.conf"]
+source = "user-manager-path.conf"
+
+[dotfiles."~/.local/bin/workbox-down"]
+source = "bin/workbox-down"
+
+[task_config]
+includes = ["tasks"]
