@@ -25,4 +25,4 @@ trusted_config_paths = ["~/.config/mise/conf.d"]
 depends = ["shared:*"]
 
 [dotfiles]
-"~/.local/bin/bootstrap" = "scripts/bootstrap"
+"~/.local/bin/bootstrap" = "bin/bootstrap"

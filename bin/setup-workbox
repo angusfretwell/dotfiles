@@ -45,7 +45,7 @@ curl -fsSL https://mise.run | sh
 if [[ ! -d $repo ]]; then
 	git clone https://github.com/angusfretwell/dotfiles.git "$repo"
 fi
-MISE_ENV=workbox "$repo/scripts/bootstrap" --yes --save-env
+MISE_ENV=workbox "$repo/bin/bootstrap" --yes --save-env
 EOF
 
 /home/linuxbrew/.linuxbrew/bin/glow <<EOF

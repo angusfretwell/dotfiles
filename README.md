@@ -14,9 +14,9 @@ The repository root is mise's config directory. Bootstrap links it as `~/.config
   - The dotfiles and other files its config deploys sit beside it.
 - `conf.d/homebrew` has the formulae, casks and App Store apps that no other topic owns.
 - `conf.d/macos` has the macOS preferences. It loads on macOS.
-- A machine is the laptop or the workbox when `miserc.local.toml` has `env = ["laptop"]` or `env = ["workbox"]`. `scripts/setup-laptop` and `scripts/setup-workbox` save that on their first run.
-- `scripts/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
-- `scripts/setup-laptop` and `scripts/setup-workbox` set up a fresh machine.
+- A machine is the laptop or the workbox when `miserc.local.toml` has `env = ["laptop"]` or `env = ["workbox"]`. `bin/setup-laptop` and `bin/setup-workbox` save that on their first run.
+- `bin/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
+- `bin/setup-laptop` and `bin/setup-workbox` set up a fresh machine.
 
 Always apply from the checkout at `~/.dotfiles`, never from a worktree: dotfiles are symlinks into the checkout.
 
@@ -25,7 +25,7 @@ Always apply from the checkout at `~/.dotfiles`, never from a worktree: dotfiles
 ### Laptop
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/scripts/setup-laptop)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bin/setup-laptop)"
 ```
 
 ### Workbox
@@ -45,7 +45,7 @@ workbox-down
 ## Update
 
 ```bash
-~/.dotfiles/scripts/bootstrap --update
+~/.dotfiles/bin/bootstrap --update
 ```
 
 `--update` fast-forwards the checkout first. Drop it to apply local changes. Preview with `--dry-run`.
@@ -62,7 +62,7 @@ Deleting a package from `conf.d` does not uninstall it until `prune` runs.
 
 ## Secrets
 
-`scripts/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `conf.d/fnox/config.toml`. Secrets only one machine needs go in the fnox profile named after it, `laptop` or `workbox`. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
+`bin/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `conf.d/fnox/config.toml`. Secrets only one machine needs go in the fnox profile named after it, `laptop` or `workbox`. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
 
 ## License
 
