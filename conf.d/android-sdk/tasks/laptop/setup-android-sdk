@@ -4,6 +4,7 @@
 set -euo pipefail
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
 
 if [[ ! -d $ANDROID_HOME/platform-tools || ! -d $ANDROID_HOME/emulator ||
 	! -d $ANDROID_HOME/platforms/android-36 || ! -d $ANDROID_HOME/cmdline-tools/latest ]]; then
