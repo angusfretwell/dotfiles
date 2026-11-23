@@ -7,11 +7,6 @@ owner = "root"
 group = "wheel"
 mode = "0444"
 
-[bootstrap.macos.launchd.agents.workbox-mount]
-program = "~/.local/bin/laptop/workbox-mount"
-run_at_load = true
-start_interval = 60
-
 [bootstrap.settings.macos.keyboard]
 key_repeat = 2
 initial_key_repeat = 15
@@ -212,11 +207,5 @@ key = "DesktopViewSettings"
 path = ["IconViewSettings", "labelOnBottom"]
 value = false
 
-[tasks.bootstrap]
-depends = ["shared:*", "macos:*"]
-
 [task_config]
 includes = ["tasks"]
-
-[dotfiles]
-"~/Library/Application Support/Cursor/User/settings.json/managed" = { source = "cursor-settings.jsonc", merge = true, format = "jsonc" }

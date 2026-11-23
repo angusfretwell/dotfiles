@@ -1,0 +1,5 @@
+[dotfiles."~/.config/systemd/user/t3code-.scope.d/oom.conf"]
+source = "scope-oom.conf"
+
+[task_config]
+includes = ["tasks"]

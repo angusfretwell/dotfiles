@@ -1,6 +1,11 @@
+[bootstrap.hooks.pre-packages]
+description = "Install Homebrew if missing"
+run = '''
+[ -x "{{ system_brew_prefix }}/bin/brew" ] || NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+'''
+
 [bootstrap.packages]
 "brew:antidote" = "latest"
-"brew:atuin" = "latest"
 "brew:bash" = "latest"
 "brew:starship" = "latest"
 "brew:zsh" = "latest"
@@ -44,7 +49,6 @@
 "brew:git-absorb" = "latest"
 "brew:git-delta" = "latest"
 "brew:git-lfs" = "latest"
-"brew:worktrunk" = "latest"
 
 "brew:awscli" = "latest"
 "brew:biome" = "latest"
@@ -55,12 +59,5 @@
 "brew:mago" = "latest"
 "brew:mysql-client" = "latest"
 "brew:overmind" = "latest"
-"brew:restic" = "latest"
 "brew:stripe-cli" = "latest"
 "brew:uv" = "latest"
-
-[bootstrap.directories."~/Code/.worktrees"]
-os = "macos"
-
-[bootstrap.directories."~/code/.worktrees"]
-os = "linux"

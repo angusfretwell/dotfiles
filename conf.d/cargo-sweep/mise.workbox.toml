@@ -1,0 +1,14 @@
+[bootstrap.linux.systemd.units.cargo-sweep]
+description = "Sweep stale Rust build artifacts"
+type = "oneshot"
+environment = { PATH = "%h/.local/share/mise/shims:/usr/bin:/bin" }
+exec_start = "/usr/bin/ionice -c3 %h/.local/share/mise/shims/cargo-sweep sweep --recursive --time 7 %h/code %h/.t3/worktrees"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.cargo-sweep-timer]
+on_calendar = "weekly"
+randomized_delay_sec = "1h"
+persistent = true
+unit = "cargo-sweep"

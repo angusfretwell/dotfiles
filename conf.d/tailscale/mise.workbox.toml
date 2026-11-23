@@ -1,0 +1,21 @@
+[bootstrap.packages]
+"apt:tailscale" = "latest"
+
+[bootstrap.apt.sources.tailscale]
+uris = "https://pkgs.tailscale.com/stable/ubuntu"
+key = "https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg"
+fingerprint = "2596 A99E AAB3 3821 893C 0A79 458C A832 957F 5868"
+
+[bootstrap.services.tailscaled]
+
+[[bootstrap.linux.firewall.rules]]
+name = "tailscale-interface"
+interface = "tailscale0"
+
+[[bootstrap.linux.firewall.rules]]
+name = "tailscale-wireguard"
+port = 41641
+protocol = "udp"
+
+[task_config]
+includes = ["tasks"]

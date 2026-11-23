@@ -1,0 +1,21 @@
+[tools."github:henrygd/beszel"]
+version = "latest"
+asset_pattern = 'beszel_linux_{{ arch(x64="amd64") }}.tar.gz'
+additional_asset_patterns = ['beszel-agent_linux_{{ arch(x64="amd64") }}.tar.gz']
+filter_bins = ["beszel", "beszel-agent"]
+
+[bootstrap.services.beszel-hub]
+scope = "user"
+description = "Beszel hub"
+command = "%h/.local/share/mise/shims/beszel serve --http 127.0.0.1:8090 --dir %h/.local/share/beszel"
+requires_tools = true
+
+[bootstrap.services.beszel-agent]
+scope = "user"
+description = "Beszel agent"
+environment = { LISTEN = "127.0.0.1:45876", KEY_FILE = "%h/.local/share/beszel/id_ed25519.pub" }
+command = "/bin/sh -c 'key=%h/.local/share/beszel/id_ed25519; [ -s $$key.pub ] || ssh-keygen -y -f $$key > $$key.pub && exec %h/.local/share/mise/shims/beszel-agent'"
+requires_tools = true
+
+[task_config]
+includes = ["tasks"]

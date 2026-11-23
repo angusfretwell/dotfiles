@@ -1,0 +1,20 @@
+[bootstrap.packages]
+"apt:samba" = "latest"
+"apt:samba-vfs-modules" = "latest"
+
+[bootstrap.files."/etc/samba/smb.conf"]
+source = "./smb.conf"
+template = true
+notify = ["smbd"]
+
+[bootstrap.directories."~/dropbox"]
+
+[bootstrap.services.smbd]
+on_change = "restart"
+
+[bootstrap.services.nmbd]
+state = "stopped"
+enabled = false
+
+[task_config]
+includes = ["tasks"]

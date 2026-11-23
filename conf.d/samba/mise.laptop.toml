@@ -1,0 +1,7 @@
+[bootstrap.macos.launchd.agents.workbox-mount]
+program = "~/.local/bin/laptop/workbox-mount"
+run_at_load = true
+start_interval = 60
+
+[task_config]
+includes = ["tasks"]

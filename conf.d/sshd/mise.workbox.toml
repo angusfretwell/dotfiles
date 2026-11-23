@@ -1,0 +1,19 @@
+[bootstrap.files."/etc/ssh/sshd_config.d/10-workbox.conf"]
+content = """
+PermitRootLogin no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+AllowUsers angus
+X11Forwarding no
+AcceptEnv LANG LC_* COLORTERM
+"""
+notify = ["ssh"]
+
+[bootstrap.files."/root/.ssh/authorized_keys"]
+state = "absent"
+
+[bootstrap.hooks.pre-packages]
+description = "Refuse to harden sshd without authorized keys"
+run = "test -s ~/.ssh/authorized_keys"
+
+[bootstrap.services.ssh]

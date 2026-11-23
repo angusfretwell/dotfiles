@@ -9,6 +9,8 @@ COMMIT_SIGNING_KEY = { value = "op://Workbox/Commit Signing/private key?ssh-form
 PORTLESS_CA_CERT = { value = "op://Workbox/Workbox CA/workbox-ca.crt" }
 PORTLESS_CA_KEY = { value = "op://Workbox/Workbox CA/workbox-ca.key" }
 
+[profiles.laptop.secrets]
+
 [profiles.workbox.secrets]
 RESTIC_PASSWORD = { value = "op://Workbox/Restic/password" }
 RESTIC_ENDPOINT = { value = "op://Workbox/Restic/endpoint" }

@@ -1,0 +1,16 @@
+[bootstrap.directories."~/code/.worktrees"]
+
+[bootstrap.linux.systemd.units.worktree-prune]
+description = "Prune merged git worktrees"
+type = "oneshot"
+environment = { PATH = "%h/.local/share/mise/shims:%h/.local/bin:/home/linuxbrew/.linuxbrew/bin:/usr/bin:/bin" }
+exec_start = "/usr/bin/ionice -c3 %h/.local/bin/workbox/worktree-prune"
+nice = 19
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.worktree-prune-timer]
+on_calendar = "daily"
+randomized_delay_sec = "1h"
+persistent = true
+unit = "worktree-prune"

@@ -25,4 +25,4 @@ if [[ ! -d $repo ]]; then
 	git clone https://github.com/angusfretwell/dotfiles.git "$repo"
 fi
 
-exec "$repo/scripts/bootstrap" --yes
+MISE_ENV=laptop exec "$repo/scripts/bootstrap" --yes --save-env

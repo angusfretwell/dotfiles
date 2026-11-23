@@ -21,11 +21,5 @@ rust = "latest"
 idiomatic_version_file_enable_tools = ["ruby", "node", "python", "golang"]
 trusted_config_paths = ["~/.config/mise/conf.d"]
 
-[bootstrap.hooks.pre-packages]
-description = "Install Homebrew if missing"
-run = '''
-[ -x "{{ system_brew_prefix }}/bin/brew" ] || NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-'''
-
 [tasks.bootstrap]
 depends = ["shared:*"]

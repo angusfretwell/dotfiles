@@ -1,0 +1,8 @@
+[bootstrap.packages]
+"brew-cask:cursor" = "latest"
+
+[dotfiles]
+"~/Library/Application Support/Cursor/User/settings.json/managed" = { source = "settings.jsonc", merge = true, format = "jsonc" }
+
+[task_config]
+includes = ["tasks"]

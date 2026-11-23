@@ -1,0 +1,3 @@
+[bootstrap.packages]
+"brew:tailscale" = "latest"
+"brew-cask:tailscale-app" = "latest"
