@@ -207,5 +207,8 @@ key = "DesktopViewSettings"
 path = ["IconViewSettings", "labelOnBottom"]
 value = false
 
+[dotfiles]
+"~/.local/bin/flush-dns-cache" = "bin/flush-dns-cache"
+
 [task_config]
 includes = ["tasks"]

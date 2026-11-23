@@ -16,5 +16,8 @@ on_change = "restart"
 state = "stopped"
 enabled = false
 
+[dotfiles]
+"~/.local/bin/open" = "bin/open"
+
 [task_config]
 includes = ["tasks"]

@@ -1,2 +1,5 @@
+[dotfiles]
+"~/.local/bin/update-skills" = { source = "bin/update-skills.tera", mode = "template" }
+
 [task_config]
 includes = ["tasks"]

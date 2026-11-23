@@ -10,3 +10,4 @@
 "~/.exports" = { source = "exports.tera", mode = "template" }
 "~/.zsh_plugins.txt" = "zsh_plugins.txt"
 "~/.zshrc" = { source = "zshrc.tera", mode = "template" }
+"~/.local/bin/color-mode" = "bin/color-mode"

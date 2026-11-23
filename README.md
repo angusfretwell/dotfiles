@@ -6,10 +6,11 @@ Dotfiles and machine setup for my macOS laptop and Ubuntu workbox, managed with 
 
 The repository root is mise's config directory. Bootstrap links it as `~/.config/mise`.
 
-- `config.toml` declares the tools and links `bin/` into `~/.local/bin`.
+- `config.toml` declares the tools.
 - `conf.d/` declares the rest, one folder per topic, such as `git`, `samba` or `cursor`. A folder holds everything for its topic:
   - `mise.toml` loads on both machines, `mise.laptop.toml` on the laptop and `mise.workbox.toml` on the workbox.
   - `tasks/shared`, `tasks/laptop` and `tasks/workbox` hold the scripts bootstrap runs last on those machines.
+  - `bin/` holds the commands it links into `~/.local/bin`.
   - The dotfiles and other files its config deploys sit beside it.
 - `conf.d/homebrew` has the formulae, casks and App Store apps that no other topic owns.
 - `conf.d/macos` has the macOS preferences. It loads on macOS.
