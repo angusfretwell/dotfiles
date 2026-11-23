@@ -4,7 +4,7 @@ set -euo pipefail
 root="$(cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/.." && pwd)"
 
 export PATH="$HOME/.local/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
-export FNOX_CONFIG_DIR="$root/dotfiles/fnox"
+export FNOX_CONFIG_DIR="$root/conf.d/dotfiles/fnox"
 
 token_file="$HOME/.config/op/service-account-token"
 if [[ -r $token_file ]]; then

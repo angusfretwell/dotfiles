@@ -1,5 +1,5 @@
 [dotfile_groups.dotfiles]
-root = "dotfiles"
+root = "conf.d/dotfiles"
 exclude = ["/*"]
 
 [dotfile_groups.dotfiles.entries]
