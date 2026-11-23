@@ -59,6 +59,7 @@ AppleShowAllExtensions = true
 AppleInterfaceStyleSwitchesAutomatically = true
 WebKitDeveloperExtras = true
 WebAutomaticSpellingCorrectionEnabled = false
+NSAutomaticCapitalizationEnabled = false
 
 [bootstrap.settings.macos.defaults."com.apple.print.PrintingPrefs"]
 "Quit When Finished" = true
@@ -206,6 +207,12 @@ domain = "com.apple.finder"
 key = "DesktopViewSettings"
 path = ["IconViewSettings", "labelOnBottom"]
 value = false
+
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.symbolichotkeys"
+key = "AppleSymbolicHotKeys"
+path = ["64"]
+value = { enabled = false, value = { type = "standard", parameters = [32, 49, 1048576] } }
 
 [dotfiles]
 "~/.local/bin/flush-dns-cache" = "bin/flush-dns-cache"
