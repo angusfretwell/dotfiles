@@ -10,6 +10,6 @@ for prefix in /opt/homebrew /home/linuxbrew/.linuxbrew; do
 	fi
 done
 
-portless clean
+rm -rf .portless/{server.pem,server-key.pem,host-certs}
 portless trust
 brew postinstall ca-certificates
