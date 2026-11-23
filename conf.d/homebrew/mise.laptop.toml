@@ -37,11 +37,11 @@
 "brew-cask:whatsapp" = "latest"
 "brew-cask:zoom" = "latest"
 
-"mas:1569813296" = "latest" # 1Password for Safari
-"mas:1091189122" = "latest" # Bear
-"mas:361285480" = "latest" # Keynote
-"mas:361304891" = "latest" # Numbers
-"mas:361309726" = "latest" # Pages
-"mas:6746662575" = "latest" # Pixelmator Pro
-"mas:904280696" = "latest" # Things
-"mas:497799835" = "latest" # Xcode
+"mas:1569813296" = "latest"  # 1Password for Safari
+"mas:1091189122" = "latest"  # Bear
+"mas:361285480" = "latest"  # Keynote
+"mas:361304891" = "latest"  # Numbers
+"mas:361309726" = "latest"  # Pages
+"mas:6746662575" = "latest"  # Pixelmator Pro
+"mas:904280696" = "latest"  # Things
+"mas:497799835" = "latest"  # Xcode

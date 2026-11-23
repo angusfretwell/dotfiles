@@ -5,8 +5,8 @@
     "gc": {
       "enabled": true,
       "policy": [
-        {"all": true, "filter": ["until=168h"]},
-        {"all": true, "maxUsedSpace": "50GB"}
+        { "all": true, "filter": ["until=168h"] },
+        { "all": true, "maxUsedSpace": "50GB" }
       ]
     }
   }
