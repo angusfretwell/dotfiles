@@ -5,7 +5,7 @@ bun = "latest"
 fnox = "latest"
 golang = "latest"
 hk = "latest"
-node = { version = "latest", postinstall = "corepack enable" }
+node = { version = "latest", postinstall = "npx --yes corepack enable" }
 op = "latest"
 python = "latest"
 ruby = "latest"
