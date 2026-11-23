@@ -7,8 +7,8 @@
 "apt:locales" = "latest"
 "apt:procps" = "latest"
 "apt:unattended-upgrades" = "latest"
-"apt:unzip" = "latest"
 "apt:zsh" = "latest"
+"brew:unzip" = "latest"
 
 [bootstrap.files."/etc/apt/apt.conf.d/20auto-upgrades"]
 content = """
