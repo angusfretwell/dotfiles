@@ -38,6 +38,9 @@ link_mise_config() {
 	mkdir -p "$HOME/.config"
 	if [[ ! -e $HOME/.config/mise ]]; then
 		ln -s "$repo" "$HOME/.config/mise"
+	elif [[ $(readlink "$HOME/.config/mise") != "$repo" ]]; then
+		echo >&2 "$HOME/.config/mise already exists; move it aside and rerun."
+		exit 1
 	fi
 }
 
