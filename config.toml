@@ -23,6 +23,7 @@ tombi = "latest"
 [settings]
 idiomatic_version_file_enable_tools = ["ruby", "node", "python", "golang"]
 trusted_config_paths = ["~/.config/mise/conf.d"]
+github.credential_command = "gh auth token"
 
 [tasks.bootstrap]
 depends = ["shared:*"]
