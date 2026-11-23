@@ -1,0 +1,5 @@
+[dotfiles]
+"~/.config/mise/conf.d/repos.local.toml" = { source = "repos.local.toml.tera", mode = "template", permissions = "0600" }
+
+[bootstrap.secrets]
+private_repos = "PRIVATE_REPOS"
