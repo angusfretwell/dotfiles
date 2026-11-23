@@ -3,9 +3,9 @@
   "files.associations": {
     "**/tasks/**": "shellscript",
     "**/bin/**/*.tera": "shellscript",
-    "**/dotfiles/shell/*.tera": "shellscript",
+    "**/conf.d/shell/*.tera": "shellscript",
     "**/CLAUDE.md.tera": "markdown",
-    "**/dotfiles/git/config.tera": "properties"
+    "**/conf.d/git/config.tera": "properties"
   },
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt"

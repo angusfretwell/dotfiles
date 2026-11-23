@@ -5,13 +5,6 @@ run = '''
 '''
 
 [bootstrap.packages]
-"brew:antidote" = "latest"
-"brew:bash" = "latest"
-"brew:starship" = "latest"
-"brew:zsh" = "latest"
-
-"brew:bat" = "latest"
-"brew:btop" = "latest"
 "brew:composer" = "latest"
 "brew:coreutils" = "latest"
 "brew:cowsay" = "latest"
@@ -26,7 +19,6 @@ run = '''
 "brew:httpie" = "latest"
 "brew:imagemagick" = "latest"
 "brew:jq" = "latest"
-"brew:micro" = "latest"
 "brew:mkcert" = "latest"
 "brew:mosh" = "latest"
 "brew:nano" = "latest"
@@ -44,17 +36,10 @@ run = '''
 "brew:yq" = "latest"
 "brew:zoxide" = "latest"
 
-"brew:gh" = "latest"
-"brew:git" = "latest"
-"brew:git-absorb" = "latest"
-"brew:git-delta" = "latest"
-"brew:git-lfs" = "latest"
-
 "brew:awscli" = "latest"
 "brew:biome" = "latest"
 "brew:ddev/ddev/ddev" = "latest"
 "brew:flyctl" = "latest"
-"brew:herdr" = "latest"
 "brew:libpq" = "latest"
 "brew:mago" = "latest"
 "brew:mysql-client" = "latest"

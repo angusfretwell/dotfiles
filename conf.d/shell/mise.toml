@@ -1,0 +1,12 @@
+[bootstrap.packages]
+"brew:antidote" = "latest"
+"brew:bash" = "latest"
+"brew:zsh" = "latest"
+
+[dotfiles]
+"~/.hushlogin" = { content = "" }
+"~/.aliases" = { source = "aliases.tera", mode = "template" }
+"~/.bashrc" = { source = "bashrc.tera", mode = "template" }
+"~/.exports" = { source = "exports.tera", mode = "template" }
+"~/.zsh_plugins.txt" = "zsh_plugins.txt"
+"~/.zshrc" = { source = "zshrc.tera", mode = "template" }

@@ -6,16 +6,14 @@ Dotfiles and machine setup for my macOS laptop and Ubuntu workbox, managed with 
 
 The repository root is mise's config directory. Bootstrap links it as `~/.config/mise`.
 
-- `config.toml` declares the tools.
-- `conf.d/` declares the rest, one folder per topic, such as `samba`, `docker` or `cursor`. A folder holds everything for its topic:
+- `config.toml` declares the tools and links `bin/` into `~/.local/bin`.
+- `conf.d/` declares the rest, one folder per topic, such as `git`, `samba` or `cursor`. A folder holds everything for its topic:
   - `mise.toml` loads on both machines, `mise.laptop.toml` on the laptop and `mise.workbox.toml` on the workbox.
   - `tasks/shared`, `tasks/laptop` and `tasks/workbox` hold the scripts bootstrap runs last on those machines.
-  - The files its config deploys sit beside it.
+  - The dotfiles and other files its config deploys sit beside it.
 - `conf.d/homebrew` has the formulae, casks and App Store apps that no other topic owns.
-- `conf.d/dotfiles` has one folder per app. Its `mise.toml` maps each one to its place under `$HOME`.
 - `conf.d/macos` has the macOS preferences. It loads on macOS.
 - A machine is the laptop or the workbox when `miserc.local.toml` has `env = ["laptop"]` or `env = ["workbox"]`. `scripts/setup-laptop` and `scripts/setup-workbox` save that on their first run.
-- `bin/` is linked into `~/.local/bin`.
 - `scripts/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
 - `scripts/setup-laptop` and `scripts/setup-workbox` set up a fresh machine.
 
@@ -63,7 +61,7 @@ Deleting a package from `conf.d` does not uninstall it until `prune` runs.
 
 ## Secrets
 
-`scripts/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `conf.d/dotfiles/fnox/config.toml`. Secrets only one machine needs go in the fnox profile named after it, `laptop` or `workbox`. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
+`scripts/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `conf.d/fnox/config.toml`. Secrets only one machine needs go in the fnox profile named after it, `laptop` or `workbox`. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
 
 ## License
 

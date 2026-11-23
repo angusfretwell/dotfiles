@@ -23,3 +23,14 @@ trusted_config_paths = ["~/.config/mise/conf.d"]
 
 [tasks.bootstrap]
 depends = ["shared:*"]
+
+[dotfile_groups.bin]
+root = "bin"
+target = "~/.local/bin"
+
+[dotfile_groups.bin.entries]
+"~/.local/bin/bootstrap" = "../scripts/bootstrap"
+"~/.local/bin/claudes" = { mode = "template" }
+"~/.local/bin/update-skills" = { mode = "template" }
+"~/.local/bin/laptop" = { variants = [{ os = "macos" }] }
+"~/.local/bin/workbox" = { variants = [{ os = "linux" }] }

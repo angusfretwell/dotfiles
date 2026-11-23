@@ -1,2 +1,6 @@
+[dotfiles]
+"~/.config/claudes/settings.json" = "settings.json"
+"~/.config/claudes/CLAUDE.md" = { source = "CLAUDE.md.tera", mode = "template" }
+
 [task_config]
 includes = ["tasks"]

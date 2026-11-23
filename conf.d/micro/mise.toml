@@ -1,0 +1,7 @@
+[bootstrap.packages]
+"brew:micro" = "latest"
+
+[dotfiles]
+"~/.config/micro/bindings.json" = "bindings.json"
+"~/.config/micro/colorschemes" = { source = "colorschemes", mode = "symlink-each" }
+"~/.config/micro/settings.json/shared" = { source = "settings.json", merge = true }

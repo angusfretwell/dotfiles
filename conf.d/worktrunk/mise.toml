@@ -1,2 +1,5 @@
 [bootstrap.packages]
 "brew:worktrunk" = "latest"
+
+[dotfiles]
+"~/.config/worktrunk/config.toml" = "config.toml"

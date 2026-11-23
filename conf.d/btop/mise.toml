@@ -1,0 +1,5 @@
+[bootstrap.packages]
+"brew:btop" = "latest"
+
+[dotfiles]
+"~/.config/btop/btop.conf/shared" = { source = "btop.conf", merge = true, format = "ini" }

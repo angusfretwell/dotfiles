@@ -1,0 +1,5 @@
+[bootstrap.packages]
+"brew:starship" = "latest"
+
+[dotfiles]
+"~/.config/starship.toml" = "starship.toml"

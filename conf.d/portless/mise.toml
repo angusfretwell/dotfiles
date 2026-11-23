@@ -1,2 +1,10 @@
+[dotfiles]
+"~/.portless/ca.pem" = { source = "ca.pem.tera", mode = "template", permissions = "0644" }
+"~/.portless/ca-key.pem" = { source = "ca-key.pem.tera", mode = "template", permissions = "0600" }
+
+[bootstrap.secrets]
+portless_ca_cert = "PORTLESS_CA_CERT"
+portless_ca_key = "PORTLESS_CA_KEY"
+
 [task_config]
 includes = ["tasks"]
