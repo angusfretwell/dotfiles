@@ -15,7 +15,7 @@ exclude = ["/*"]
 "~/.config/herdr/config.toml/shared" = { source = "herdr/config.toml", merge = true }
 "~/.config/micro" = "micro"
 "~/.config/micro/settings.json/shared" = { source = "micro/settings.json", merge = true }
-"~/.config/starship.toml" = "starship.toml"
+"~/.config/starship.toml" = "starship/starship.toml"
 "~/.config/worktrunk" = "worktrunk"
 "~/.default-gems" = "ruby/default-gems"
 "~/.gitconfig" = { source = "git/config.tera", mode = "template" }
