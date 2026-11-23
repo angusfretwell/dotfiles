@@ -14,7 +14,8 @@ The repository root is mise's config directory. Bootstrap links it as `~/.config
   - `workbox` is the workbox [module](https://mise.jdx.dev/bootstrap/modules.html). A machine loads it when `miserc.local.toml` has `env = ["workbox"]`, which `scripts/setup-workbox` saves on its first run.
 - `tasks/` and each module's own `tasks/` hold the scripts bootstrap runs last.
 - `dotfiles/` has one folder per app.
-- `bin/` is linked into `~/.local/bin`. `bin/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
+- `bin/` is linked into `~/.local/bin`.
+- `scripts/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
 - `scripts/setup-laptop` and `scripts/setup-workbox` set up a fresh machine.
 
 Always apply from the checkout at `~/.dotfiles`, never from a worktree: dotfiles are symlinks into the checkout.
@@ -44,7 +45,7 @@ workbox-down
 ## Update
 
 ```bash
-~/.dotfiles/bin/bootstrap --update
+~/.dotfiles/scripts/bootstrap --update
 ```
 
 `--update` fast-forwards the checkout first. Drop it to apply local changes. Preview with `--dry-run`.
@@ -61,7 +62,7 @@ Deleting a package from `conf.d/packages` does not uninstall it until `prune` ru
 
 ## Secrets
 
-`bin/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `dotfiles/fnox/config.toml`. Each module's secrets go in the fnox profile of the same name. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
+`scripts/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `dotfiles/fnox/config.toml`. Each module's secrets go in the fnox profile of the same name. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
 
 ## License
 

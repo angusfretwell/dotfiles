@@ -25,4 +25,4 @@ if [[ ! -d $repo ]]; then
 	git clone https://github.com/angusfretwell/dotfiles.git "$repo"
 fi
 
-exec "$repo/bin/bootstrap" --yes
+exec "$repo/scripts/bootstrap" --yes
