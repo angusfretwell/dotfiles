@@ -2,9 +2,8 @@
 #MISE description="Restart apps that read macOS defaults at launch"
 #MISE dir="{{ env.HOME }}"
 #MISE sources=["{{ env.HOME }}/.config/mise/conf.d/macos/mise.macos.toml"]
-set -uo pipefail
+set -euo pipefail
 
 for app in cfprefsd Dock Finder Mail Photos Safari SystemUIServer; do
-	killall "$app" &>/dev/null
+	killall "$app" &>/dev/null || true
 done
-exit 0

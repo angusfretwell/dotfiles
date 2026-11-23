@@ -6,4 +6,5 @@ set -euo pipefail
 if ! tailscale status &>/dev/null; then
 	sudo tailscale up --auth-key="$(op read "op://Workbox/Tailscale/credential")"
 fi
+
 sudo tailscale set --operator="$(id -un)"
