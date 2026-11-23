@@ -1,24 +1,6 @@
 # dotfiles
 
-Dotfiles and machine setup for my macOS laptop and Ubuntu workbox, managed with [mise](https://mise.jdx.dev) (`mise bootstrap`).
-
-## Layout
-
-The repository root is mise's config directory. Bootstrap links it as `~/.config/mise`.
-
-- `config.toml` declares the tools.
-- `conf.d/` declares the rest, one folder per topic, such as `git`, `samba` or `cursor`. A folder holds everything for its topic:
-  - `mise.toml` loads on both machines, `mise.laptop.toml` on the laptop and `mise.workbox.toml` on the workbox.
-  - `tasks/shared`, `tasks/laptop` and `tasks/workbox` hold the scripts bootstrap runs last on those machines.
-  - `bin/` holds the commands it links into `~/.local/bin`.
-  - The dotfiles and other files its config deploys sit beside it.
-- `conf.d/homebrew` has the formulae, casks and App Store apps that no other topic owns.
-- `conf.d/macos` has the macOS preferences. It loads on macOS.
-- A machine is the laptop or the workbox when `miserc.local.toml` has `env = ["laptop"]` or `env = ["workbox"]`. `bin/setup-laptop` and `bin/setup-workbox` save that on their first run.
-- `bin/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
-- `bin/setup-laptop` and `bin/setup-workbox` set up a fresh machine.
-
-Always apply from the checkout at `~/.dotfiles`, never from a worktree: dotfiles are symlinks into the checkout.
+Dotfiles and machine setup for my macOS laptop and Ubuntu workbox, managed with [mise](https://mise.jdx.dev).
 
 ## Install
 
@@ -45,32 +27,14 @@ workbox-down
 ## Update
 
 ```bash
-~/.dotfiles/bin/bootstrap --update
+dot-update
 ```
 
-`--update` fast-forwards the checkout first. Drop it to apply local changes. Preview with `--dry-run`.
-
-Bootstrap installs what is declared and never upgrades or removes anything. To upgrade or clean up packages:
+To also upgrade installed packages and tools, and uninstall packages nothing declares any more:
 
 ```bash
-mise bootstrap packages upgrade
-mise bootstrap packages prune --dry-run
-mise bootstrap packages prune
+dot-upgrade
 ```
-
-Deleting a package from `conf.d` does not uninstall it until `prune` runs.
-
-## Format
-
-[hk](https://hk.jdx.dev) formats staged files on commit: shell scripts with shfmt, TOML with tombi, and JSON, YAML and Markdown with Prettier. It skips `.tera` templates. To format every file:
-
-```bash
-hk fix --all
-```
-
-## Secrets
-
-`bin/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `conf.d/fnox/config.toml`. Secrets only one machine needs go in the fnox profile named after it, `laptop` or `workbox`. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
 
 ## License
 
