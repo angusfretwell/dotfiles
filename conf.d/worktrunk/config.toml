@@ -1,4 +1,0 @@
-worktree-path = "../.worktrees/{{ repo }}.{{ branch | sanitize }}"
-
-[list]
-columns = ["branch", "status", "url", "age", "message"]

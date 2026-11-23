@@ -1,0 +1,4 @@
+worktree-path = "~/{{ os(macos="Code", linux="code") }}/.worktrees/{% raw %}{{ repo }}.{{ branch | sanitize }}{% endraw %}"
+
+[list]
+columns = ["branch", "status", "url", "age", "message"]

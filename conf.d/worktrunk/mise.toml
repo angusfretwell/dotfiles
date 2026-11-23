@@ -2,4 +2,4 @@
 "brew:worktrunk" = "latest"
 
 [dotfiles]
-"~/.config/worktrunk/config.toml" = "config.toml"
+"~/.config/worktrunk/config.toml" = { source = "config.toml.tera", mode = "template" }
