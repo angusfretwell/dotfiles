@@ -17,6 +17,7 @@ fi
 exec mise exec fnox@latest op@latest -- bash -c '
 	[[ -n ${MISE_ENV:-} ]] && export FNOX_PROFILE=$MISE_ENV
 	if [[ -z ${OP_SERVICE_ACCOUNT_TOKEN:-} ]]; then
+		export OP_ACCOUNT=my.1password.com
 		session=$(op signin) || exit
 		eval "$session"
 	fi
