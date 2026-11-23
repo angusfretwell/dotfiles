@@ -13,6 +13,7 @@ run = '''
 "brew:eza" = "latest"
 "brew:ffmpeg" = "latest"
 "brew:fzf" = "latest"
+"brew:gh" = "latest"
 "brew:glow" = "latest"
 "brew:gnupg" = "latest"
 "brew:gum" = "latest"
