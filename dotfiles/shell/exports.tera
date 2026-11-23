@@ -33,7 +33,7 @@ esac
 export PATH="{{ system_brew_prefix }}/opt/libpq/bin:$PATH"
 export PATH="{{ system_brew_prefix }}/opt/mysql-client/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/bin/{{ os(macos="darwin") }}:$PATH"
+export PATH="$HOME/.local/bin/{{ os(macos="laptop", linux="workbox") }}:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 {%- if os() == "macos" %}
 export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"

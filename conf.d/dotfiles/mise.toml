@@ -39,8 +39,8 @@ target = "~/.local/bin"
 [dotfile_groups.bin.entries]
 "~/.local/bin/claudes" = { mode = "template" }
 "~/.local/bin/update-skills" = { mode = "template" }
-"~/.local/bin/darwin" = { variants = [{ os = "macos" }] }
-"~/.local/bin/linux" = { variants = [{ os = "linux" }] }
+"~/.local/bin/laptop" = { variants = [{ os = "macos" }] }
+"~/.local/bin/workbox" = { variants = [{ os = "linux" }] }
 
 [dotfiles]
 "~/.hushlogin" = { content = "" }
