@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+exec beszel serve --http 127.0.0.1:8090 --dir "$HOME/.local/share/beszel"

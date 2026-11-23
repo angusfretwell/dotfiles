@@ -7,15 +7,19 @@ filter_bins = ["beszel", "beszel-agent"]
 [bootstrap.services.beszel-hub]
 scope = "user"
 description = "Beszel hub"
-command = "%h/.local/share/mise/shims/beszel serve --http 127.0.0.1:8090 --dir %h/.local/share/beszel"
+command = "%h/.local/bin/start-beszel-hub"
 requires_tools = true
 
 [bootstrap.services.beszel-agent]
 scope = "user"
 description = "Beszel agent"
 environment = { LISTEN = "127.0.0.1:45876", KEY_FILE = "%h/.local/share/beszel/id_ed25519.pub" }
-command = "/bin/sh -c 'key=%h/.local/share/beszel/id_ed25519; [ -s $$key.pub ] || ssh-keygen -y -f $$key > $$key.pub && exec %h/.local/share/mise/shims/beszel-agent'"
+command = "%h/.local/bin/start-beszel-agent"
 requires_tools = true
+
+[dotfiles]
+"~/.local/bin/start-beszel-agent" = "bin/start-beszel-agent"
+"~/.local/bin/start-beszel-hub" = "bin/start-beszel-hub"
 
 [task_config]
 includes = ["tasks"]
