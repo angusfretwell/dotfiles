@@ -3,6 +3,7 @@
 
 [dotfiles]
 "~/Library/Application Support/Cursor/User/settings.json/managed" = { source = "settings.jsonc", merge = true, format = "jsonc" }
+"~/Library/Application Support/Cursor/User/keybindings.json" = "keybindings.json"
 
 [task_config]
 includes = ["tasks"]

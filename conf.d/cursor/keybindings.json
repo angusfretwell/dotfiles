@@ -1,0 +1,26 @@
+[
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
+  },
+  {
+    "key": "cmd+.",
+    "command": "editor.action.triggerSuggest",
+    "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
+  },
+  {
+    "key": "shift+cmd+.",
+    "command": "editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+.",
+    "command": "-editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+cmd+s",
+    "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
+    "when": "!isAuxiliaryWindowFocusedContext"
+  }
+]

@@ -11,6 +11,7 @@
   "workbench.tree.indent": 12,
 
   "security.promptForLocalFileProtocolHandling": false,
+  "security.promptForRemoteFileProtocolHandling": false,
 
   "cursor.cpp.disabledLanguages": ["plaintext"],
 
@@ -26,6 +27,17 @@
 
   // JavaScript & TypeScript
   "biome.requireConfiguration": true,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+
+  // Remote SSH
+  "remote.SSH.remotePlatform": {
+    "workbox": "linux",
+    "workbox.taild89f6.ts.net": "linux"
+  },
+  "remote.autoForwardPortsSource": "hybrid",
+
+  // Fallow
+  "fallow.license.showStatusBar": false,
 
   // Markdown & MDX
   "[md]": {
