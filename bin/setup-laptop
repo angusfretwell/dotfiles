@@ -3,26 +3,48 @@ set -euo pipefail
 
 repo="$HOME/.dotfiles"
 
-read -rp "Hostname [laptop]: " new_hostname
-new_hostname="${new_hostname:-laptop}"
+set_hostname() {
+	local name
+	read -rp "Hostname [laptop]: " name
+	name="${name:-laptop}"
 
-sudo scutil --set ComputerName "$new_hostname"
-sudo scutil --set HostName "$new_hostname"
-sudo scutil --set LocalHostName "$new_hostname"
+	sudo scutil --set ComputerName "$name"
+	sudo scutil --set HostName "$name"
+	sudo scutil --set LocalHostName "$name"
+}
 
-if ! xcode-select -p &>/dev/null; then
-	xcode-select --install
-	until xcode-select -p &>/dev/null; do
-		sleep 5
-	done
-fi
+install_xcode_tools() {
+	if ! xcode-select -p &>/dev/null; then
+		xcode-select --install
+		until xcode-select -p &>/dev/null; do
+			sleep 5
+		done
+	fi
+}
 
-if [[ ! -x $HOME/.local/bin/mise ]]; then
-	curl -fsSL https://mise.run | sh
-fi
+install_mise() {
+	if [[ ! -x $HOME/.local/bin/mise ]]; then
+		curl -fsSL https://mise.run | sh
+	fi
+}
 
-if [[ ! -d $repo ]]; then
-	git clone https://github.com/angusfretwell/dotfiles.git "$repo"
-fi
+clone_dotfiles() {
+	if [[ ! -d $repo ]]; then
+		git clone https://github.com/angusfretwell/dotfiles.git "$repo"
+	fi
+}
+
+link_mise_config() {
+	mkdir -p "$HOME/.config"
+	if [[ ! -e $HOME/.config/mise ]]; then
+		ln -s "$repo" "$HOME/.config/mise"
+	fi
+}
+
+set_hostname
+install_xcode_tools
+install_mise
+clone_dotfiles
+link_mise_config
 
 MISE_ENV=laptop exec "$repo/conf.d/dotfiles/bin/dot-bootstrap" --yes --save-env
