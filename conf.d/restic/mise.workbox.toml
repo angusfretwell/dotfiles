@@ -18,9 +18,8 @@ restic_credential = "RESTIC_CREDENTIAL"
 [bootstrap.linux.systemd.units.workbox-backup]
 description = "Back up T3 Code and Claude Code history to R2"
 type = "oneshot"
-environment = { PATH = "/home/linuxbrew/.linuxbrew/bin:/usr/bin:/bin" }
 environment_file = ["%h/.config/restic/env"]
-exec_start = "/usr/bin/ionice -c3 %h/.local/bin/workbox-backup"
+exec_start = "ionice -c3 %h/.local/bin/workbox-backup"
 nice = 19
 start = false
 wanted_by = []

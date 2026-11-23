@@ -24,7 +24,7 @@ on_change = "restart"
 [bootstrap.linux.systemd.units.docker-image-prune]
 description = "Prune unused Docker images"
 type = "oneshot"
-exec_start = "/usr/bin/ionice -c3 /usr/bin/docker image prune -af --filter until=168h"
+exec_start = "ionice -c3 docker image prune -af --filter until=168h"
 nice = 19
 start = false
 wanted_by = []

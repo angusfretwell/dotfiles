@@ -3,8 +3,7 @@
 [bootstrap.linux.systemd.units.worktree-prune]
 description = "Prune merged git worktrees"
 type = "oneshot"
-environment = { PATH = "%h/.local/share/mise/shims:%h/.local/bin:/home/linuxbrew/.linuxbrew/bin:/usr/bin:/bin" }
-exec_start = "/usr/bin/ionice -c3 %h/.local/bin/worktree-prune"
+exec_start = "ionice -c3 %h/.local/bin/worktree-prune"
 nice = 19
 start = false
 wanted_by = []
