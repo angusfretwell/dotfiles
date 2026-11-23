@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #MISE description="Alias the beszel hub in portless"
 #MISE dir="{{ env.HOME }}"
-#MISE depends=["workbox:portless"]
+#MISE depends=["workbox:setup-portless"]
 set -euo pipefail
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"

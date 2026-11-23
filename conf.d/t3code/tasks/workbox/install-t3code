@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #MISE description="Install or update T3 Code on the nightly channel and install its service"
 #MISE dir="{{ env.HOME }}"
-#MISE depends=["workbox:restic", "workbox:portless"]
+#MISE depends=["workbox:setup-restic", "workbox:setup-portless"]
 set -euo pipefail
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$PATH"
