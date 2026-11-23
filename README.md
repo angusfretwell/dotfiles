@@ -60,6 +60,14 @@ mise bootstrap packages prune
 
 Deleting a package from `conf.d` does not uninstall it until `prune` runs.
 
+## Format
+
+[hk](https://hk.jdx.dev) formats staged files on commit: shell scripts with shfmt, TOML with tombi, and JSON, YAML and Markdown with Prettier. It skips `.tera` templates. To format every file:
+
+```bash
+hk fix --all
+```
+
 ## Secrets
 
 `bin/bootstrap` reads the 1Password service account token from `~/.config/op/service-account-token` when it exists (the workbox). Otherwise `op` uses the 1Password desktop app. Secrets are declared in `conf.d/fnox/config.toml`. Secrets only one machine needs go in the fnox profile named after it, `laptop` or `workbox`. One-off logins (Atuin, Tailscale, Samba) read from 1Password with `op read` only when needed.
