@@ -12,7 +12,7 @@ ruby = "latest"
 rust = "latest"
 tombi = "latest"
 "cargo:cargo-sweep" = "latest"
-"npm:agent-browser" = { version = "latest", postinstall = "agent-browser install{% if os() == 'linux' %} --with-deps{% endif %}" }
+"npm:agent-browser" = { version = "latest", postinstall = "agent-browser install --with-deps" }
 "npm:agent-desktop" = "latest"
 "npm:ccstatusline" = "latest"
 "npm:ctx7" = "latest"
