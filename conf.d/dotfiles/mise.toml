@@ -32,12 +32,11 @@ exclude = ["/*"]
 "~/.portless/ca.pem" = { source = "portless/ca.pem.tera", mode = "template", permissions = "0644" }
 "~/.portless/ca-key.pem" = { source = "portless/ca-key.pem.tera", mode = "template", permissions = "0600" }
 
-[dotfile_groups.scripts]
-root = "scripts"
+[dotfile_groups.bin]
+root = "bin"
 target = "~/.local/bin"
 
-[dotfile_groups.scripts.entries]
-"~/.local/bin/bootstrap" = "../bin/bootstrap"
+[dotfile_groups.bin.entries]
 "~/.local/bin/claudes" = { mode = "template" }
 "~/.local/bin/update-skills" = { mode = "template" }
 "~/.local/bin/darwin" = { variants = [{ os = "macos" }] }

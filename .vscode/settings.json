@@ -2,7 +2,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.associations": {
     "**/tasks/**": "shellscript",
-    "**/scripts/**/*.tera": "shellscript",
+    "**/bin/**/*.tera": "shellscript",
     "**/dotfiles/shell/*.tera": "shellscript",
     "**/CLAUDE.md.tera": "markdown",
     "**/dotfiles/git/config.tera": "properties"

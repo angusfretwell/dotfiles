@@ -11,12 +11,11 @@ The repository root is mise's config directory. Bootstrap links it as `~/.config
   - `packages` for Homebrew, casks and App Store apps.
   - `dotfiles` maps each folder in `dotfiles/` to its place under `$HOME`.
   - `macos` loads on macOS.
-  - `workbox` is the workbox [module](https://mise.jdx.dev/bootstrap/modules.html). A machine loads it when `miserc.local.toml` has `env = ["workbox"]`, which `bin/setup-workbox` saves on its first run.
+  - `workbox` is the workbox [module](https://mise.jdx.dev/bootstrap/modules.html). A machine loads it when `miserc.local.toml` has `env = ["workbox"]`, which `scripts/setup-workbox` saves on its first run.
 - `tasks/` and each module's own `tasks/` hold the scripts bootstrap runs last.
 - `dotfiles/` has one folder per app.
-- `scripts/` is linked into `~/.local/bin`.
-- `bin/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
-- `bin/setup-laptop` and `bin/setup-workbox` set up a fresh machine.
+- `bin/` is linked into `~/.local/bin`. `bin/bootstrap` runs `mise bootstrap` with secrets from 1Password via [fnox](https://fnox.jdx.dev).
+- `scripts/setup-laptop` and `scripts/setup-workbox` set up a fresh machine.
 
 Always apply from the checkout at `~/.dotfiles`, never from a worktree: dotfiles are symlinks into the checkout.
 
@@ -25,7 +24,7 @@ Always apply from the checkout at `~/.dotfiles`, never from a worktree: dotfiles
 ### Laptop
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/bin/setup-laptop)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/angusfretwell/dotfiles/main/scripts/setup-laptop)"
 ```
 
 ### Workbox
