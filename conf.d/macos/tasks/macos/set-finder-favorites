@@ -1,0 +1,49 @@
+#!/usr/bin/env -S uv run --quiet --script
+#MISE description="Set the Finder sidebar favorites"
+# /// script
+# dependencies = ["pyobjc-framework-CoreServices"]
+# ///
+from pathlib import Path
+
+from CoreServices import (
+    LSSharedFileListCopySnapshot,
+    LSSharedFileListCreate,
+    LSSharedFileListInsertItemURL,
+    LSSharedFileListItemCopyResolvedURL,
+    LSSharedFileListItemRemove,
+    kLSSharedFileListDoNotMountVolumes,
+    kLSSharedFileListFavoriteItems,
+    kLSSharedFileListItemLast,
+    kLSSharedFileListNoUserInteraction,
+)
+from Foundation import NSURL
+
+FAVORITES = [
+    "/Applications",
+    "~/Downloads",
+    "~/Desktop",
+    "~/Documents",
+    "/Volumes/Workbox",
+    "~/Screenshots",
+    "~/Code",
+]
+
+RESOLVE_QUIETLY = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes
+
+
+def resolved_path(item):
+    url, _ = LSSharedFileListItemCopyResolvedURL(item, RESOLVE_QUIETLY, None)
+    return url.path() if url else None
+
+
+wanted = [str(path) for path in map(Path.expanduser, map(Path, FAVORITES)) if path.is_dir()]
+
+sidebar = LSSharedFileListCreate(None, kLSSharedFileListFavoriteItems, None)
+items, _ = LSSharedFileListCopySnapshot(sidebar, None)
+
+if [resolved_path(item) for item in items] != wanted:
+    for item in items:
+        LSSharedFileListItemRemove(sidebar, item)
+    for path in wanted:
+        url = NSURL.fileURLWithPath_(path)
+        LSSharedFileListInsertItemURL(sidebar, kLSSharedFileListItemLast, None, None, url, None, None)
