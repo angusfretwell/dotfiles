@@ -19,6 +19,7 @@ tombi = "latest"
 "npm:portless" = "latest"
 "npm:prettier" = "latest"
 "npm:vercel" = "latest"
+cloudflared = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby", "node", "python", "golang"]
