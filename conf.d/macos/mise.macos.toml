@@ -33,7 +33,6 @@ apps = [
   "/System/Applications/Calendar.app",
   "/Applications/Things3.app",
   "/Applications/Bear.app",
-  "/Applications/Granola.app",
   "/System/Applications/Music.app",
   "/Applications/Linear.app",
   "/Applications/Claude.app",
