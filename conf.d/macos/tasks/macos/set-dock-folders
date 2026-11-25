@@ -3,10 +3,10 @@
 set -euo pipefail
 
 folders=(
-	"$HOME/Desktop name auto"
+	"$HOME/Desktop dateadded fan"
 	"$HOME/Downloads dateadded fan"
-	"/Volumes/Workbox name auto"
-	"$HOME/Screenshots dateadded auto"
+	"/Volumes/Workbox dateadded fan"
+	"$HOME/Screenshots dateadded fan"
 )
 
 sort_code() {
