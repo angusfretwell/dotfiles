@@ -6,4 +6,4 @@ set -euo pipefail
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
-portless alias beszel 8090 --force
+portless alias monitor 8090 --force
