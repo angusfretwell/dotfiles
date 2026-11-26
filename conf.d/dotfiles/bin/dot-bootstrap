@@ -21,5 +21,6 @@ exec mise exec fnox@latest op@latest -- bash -c '
 		session=$(op signin) || exit
 		eval "$session"
 	fi
-	exec fnox exec -- mise bootstrap "$@"
+	fnox exec -- mise bootstrap "$@" &&
+		exec fnox exec -- mise bootstrap --only repos "$@"
 ' dot-bootstrap "$@"

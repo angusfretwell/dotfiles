@@ -8,6 +8,7 @@ type = "1password"
 COMMIT_SIGNING_KEY = { value = "op://Workbox/Commit Signing/private key?ssh-format=openssh" }
 PORTLESS_CA_CERT = { value = "op://Workbox/Workbox CA/workbox-ca.crt" }
 PORTLESS_CA_KEY = { value = "op://Workbox/Workbox CA/workbox-ca.key" }
+PRIVATE_REPOS = { value = "op://Workbox/Repos/notesPlain" }
 
 [profiles.laptop.secrets]
 
